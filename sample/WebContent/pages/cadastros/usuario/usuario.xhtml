@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<h:inputHidden value="#{usuarioBean.entity.id}" rendered="#{usuarioBean.updateState}"/>
+	
+	 	<p:fieldset legend="Usuários">
+	 			
+			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{usuarioBean.entity.nome}" required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3"/>
+				</h:inputText>
+				<p:message errorClass="error" for="nome"/>
+	
+				<h:outputLabel value="Sexo"/>
+	    		<h:selectOneMenu id="sexo" value="#{usuarioBean.entity.sexo}" required="true">
+	    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+	    			<f:selectItem itemValue="MASC" itemLabel="MASC"/>
+	    			<f:selectItem itemValue="FEMI" itemLabel="FEMI"/>
+	    		</h:selectOneMenu>
+	    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+	
+				<h:outputLabel value="CPF"/>
+				<h:inputText id="numdoc" value="#{usuarioBean.entity.cpf}" required="true" maxlength="18" size="18">
+					<f:validateLength maximum="18" minimum="11"/>
+				</h:inputText>
+				<p:message errorClass="error" for="numdoc"/>
+	
+				<h:outputLabel value="Telefone"/>
+				<h:inputText id="tel" value="#{usuarioBean.entity.telefone}" required="true" maxlength="20" size="20">
+					<f:validateLength maximum="20" minimum="10"/>
+				</h:inputText>
+				<p:message errorClass="error" for="tel"/>
+	
+				<h:outputLabel value="Celular"/>
+				<h:inputText id="cel" value="#{usuarioBean.entity.celular}" maxlength="20" size="20">
+					<f:validateLength maximum="20" minimum="10"/>
+				</h:inputText>
+				<p:message errorClass="error" for="cel"/>
+	
+				<h:outputLabel value="Email :"/>
+				<h:inputText id="celular" value="#{usuarioBean.entity.email}" maxlength="20" size="20">
+					<f:validateLength maximum="20" minimum="10"/>
+				</h:inputText>
+				<p:message errorClass="error" for="celular"/>
+	
+			</h:panelGrid>
+				
+		</p:fieldset>
+
+		<p:fieldset legend="Endereço">
+	        	
+	        <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	
+	       		<h:outputLabel value="Logradouro"/>
+				<h:inputText id="endereco" value="#{usuarioBean.entity.endereco.logradouro}" required="true" maxlength="150" size="70">
+					<f:validateLength maximum="150" minimum="2"/>
+				</h:inputText>
+				<p:message errorClass="error" for="endereco"/>
+	
+				<h:outputLabel value="Nº"/>
+				<h:inputText id="numero" value="#{usuarioBean.entity.endereco.numero}" required="true" maxlength="4" size="6">
+					<f:validateLength maximum="4" minimum="1"/>
+				</h:inputText>
+				<p:message errorClass="error" for="numero"/>
+	
+				<h:outputLabel value="Complemento"/>
+				<h:inputText id="compl" value="#{usuarioBean.entity.endereco.complemento}" required="false" maxlength="30" size="30">
+					<f:validateLength maximum="30" minimum="2"/>
+				</h:inputText>
+				<p:message errorClass="error" for="compl"/>
+	
+				<h:outputLabel value="CEP"/>
+				<h:inputText id="cep" value="#{usuarioBean.entity.endereco.cep}" required="false" maxlength="30" size="20">
+					<f:validateLength maximum="30" minimum="2"/>
+				</h:inputText>
+				<p:message errorClass="error" for="cep"/>
+	
+				<h:outputLabel value="Bairro"/>
+				<h:inputText id="bairro" value="#{usuarioBean.entity.endereco.bairro}" required="false" maxlength="30" size="20">
+					<f:validateLength maximum="30" minimum="2"/>
+				</h:inputText>
+				<p:message errorClass="error" for="bairro"/>
+	
+				<h:outputLabel value="Cidade"/>
+				<h:inputText id="cidade" value="#{usuarioBean.entity.endereco.cidade}" required="false" maxlength="30" size="20">
+					<f:validateLength maximum="30" minimum="2"/>
+				</h:inputText>
+				<p:message errorClass="error" for="cidade"/>
+	
+			</h:panelGrid>
+				
+		</p:fieldset>
+		
+		
+		<p:fieldset legend="Segurança">
+		
+		
+				<h:outputLabel value="Login"/>
+				<h:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
+				<p:message errorClass="error" for="login"/>
+	
+				<h:outputLabel value="Senha"/>
+				<h:inputSecret id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
+				<p:message errorClass="error" for="senha"/>
+		
+		
+		</p:fieldset>
+
+
+		<p:commandButton value="Salvar" type="submit" action="#{usuarioBean.save}" styleClass="button" 
+						rendered="#{usuarioBean.saveState}" update="appForm"  ajax="false"/>
+
+		<p:commandButton value="Alterar" type="submit" action="#{usuarioBean.update}" styleClass="button" 
+						rendered="#{usuarioBean.updateState}" update="appForm"  ajax="false"/>
+
+		<p:commandButton value="Voltar" action="#{usuarioBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+	</ui:define>
+
+</ui:composition>
+

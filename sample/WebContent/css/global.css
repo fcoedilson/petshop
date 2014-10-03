@@ -1,0 +1,93 @@
+@CHARSET "ISO-8859-1";
+
+#mainForm {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#fieldLogin {
+	height: 18em;
+	width: 24em;
+	margin: 20em
+}
+
+.labelNegrito {
+	font-weight: bold;
+}
+
+.simpleHeader {
+	background-color: #A5BFDD;
+	background: #A5BFDD;
+}
+
+.toolBar {
+	background: #A5BFDD;
+}
+
+.separator {
+	background-color: #A5BFDD;
+	background: #A5BFDD;
+	color: #A5BFDD;
+}
+
+.processando {
+	font-weight: bold;
+	font-style: italic;
+	color: #CCC;
+}
+
+.toolBarContent {
+	color: black;
+}
+
+.panelHeader {
+	background-color: #F90;
+	background: #F90;
+}
+
+.panelGrid {
+	padding: 5px;
+	border-top: 3px solid #C00;
+	border-bottom: 1px solid #C00;
+	position: relative;
+}
+
+.outputTextTopo {
+	float: left;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 55px 0px 10px 0px;
+}
+
+.dropDownMenu {
+	height: 25px;
+	background-color: #F90;
+	margin-bottom: 1px;
+	color: #FFF;
+	padding: 1px;
+	z-index: 10;
+}
+
+.message {
+	color: red;
+	margin-left: 5px;
+	padding-left: 5px;
+}
+
+.messages {
+	color: red;
+}
+
+.dr-tbpnl-tb {
+	font-size: 13px;
+}
+
+
+.dr-menu-label {
+	font-size: 13px;
+}
+
+.subHeader {
+	background-color: #E6DDD5;
+	text-align: left;
+}

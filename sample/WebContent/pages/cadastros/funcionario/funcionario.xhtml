@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:inputHidden value="#{funcionarioBean.entity.id}" rendered="#{funcionarioBean.updateState}"/>
+
+
+ 		<p:fieldset id="dadosGeraisField" legend="Dados do Funcionário">
+ 			
+           <h:panelGrid id="dadosGerais" columns="3" styleClass="crudd" columnClasses="label">
+           
+
+			<h:outputLabel value="Nome"/>
+			<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" required="true" maxlength="120" size="60">
+				<f:validateLength maximum="50" minimum="3"/>
+			</h:inputText>
+			<p:message errorClass="error" for="nome"/>
+			
+			<h:outputLabel value="Sexo"/>
+    		<h:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
+    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+    			<f:selectItem itemValue="MASC" itemLabel="MASC"/>
+    			<f:selectItem itemValue="FEMI" itemLabel="FEMI"/>
+    		</h:selectOneMenu>
+    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+
+			<h:outputLabel value="CPF"/>
+			<h:inputText id="numdoc" value="#{funcionarioBean.entity.cpf}" required="true" maxlength="18" size="18">
+				<f:validateLength maximum="18" minimum="11"/>
+			</h:inputText>
+			<p:message errorClass="error" for="numdoc"/>
+
+			<h:outputLabel value="Fones"/>
+			<h:inputText id="tel" value="#{funcionarioBean.entity.telefone}" required="true" maxlength="20" size="20">
+				<f:validateLength maximum="20" minimum="10"/>
+			</h:inputText>
+			<p:message errorClass="error" for="tel"/>
+
+			<h:outputLabel value="Celular"/>
+			<h:inputText id="cel" value="#{funcionarioBean.entity.celular}" maxlength="20" size="20">
+				<f:validateLength maximum="20" minimum="10"/>
+			</h:inputText>
+			<p:message errorClass="error" for="cel"/>
+
+			<h:outputLabel value="Email :"/>
+			<h:inputText id="celular" value="#{funcionarioBean.entity.email}" maxlength="20" size="20">
+				<f:validateLength maximum="20" minimum="10"/>
+			</h:inputText>
+			<p:message errorClass="error" for="celular"/>
+
+		</h:panelGrid>
+		
+	</p:fieldset>
+	<br/>
+       
+       <p:fieldset id="enderecoFuncionarioField" legend="Endereço">
+       	
+       	<h:panelGrid id="enderecoFuncionario" columns="3" styleClass="crudd" columnClasses="label">
+
+      		<h:outputLabel value="Logradouro"/>
+			<h:inputText id="endereco" value="#{funcionarioBean.entity.endereco.logradouro}" required="true" maxlength="150" size="70">
+				<f:validateLength maximum="150" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="endereco"/>
+	
+			<h:outputLabel value="Nº"/>
+			<h:inputText id="numero" value="#{funcionarioBean.entity.endereco.numero}" required="true" maxlength="4" size="6">
+				<f:validateLength maximum="4" minimum="1"/>
+			</h:inputText>
+			<p:message errorClass="error" for="numero"/>
+	
+			<h:outputLabel value="Complemento"/>
+			<h:inputText id="compl" value="#{funcionarioBean.entity.endereco.complemento}" required="false" maxlength="30" size="30">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="compl"/>
+	
+			<h:outputLabel value="CEP"/>
+			<h:inputText id="cep" value="#{funcionarioBean.entity.endereco.cep}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="cep"/>
+	
+			<h:outputLabel value="Bairro"/>
+			<h:inputText id="bairro" value="#{funcionarioBean.entity.endereco.bairro}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="bairro"/>
+	
+			<h:outputLabel value="Cidade"/>
+			<h:inputText id="cidade" value="#{funcionarioBean.entity.endereco.cidade}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="cidade"/>
+
+		</h:panelGrid>
+		
+	</p:fieldset>
+	
+	<p:fieldset id="dadosRHField" legend="Dados do Funcionário">
+	
+		<h:panelGrid id="dadosRH" columns="3" styleClass="crudd" columnClasses="label">
+	
+			<h:outputLabel value="Matrícula"/>
+			<h:inputText id="matricula" value="#{funcionarioBean.entity.matricula}" required="true" maxlength="30" size="20"/>
+			<p:message errorClass="error" for="matricula"/>
+			
+			
+			<h:outputLabel value="CTPS"/>
+			<h:inputText id="ctps" value="#{funcionarioBean.entity.ctps}" required="true"/>
+			<p:message errorClass="error" for="ctps"/>
+			
+			<h:outputLabel value="Data Admissão"/>
+			<p:calendar id="admissao" value="#{funcionarioBean.entity.admissao}" pattern="MM/dd/yyyy" />
+			<p:message errorClass="error" for="admissao"/>
+			
+			
+			<h:outputLabel value="Data demissão"/>
+			<p:calendar id="demissao" value="#{funcionarioBean.entity.demissao}" pattern="MM/dd/yyyy" />
+			<p:message errorClass="error" for="demissao"/>
+	
+		</h:panelGrid>
+	
+	</p:fieldset>
+
+
+		<p:commandButton value="Salvar" type="submit" action="#{funcionarioBean.save}" styleClass="button" rendered="#{funcionarioBean.saveState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Alterar" action="#{funcionarioBean.update}" styleClass="button" rendered="#{funcionarioBean.updateState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Voltar" action="#{funcionarioBean.search}" styleClass="button" update="appForm" immediate="true"/>
+	
+ 
+ </ui:define>
+
+</ui:composition>

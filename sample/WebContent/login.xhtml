@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j">
+
+
+<h:head>
+	<title>Petshop Clínica</title>
+	
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+	 <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/padrao-sistemas.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+	
+</h:head>
+
+<body id="pagina-inicial" onload="javascript:document.forms[0].j_username.focus();">
+
+	<div id="header_topo" class="page-header">
+
+	<img style="float: left; height:120px" src="img/petlogo2.png" class="img-responsive" />
+
+		<div id="form_login" >
+	
+			<form id="form" name="form1" method="post" action="j_spring_security_check"  style="z-index: 9999" class="form-signin form-signin-body">
+				<div class="form-group">
+					<label for="j_username">LOGIN<span> *</span></label>
+					<input type="text" name="j_username" id="j_username" class="form-control" placeholder="Entre com login"/>
+				</div>
+				<div class="form-group">
+					<label for="j_password">PASSWORD<span> *</span></label>
+					<input type="password" name="j_password" id="j_password" size="10" class="form-control" placeholder="Entre com a senha"/>
+				</div>
+				<input type="submit" value="Entrar" class="btn"/>
+				<p>Esqueceu a senha? <a href="#">Clique aqui</a></p>
+	
+			</form>
+			<h:messages styleClass="messages" globalOnly="true"/>
+			
+		</div>
+	
+	</div>
+	
+	<button id="botao_login" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> LOGIN</button> 
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript">
+        
+	    $('#botao_login').click(function() {
+	        $('#form_login').slideToggle('slow');
+	        $('#') = $(':visible');
+	        
+	    });// Fim do  evento click #botao_login
+		</script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>	
+
+</body>
+
+</html>
+
+
+	
+			
+
+
+
+

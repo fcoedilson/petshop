@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+	
+		<p:fieldset legend="Lista de Serviços">
+		
+			<h:outputLabel value="Busca"/>
+			<h:inputText value="#{servicoBean.filter}"/>
+	
+			<p:commandButton value="Pesquisar" type="submit" action="#{servicoBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{servicoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+			
+			<p:dataTable id="dataTable" var="servico" value="#{servicoBean.entities}" 
+							rows="10" rowClasses="even,odd"
+							paginatorAlwaysVisible="false"
+	                       paginator="true" 
+	                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+	                        					{PreviousPageLink} {PageLinks} 
+	                        					{NextPageLink} {LastPageLink} 
+	                        					{RowsPerPageDropdown}" rowIndexVar="k">
+	
+				<p:column width="3%" style="text-align: center;" > 
+					<f:facet name="header"><h:outputText value="Nº" /></f:facet>
+					<h:outputText value="#{k+1}" style="color: black;"/>
+				</p:column>
+	
+				<p:column width="40%" sortBy="#{servico.nome}">
+					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+					<h:outputText value="#{servico.nome}"/>
+				</p:column>
+				
+				<p:column width="40%" sortBy="#{servico.valor}">
+					<f:facet name="header"><h:outputLabel value="Valor"/></f:facet>
+					<h:outputText value="#{servico.valor}"/>
+				</p:column>
+	
+				<p:column width="4%">
+					<h:commandLink icon="ui-icon-pencil" action="#{servicoBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{servicoBean.entity}" value="#{servico}"/>
+						<p:graphicImage value="/images/pencil.png"/>
+					</h:commandLink>
+				</p:column>
+	
+				<p:column width="4%">
+					<h:commandLink  icon="ui-icon-trash" action="#{servicoBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{servicoBean.entity}" value="#{servico}"/>
+						<p:graphicImage value="/images/cross.png"/>
+					</h:commandLink>
+				</p:column>
+	
+			</p:dataTable>
+		
+		
+		</p:fieldset>
+		
+	
+	</ui:define>
+	
+</ui:composition>

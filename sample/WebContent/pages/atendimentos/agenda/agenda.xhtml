@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<h:inputHidden value="#{agendaBean.entity.id}" rendered="#{agendaBean.updateState}"/>
+	
+		<p:fieldset legend="Agendamento">
+
+	    	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label,label,label">
+	           
+				<h:outputLabel value="Paciente"/>
+				<p:inputText id="nomePaciente" value="#{agendaBean.entity.paciente}"/>
+				<p:message errorClass="error" for="nomePaciente"/>
+
+				<h:outputLabel value="Data"/>
+				<p:calendar id="data" value="#{agendaBean.entity.data}" pattern="MM/dd/yyyy" effect="fold"/>
+				 <p:message errorClass="error" for="data"/>
+
+				<h:outputLabel value="Horário"/>
+				<pe:timePicker id="horario" value="#{agendaBean.entity.horario}" mode="popup" widgetVar="popupBtnTimeWidget"  
+                   showOn="button" label="Popup time picker with button"/>
+				  <p:message errorClass="error" for="horario"/>
+                
+                
+                <h:outputLabel value="Telefone"/>
+                <p:inputMask id="telefone" value="#{agendaBean.entity.telefone}"  mask="(99)9999-9999" maxlength="20" size="20"/>
+				<p:message errorClass="error" for="telefone"/>
+				
+				<h:outputLabel value="Email"/>
+                 
+                <h:inputText id="mail" value="#{agendaBean.entity.email}" validatorMessage="Email inválido" maxlength="80" size="40">
+					<f:validateRegex  pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</h:inputText>               
+                <p:message errorClass="error" for="mail"/>
+                
+	
+			</h:panelGrid>
+			
+		</p:fieldset>
+	
+		<p:commandButton value="Salvar" type="submit" action="#{agendaBean.save}" styleClass="button" rendered="#{agendaBean.saveState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Alterar" type="submit" action="#{agendaBean.update}" styleClass="button" rendered="#{agendaBean.updateState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Voltar" action="#{agendaBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,458 @@
+﻿@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+/* -----------------------------------*/
+/* ---------->>> GLOBAL <<<-----------*/
+/* -----------------------------------*/
+ 
+/* GLOBAL > RESET
+//////////////////////////////////////*/
+ 
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+	font-size: 12px;
+}
+/* -----------------------------------*/
+/* ---->>> PÁGINA DE LOGIN <<<--------*/
+/* -----------------------------------*/
+
+/* RESET > PÁGINA DE LOGIN
+//////////////////////////////////////*/
+
+
+
+/* ESTRUTURA > PÁGINA DE LOGIN
+//////////////////////////////////////*/
+#login {
+	/*background-color: #35a493;
+	background-image: linear-gradient(45deg, #0f7666 0px, #35a493 100%);
+	background-repeat: repeat-x;*/
+	padding-bottom: 40px;
+}
+
+
+
+/*EDITANDO PARA NOVO LAYOUT SIT*/
+
+
+
+#header_topo{
+    background: url('../img/banner.jpg');
+    background-color: #ffffff;
+    background-repeat: repeat-x;
+    width: 100%; 
+    height: 150px;
+    border-bottom: 4px solid #35a493;
+    margin-top: 0px;
+    padding: 8px;
+
+}
+
+#topo_login{
+    background-color: #ffffff;
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 150px;
+    border: 2px solid black;
+    position: relative;
+    
+}
+
+#form_login{
+    margin: -11px 0px 0px 0px;
+    width: 210px;
+    height: 290px;
+    right: 282px;
+    position: absolute;
+    display: none;
+    z-index: 9999;
+
+}
+
+
+
+#botao_login{
+    margin-top: -18px;
+    position: absolute;
+    right: 190px;
+    border: 2px solid #ffffff;
+    color: black;
+    
+   
+}
+
+/*#botao_login.close{
+    margin-top: -12px;
+    margin-right: -50px;
+    border: 2px solid #35a493;
+    float: right;
+        
+}*/
+
+
+#slide-toggle{
+  z-index: 9999;
+  margin: 0 auto;
+  margin-top: -20px;
+  width: 120px;
+  height: 15px;
+  background: transparent url('../img/hide-header.png') top center no-repeat;
+  cursor: pointer;
+  position: relative;
+} 
+ 
+
+div#slide-toggle.show {
+  z-index: 9999;
+  background: url('../img/show-header.png') top center no-repeat;
+  margin: 0 auto;
+  margin-top: 0px;
+  width: 120px;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+#busca_rapida{
+   right: 20px;
+   position: absolute;
+   width: 270px;
+   margin-top: 0.5px;
+
+
+
+}
+
+
+.form-signin {
+    max-width: 300px;
+	padding: 5px;
+	margin: 0px 0px 0px 0px;
+    float: right;
+    position: relative;
+    border: 1px solid #35a493;
+}
+.form-signin-body {
+	background-color: #ffffff;
+	border-radius: 8px 8px 8px 8px;
+}
+.form-signin-footer {
+	background-color: #eeeeee;
+	border-radius: 0 0 8px 8px;
+	text-align: right;
+}
+.logo-footer {
+    border-right:white dotted 1px;
+}
+/* ESTRUTURA > PÁGINA DE LOGIN > FORMULÁRIOS
+//////////////////////////////////////*/
+
+/* Asterisco Vermelho - Campos Obrigatórios */
+.form-signin span {
+	color: red
+}
+/* Captcha */
+.captcha i {
+	font-size: 24px;
+	margin: 5px;
+}
+/* Checkbox */
+.form-signin .checkbox {
+	margin-bottom: 10px;
+}
+.form-signin .checkbox {
+	font-weight: normal;
+}
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+/* ----------------------------------------*/
+/* ---->>> PÁGINA INICIAL <<<----*/
+/* ----------------------------------------*/
+
+/* RESET > PÁGINA INICIAL
+//////////////////////////////////////*/
+hr {
+    border-color: #d3d3d3;
+}
+/* reset > Bootstrap */
+.navbar {
+	min-height: inherit;
+}
+.navbar-nav > li > a {
+	padding: 5px 10px;
+}
+
+#pagina-inicial .navbar {
+	border-radius: 0;
+}
+#top .row {
+	padding: 12px;
+}
+/* ESTRUTURA > PÁGINA INICIAL
+//////////////////////////////////////*/
+#pagina-inicial {
+	background-color: #eeeeee;
+}
+#top {
+	background-color: #2E9685;
+}
+
+/* -->>> Barra de Acessibilidade <<<--*/
+.barra-acessivel {
+    border-bottom: #237769 solid 1px;
+    background-color:#2C8E7E;
+}
+.barra-acessivel ul{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.barra-acessibilidade a{
+    color:white;
+}
+.barra-acessibilidade li{
+    display:inline;
+}
+.barra-acessibilidade .badge{
+    background-color: #237769;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1.3;
+    min-width: 10px;
+    padding: 3px 6px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+/* -->>> Barra de Acesso a informação <<<--*/
+.barra-acesso-a-informacao a{
+    color:white;
+    text-transform:uppercase;
+    border-bottom:1px dotted white
+}
+.barra-acesso-a-informacao li{
+    display:inline;
+    margin-left:8px;
+}
+
+
+.usuario-logado {
+    margin-left:10px;
+}
+.usuario-logado .badge {
+    font-size:9px;
+    padding:3px;
+    top:-5px;
+}
+.sair {
+    border:2px solid white;
+    padding:5px 11px;
+}
+
+.corpo {
+    margin-bottom: 150px;
+    color:#2D373E;
+}
+    .bem-vindo h5{
+        margin:0;
+    }
+    
+    .atalho{
+        background-color: #ffffff; padding: 30px; border-radius: 5px;
+    }
+        .atalho a{
+        color:#2D373E
+        }
+        .atalho .fa-caret-up{
+            color: #ffffff; margin-top: -70px; position: absolute;
+        }
+
+#rodape {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+    height: auto;
+	padding: 7px;
+	background-color: #DBDBDB;
+}
+#rodape .small {
+	color: #747474;
+	margin-top: 9px;
+}
+/* Footer
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+	padding: 60px 15px 0;
+}
+.container .text-muted {
+	margin: 20px 0;
+}
+#rodape > .container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+code {
+	font-size: 80%;
+}
+/* ---------------------------- */
+/* ---- PÁGINA DE LOGIN --------*/
+/* ---------------------------- */
+
+
+
+/* Novo Estilo Navbar
+-------------------------------------------------- */
+.navbar-pmf {
+	background-color: #35A493;
+	border-color: #2D897A;
+    
+}
+.navbar-pmf .navbar-brand {
+	color: #777777;
+}
+.navbar-pmf .navbar-brand:hover, .navbar-pmf .navbar-brand:focus {
+	background-color: rgba(0, 0, 0, 0);
+	color: #5E5E5E;
+}
+.navbar-pmf .navbar-text {
+	color: #ffffff;
+}
+.navbar-pmf .navbar-nav > li > a {
+	color: #ffffff;
+}
+.navbar-pmf .navbar-nav > li > a:hover, .navbar-pmf .navbar-nav > li > a:focus {
+	color: #ffffff;
+	background-color: #42AA99;
+}
+.navbar-pmf .navbar-nav > .active > a, .navbar-pmf .navbar-nav > .active > a:hover, .navbar-pmf .navbar-nav > .active > a:focus {
+	background-color: #52BFAD;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.navbar-pmf .navbar-nav > .disabled > a, .navbar-pmf .navbar-nav > .disabled > a:hover, .navbar-pmf .navbar-nav > .disabled > a:focus {
+	background-color: rgba(0, 0, 0, 0);
+	color: #CCCCCC;
+}
+.navbar-pmf .navbar-toggle {
+	border-color: #FFFFFF;
+    border-width: 2px;
+}
+.navbar-pmf .navbar-toggle:hover, .navbar-pmf .navbar-toggle:focus {
+	background-color: #DDDDDD;
+}
+.navbar-pmf .navbar-toggle .icon-bar {
+	background-color: #ffffff;
+}
+.navbar-pmf .navbar-collapse, .navbar-pmf .navbar-form {
+	border-color: #E7E7E7;
+}
+.navbar-pmf .navbar-nav > .open > a, .navbar-pmf .navbar-nav > .open > a:hover, .navbar-pmf .navbar-nav > .open > a:focus {
+	background-color: #E7E7E7;
+	color: #555555;
+}
+@media (max-width: 767px) {
+.navbar-pmf .navbar-nav .open .dropdown-menu > li > a {
+	color: #ffffff;
+}
+.navbar-pmf .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-pmf .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color: rgba(0, 0, 0, 0);
+	color: #333333;
+}
+.navbar-pmf .navbar-nav .open .dropdown-menu > .active > a, .navbar-pmf .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-pmf .navbar-nav .open .dropdown-menu > .active > a:focus {
+	background-color: #E7E7E7;
+	color: #555555;
+}
+.navbar-pmf .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-pmf .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-pmf .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	background-color: rgba(0, 0, 0, 0);
+	color: #CCCCCC;
+}
+}
+.navbar-pmf .navbar-link {
+	color: #ffffff;
+}
+.navbar-pmf .navbar-link:hover {
+	color: #ffffff;
+}
+
+/* ---------------------------- */
+/* ---- MEDIA QUERY ------------*/
+/* ---------------------------- */
+
+@media (max-width: 767px) {
+    .usuario-logado {
+        margin-top:10px;
+    } 
+    
+    .atalho .col-sm-4 {
+        border-bottom:1px dashed #C5C5C5;
+        padding-bottom:15px;
+        margin-top:10px;
+    }
+
+    .atalho {
+        width:90%;
+        margin:auto;
+    }
+    .logo-pfm {
+        margin:auto;
+        margin-top:10px;
+        padding-top:10px;
+        border-top: 1px dashed #333;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+      .usuario-logado {
+        float:right;
+    }  
+    .atalho .col-sm-4 {
+        border-right:1px dashed #C5C5C5
+    }
+    .logo-pfm {
+        float:right;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .usuario-logado {
+        float:right;
+    }
+    .atalho .col-sm-4 {
+        border-right:1px dashed #C5C5C5
+    } 
+    .logo-pfm {
+        float:right;
+    } 
+}
+@media (min-width: 1200px) {
+    .usuario-logado {
+        float:right;
+    }
+    .atalho .col-sm-4 {
+        border-right:1px dashed #C5C5C5
+    }
+
+    .logo-pfm {
+        float:right;
+    }
+}
+

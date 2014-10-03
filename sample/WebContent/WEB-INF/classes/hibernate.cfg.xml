@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory name="">
+
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/teste</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">postgres</property>
+		<!-- <property name="hibernate.dialect">org.hibernatespatial.postgis.PostgisDialect</property> -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.show_sql">true</property>
+<!-- 		<property name="hibernate.hbm2ddl.auto">update</property> -->
+
+		<mapping class="br.com.sample.entity.Pessoa" />
+		<mapping class="br.com.sample.entity.Endereco" />
+		<mapping class="br.com.sample.entity.Medico" />
+		<mapping class="br.com.sample.entity.Usuario" />
+		<mapping class="br.com.sample.entity.Cliente" />
+		<mapping class="br.com.sample.entity.Produto" />
+		<mapping class="br.com.sample.entity.Pedido" />
+		<mapping class="br.com.sample.entity.ItemPedido" />
+		<mapping class="br.com.sample.entity.Perfil" />
+		<mapping class="br.com.sample.entity.Permissao" />
+		<mapping class="br.com.sample.entity.Cargo" />
+		<mapping class="br.com.sample.entity.Funcionario" />
+		<mapping class="br.com.sample.entity.Consulta" />
+		<mapping class="br.com.sample.entity.Animal" />
+		<mapping class="br.com.sample.entity.Raca" />
+		<mapping class="br.com.sample.entity.Servico" />
+		<mapping class="br.com.sample.entity.TipoConsulta" />
+		<mapping class="br.com.sample.entity.Caixa" />
+		<mapping class="br.com.sample.entity.Atendimento" />
+		<mapping class="br.com.sample.entity.Agenda" />
+		<mapping class="br.com.sample.entity.Especie" />
+
+	</session-factory>
+
+</hibernate-configuration>

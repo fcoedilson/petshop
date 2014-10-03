@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:inputHidden value="#{especieBean.entity.id}" rendered="#{especieBean.updateState}"/>
+
+ 		<p:fieldset legend="Espécie de Animais">
+ 			
+
+            <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+            
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{especieBean.entity.nome}" required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3"/>
+				</h:inputText>
+				<p:message errorClass="error" for="nome"/>
+
+				<h:outputLabel value="Tipo Animal"/>
+	    		<h:selectOneMenu id="tipo" value="#{especieBean.entity.tipo}" required="true">
+	    			<f:selectItem itemValue="" itemLabel="Informe o tipo do animal ..."/>
+	    			<f:selectItem itemValue="Gato" itemLabel="Gato"/>
+	    			<f:selectItem itemValue="Cachorro" itemLabel="Cachorro"/>
+	    			<f:selectItem itemValue="Ramister" itemLabel="Ramister"/>
+	    			<f:selectItem itemValue="Porco da Índia" itemLabel="Porco da Índia"/>
+	    			
+	    		</h:selectOneMenu>
+	    		<p:message errorClass="error" for="tipo"  styleClass="message"/>
+
+				<h:outputLabel value="Descrição"/>
+				<h:inputTextarea id="descricao" value="#{especieBean.entity.descricao}" cols="50" rows="3"/>
+				<p:message errorClass="error" for="descricao"/>
+
+			</h:panelGrid>
+			
+		</p:fieldset>
+
+
+		<p:commandButton value="Salvar" type="submit" action="#{especieBean.save}" styleClass="button" rendered="#{especieBean.saveState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Alterar" type="submit" action="#{especieBean.update}" styleClass="button" rendered="#{especieBean.updateState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Voltar" action="#{especieBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+	</ui:define>
+
+</ui:composition>

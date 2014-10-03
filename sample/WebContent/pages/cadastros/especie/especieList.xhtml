@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<h:outputLabel value="Busca"/>
+		<h:inputText value="#{especieBean.filter}"/>
+
+		<p:commandButton value="Pesquisar" type="submit" action="#{especieBean.search}" update="dataTable" styleClass="button"/>
+		<p:commandButton value="Novo" action="#{especieBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+
+
+		<p:dataTable id="dataTable" var="raca" value="#{especieBean.entities}" 
+						rows="10" rowClasses="even,odd"
+						paginatorAlwaysVisible="false"
+                       paginator="true" 
+                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                        					{PreviousPageLink} {PageLinks} 
+                        					{NextPageLink} {LastPageLink} 
+                        					{RowsPerPageDropdown}" rowIndexVar="k">
+
+			<p:column width="3%" style="text-align: center;" > 
+				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
+				<h:outputText value="#{index+1}" style="color: black;"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{especie.nome}">
+				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+				<h:outputText value="#{especie.nome}"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{especie.tipo}">
+				<f:facet name="header"><h:outputLabel value="Tipo Animal"/></f:facet>
+				<h:outputText value="#{especie.tipo}"/>
+			</p:column>
+
+			<p:column width="40%" sortBy="#{especie.descricao}">
+				<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
+				<h:outputText value="#{especie.descricao}"/>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink icon="ui-icon-pencil" action="#{especieBean.prepareUpdate}" value="">
+					<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
+					<p:graphicImage value="/images/pencil.png"/>
+				</h:commandLink>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink  icon="ui-icon-trash" action="#{especieBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+					<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
+					<p:graphicImage value="/images/cross.png"/>
+				</h:commandLink>
+			</p:column>
+
+		</p:dataTable>
+	
+		
+	</ui:define>
+
+</ui:composition>

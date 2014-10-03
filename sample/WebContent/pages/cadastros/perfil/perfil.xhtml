@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+	
+			<p:fieldset legend="Perfil">
+		
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	
+					<h:outputLabel value="Nome do Perfil"/>
+					<h:inputText value="#{perfilBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" 
+						requiredMessage="Informe o nome" />
+					<p:message errorClass="error" for="nome"/>
+			
+					<h:outputLabel value="IDENTIFICADOR"/>
+					<h:inputText value="#{perfilBean.entity.authority}" id="identificador" size="40" maxlength="70" required="true" 
+						requiredMessage="Informe o identificador" />
+					<p:message errorClass="error" for="identificador"/>
+	
+				</h:panelGrid>
+		
+			</p:fieldset>
+	
+			<p:commandButton value="Salvar" type="submit" action="#{perfilBean.save}" styleClass="button" rendered="#{perfilBean.saveState}" update="appForm"/>
+			
+			<p:commandButton value="Alterar" type="submit" action="#{perfilBean.update}" styleClass="button" 
+				rendered="#{perfilBean.updateState}" update="appForm" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}"/>
+			
+			<p:commandButton value="Voltar" action="#{perfilBean.search}" update="appForm" styleClass="button" immediate="true"/>
+	
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+	
+		<p:fieldset legend="Serviços">
+		
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	
+					<h:outputLabel value="Nome"/>
+					<h:inputText value="#{servicoBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" 
+						requiredMessage="Informe o nome" />
+					<p:message errorClass="error" for="nome"/>
+			
+					<h:outputLabel value="Valor"/>
+					<h:inputText value="#{servicoBean.entity.valor}" id="valor" size="40" maxlength="70" required="true" 
+						requiredMessage="Informe o valor" />
+					<p:message errorClass="error" for="valor"/>
+	
+			</h:panelGrid>
+		
+		
+		</p:fieldset>
+		
+		<p:commandButton value="Salvar" type="submit" action="#{servicoBean.save}" styleClass="button" 
+						rendered="#{servicoBean.saveState}" update="appForm"  ajax="false"/>
+
+		<p:commandButton value="Alterar" type="submit" action="#{servicoBean.update}" styleClass="button" 
+						rendered="#{servicoBean.updateState}" update="appForm"  ajax="false"/>
+
+		<p:commandButton value="Voltar" action="#{servicoBean.search}" update="appForm" styleClass="button" immediate="true"/>
+		
+	
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:outputLabel value="Busca"/>
+		<h:inputText value="#{agendaBean.filter}"/>
+
+		<p:commandButton value="Pesquisar" type="submit" action="#{agendaBean.search}" update="dataTable" styleClass="button"/>
+		<p:commandButton value="Novo" action="#{agendaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" ajax="false"/>
+
+		<p:dataTable id="dataTable" var="agenda" value="#{agendaBean.entities}" 
+						rows="10" rowClasses="even,odd"
+						paginatorAlwaysVisible="false"
+                       paginator="true" 
+                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                        					{PreviousPageLink} {PageLinks} 
+                        					{NextPageLink} {LastPageLink} 
+                        					{RowsPerPageDropdown}" rowIndexVar="k">
+
+			<p:column width="3%" style="text-align: center;" > 
+				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
+				<h:outputText value="#{k+1}" style="color: black;"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{agenda.cliente.nome}">
+				<f:facet name="header"><h:outputLabel value="Nome Cliente"/></f:facet>
+				<h:outputText value="#{agenda.cliente.nome}"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{agenda.paciente}">
+				<f:facet name="header"><h:outputLabel value="Paciente"/></f:facet>
+				<h:outputText value="#{agenda.paciente}"/>
+			</p:column>
+
+			<p:column width="15%" sortBy="#{agenda.data}">
+				<f:facet name="header"><h:outputLabel value="Data"/></f:facet>
+				<h:outputText value="#{agenda.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+
+			<p:column width="15%" sortBy="#{agenda.horario}">
+				<f:facet name="header"><h:outputLabel value="Horário"/></f:facet>
+				<h:outputText value="#{agenda.horario}">
+					<f:convertDateTime pattern="HH:mm"/>
+				</h:outputText>
+			</p:column>
+
+			<p:column width="12%" sortBy="#{agenda.status}">
+				<f:facet name="header"><h:outputLabel value="Status"/></f:facet>
+				<h:outputText value="#{agenda.status}"/>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink icon="ui-icon-pencil" action="#{agendaBean.prepareUpdate}" value="">
+					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
+					<p:graphicImage value="/images/pencil.png"/>
+				</h:commandLink>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink  icon="ui-icon-trash" action="#{agendaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
+					<p:graphicImage value="/images/cross.png"/>
+				</h:commandLink>
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>

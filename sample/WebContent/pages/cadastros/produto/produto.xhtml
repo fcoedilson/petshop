@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"  template="/pages/templates/template.xhtml">
+
+
+<ui:define name="pageContent">
+
+
+		<p:fieldset legend="Produtos">
+	
+	
+			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+				<h:outputLabel value="Nome"/>
+				<h:inputText value="#{produtoBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" requiredMessage="Informe o nome" />
+				<p:message errorClass="error" for="nome"/>
+		
+				<h:outputLabel value="Estoque"/>
+				<h:inputText id="estoque" value="#{produtoBean.entity.estoque}" required="true"/>
+				<p:message errorClass="error" for="estoque"/>
+
+				<h:outputLabel value="Preço de venda"/>
+				<h:inputText id="venda" value="#{produtoBean.entity.precoVenda}" required="true"/>
+				<p:message errorClass="error" for="venda"/>
+
+				<h:outputLabel value="Preço de custo"/>
+				<h:inputText id="custo" value="#{produtoBean.entity.precoCusto}" required="true"/>
+				<p:message errorClass="error" for="custo"/>
+				
+
+			</h:panelGrid>
+	
+		</p:fieldset>	
+
+	    <p:commandButton action="#{produtoBean.save}" value="Salvar" rendered="#{produtoBean.saveState}" update="appForm" ajax="false"/>
+		<p:commandButton action="#{produtoBean.update}" value="Alterar" rendered="#{produtoBean.updateState}" styleClass="editar" update="appForm" ajax="false"/>
+		<p:commandButton action="#{produtoBean.search}" value="Voltar" update="appForm" immediate="true"/>
+
+
+	</ui:define>
+
+</ui:composition>

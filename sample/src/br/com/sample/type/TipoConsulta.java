@@ -1,0 +1,14 @@
+package br.com.sample.type;
+
+public enum  TipoConsulta {
+	CARDIOLOGIA, 
+	DERMATOLOGIA,
+	FISIOTERAPIA,
+	ODONTOLOGIA,
+	NUTRICAO,
+	CIRURGIA,
+	ORTOPEDIA,
+	TRAUMATOLOGIA,
+	CLINICAGERAL
+
+}

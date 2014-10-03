@@ -1,0 +1,2 @@
+1. consultar de bomba de combustível não responde qdo se coloca entradas vazias
+2.

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:inputHidden value="#{clienteBean.entity.id}" rendered="#{clienteBean.updateState}"/>
+
+
+ 		<p:fieldset legend="Dados do Cliente">
+ 			
+           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+           
+
+			<h:outputLabel value="Nome"/>
+			<h:inputText id="nome" value="#{clienteBean.entity.nome}" required="true" maxlength="120" size="60"/>
+			<p:message errorClass="error" for="nome"/>
+			
+			<h:outputLabel value="Sexo"/>
+    		<h:selectOneMenu id="sexo" value="#{clienteBean.entity.sexo}" required="true">
+    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+    			<f:selectItem itemValue="MASC" itemLabel="MASC"/>
+    			<f:selectItem itemValue="FEMI" itemLabel="FEMI"/>
+    		</h:selectOneMenu>
+    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+
+			<h:outputLabel value="CPF"/>
+			<p:inputMask id="numdoc" value="#{clienteBean.entity.cpf}" mask="999.9999.9999-99" required="true" maxlength="18" size="18"/>
+			<p:message errorClass="error" for="numdoc"/>
+
+			<h:outputLabel value="Fones"/>
+			<p:inputMask id="tel" value="#{clienteBean.entity.telefone}" mask="(99)9999-9999"  required="true" maxlength="20" size="20"/>
+			<p:message errorClass="error" for="tel"/>
+
+			<h:outputLabel value="Celular"/>
+			<p:inputMask id="cel" value="#{clienteBean.entity.celular}"  mask="(99)9999-9999" maxlength="20" size="20"/>
+			<p:message errorClass="error" for="cel"/>
+
+			<h:outputLabel value="Email :"/>
+			<h:inputText id="mail" value="#{clienteBean.entity.email}" validatorMessage="Email inválido" maxlength="80" size="40">
+				<f:validateRegex  pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</h:inputText>
+			<p:message errorClass="error" for="mail"/>
+			<p:message for="mail" />
+
+		</h:panelGrid>
+		
+	</p:fieldset>
+	<br/>
+       
+       <p:fieldset legend="Endereço">
+       	
+       	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+      		<h:outputLabel value="Logradouro"/>
+			<h:inputText id="endereco" value="#{clienteBean.entity.endereco.logradouro}" required="true" maxlength="150" size="70">
+				<f:validateLength maximum="150" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="endereco"/>
+	
+			<h:outputLabel value="Nº"/>
+			<h:inputText id="numero" value="#{clienteBean.entity.endereco.numero}" required="true" maxlength="4" size="6">
+				<f:validateLength maximum="4" minimum="1"/>
+			</h:inputText>
+			<p:message errorClass="error" for="numero"/>
+	
+			<h:outputLabel value="Complemento"/>
+			<h:inputText id="compl" value="#{clienteBean.entity.endereco.complemento}" required="false" maxlength="30" size="30">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="compl"/>
+	
+			<h:outputLabel value="CEP"/>
+			<h:inputText id="cep" value="#{clienteBean.entity.endereco.cep}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="cep"/>
+	
+			<h:outputLabel value="Bairro"/>
+			<h:inputText id="bairro" value="#{clienteBean.entity.endereco.bairro}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="bairro"/>
+	
+			<h:outputLabel value="Cidade"/>
+			<h:inputText id="cidade" value="#{clienteBean.entity.endereco.cidade}" required="false" maxlength="30" size="20">
+				<f:validateLength maximum="30" minimum="2"/>
+			</h:inputText>
+			<p:message errorClass="error" for="cidade"/>
+
+		</h:panelGrid>
+		
+	</p:fieldset>
+
+
+	<p:commandButton value="Salvar" type="submit" action="#{clienteBean.save}" styleClass="button" rendered="#{clienteBean.saveState}" update="appForm" ajax="false"/>
+	<p:commandButton value="Alterar" action="#{clienteBean.update}" styleClass="button" rendered="#{clienteBean.updateState}" update="appForm" ajax="false"/>
+	<p:commandButton value="Voltar" action="#{clienteBean.search}" styleClass="button" update="appForm" immediate="true"/>
+ 
+ </ui:define>
+
+</ui:composition>
