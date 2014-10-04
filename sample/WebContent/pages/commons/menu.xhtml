@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 
-<ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
-	
-	<div id="topo" style="display:none">
-    	<h1 style="margin-left: 20px;">Petshop</h1>
-   	</div>
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div id="topo" style="display: none">
+		<h1 style="margin-left: 20px;">Petshop</h1>
+	</div>
 
 
 	<div id="menu">
 
-		<rich:toolbar styleClass="toolBar" contentClass="toolBarContent" height="15px">
+		<p:menubar>
+			<p:submenu label="Administração" icon="ui-icon-document">
+				<p:menuitem value="Funcionários" action="#{funcionarioBean.search}" />
+				<p:menuitem value="Médicos" action="#{medicoBean.search}"
+					immediate="true" />
+				<p:menuitem value="Cargos" action="#{cargoBean.search}"
+					immediate="true" />
+				<p:menuitem value="Usuários" action="#{usuarioBean.search}"
+					immediate="true" />
+				<p:menuitem value="Perfis" action="#{perfilBean.search}"
+					immediate="true" />
+				<p:menuitem value="Permissões" action="#{permissaoBean.search}"
+					immediate="true" />
+				<p:menuitem value="Produtos" action="#{produtoBean.search}"
+					immediate="true" />
+				<p:menuitem value="Serviços" action="#{servicoBean.search}"
+					immediate="true" />
+			</p:submenu>
 
-			<rich:dropDownMenu label="Administração" rendered="#{controlBean.hasRole('MENU_GERENCIA')}">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Animais" action="#{animalBean.search}"
+					immediate="true" />
+				<p:menuitem value="Especies" action="#{especieBean.search}"
+					immediate="true" />
+				<p:menuitem value="Raças" action="#{racaBean.search}"
+					immediate="true" />
+				<p:menuitem value="Clientes" action="#{clienteBean.search}"
+					immediate="true" />
+			</p:submenu>
 
-				<rich:menuItem label="Funcionários" action="#{funcionarioBean.search}" immediate="true"/>
-				<rich:menuItem label="Médicos" action="#{medicoBean.search}"   immediate="true"/>
-				<rich:menuItem label="Cargos" action="#{cargoBean.search}"   immediate="true"/>
-				<rich:menuItem label="Usuários" action="#{usuarioBean.search}"  immediate="true"/>
-				<rich:menuItem label="Perfis" action="#{perfilBean.search}" immediate="true"/>
-				<rich:menuItem label="Permissões" action="#{permissaoBean.search}" immediate="true"/>
-				<rich:menuItem label="Produtos" action="#{produtoBean.search}" immediate="true" />
-				<rich:menuItem label="Serviços" action="#{servicoBean.search}" immediate="true" />
-			
-			</rich:dropDownMenu>
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Registro Caixa" immediate="true" />
+				<p:menuitem value="Folha pagamemento" immediate="true" />
+				<p:menuitem value="Registro de despesas" immediate="true" />
+				<p:menuitem value="Balanco Semanal" immediate="true" />
+				<p:menuitem value="Balanço Mensal" immediate="true" />
+			</p:submenu>
 
-			<rich:dropDownMenu label="Cadastros" rendered="#{controlBean.hasRole('MENU_CADASTRO')}">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Agendamento" action="#{agendaBean.search}"
+					immediate="true" />
+				<p:menuitem value="Consultas" immediate="true" />
+				<p:menuitem value="Atendimento" immediate="true" />
+			</p:submenu>
 
-				<rich:menuItem label="Animais" action="#{animalBean.search}" immediate="true"/>
-				<rich:menuItem label="Especies" action="#{especieBean.search}" immediate="true"/>
-				<rich:menuItem label="Raças" action="#{racaBean.search}" immediate="true"/>
-				<rich:menuItem label="Clientes" action="#{clienteBean.search}" immediate="true"/>
-			
-			</rich:dropDownMenu>
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Pedidos" immediate="true" />
+				<p:menuitem value="Consultas" immediate="true" />
+				<p:menuitem value="Atendimento" immediate="true" />
+			</p:submenu>
 
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Relatório de Despesas" immediate="true" />
+				<p:menuitem value="Estoque de produtos" immediate="true" />
+				<p:menuitem value="Balanço Mensal" immediate="true" />
+				<p:menuitem value="Balanco Semanal" immediate="true" />
+				<p:menuitem value="Balanço Mensal" immediate="true" />
+			</p:submenu>
 
-			<rich:dropDownMenu label="Caixa" rendered="#{controlBean.hasRole('MENU_CAIXA')}">
-				<rich:menuItem label="Registro Caixa"  immediate="true"/>
-				<rich:menuItem label="Folha pagamemento"  immediate="true"/>
-				<rich:menuItem label="Registro de despesas"  immediate="true"/>
-				<rich:menuItem label="Balanco Semanal"  immediate="true"/>
-				<rich:menuItem label="Balanço Mensal"  immediate="true"/>
-			</rich:dropDownMenu>
-
-			<rich:dropDownMenu label="Serviços" rendered="#{controlBean.hasRole('MENU_SERVICO')}">
-				<rich:menuItem label="Agendamento" action="#{agendaBean.search}"  immediate="true"/>
-				<rich:menuItem label="Consultas"  immediate="true"/>
-				<rich:menuItem label="Atendimento"  immediate="true"/>
-			</rich:dropDownMenu>
-
-			<rich:dropDownMenu label="Vendas" rendered="#{controlBean.hasRole('MENU_SERVICO')}">
-				<rich:menuItem label="Pedidos"  immediate="true"/>
-				<rich:menuItem label="Consultas"  immediate="true"/>
-				<rich:menuItem label="Atendimento"  immediate="true"/>
-			</rich:dropDownMenu>
-
-			<rich:dropDownMenu label="Relatórios" rendered="#{controlBean.hasRole('MENU_RELATORIOS')}">
-				<rich:menuItem label="Relatório de Despesas"  immediate="true"/>
-				<rich:menuItem label="Estoque de produtos"  immediate="true"/>
-				<rich:menuItem label="Balanço Mensal"  immediate="true"/>
-				<rich:menuItem label="Balanco Semanal"  immediate="true"/>
-				<rich:menuItem label="Balanço Mensal"  immediate="true"/>
-			</rich:dropDownMenu>
-			
-			<rich:dropDownMenu>
-					<h:outputText value="user:#{controlBean.usuario.login} perfil:#{controlBean.role.nome}" />
-			</rich:dropDownMenu>
-
-
-		</rich:toolbar>
-		
+		</p:menubar>
+		<h:outputText	value="user:#{controlBean.usuario.login} perfil:#{controlBean.role.nome}" style="color:blue;align:right" />
 
 	</div>
-	
-
 </ui:composition>
