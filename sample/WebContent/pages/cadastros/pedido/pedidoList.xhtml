@@ -14,12 +14,12 @@
 
 
 		<h:outputLabel value="Busca"/>
-		<h:inputText value="#{racaBean.filter}"/>
+		<h:inputText value="#{pedidoBean.filter}"/>
 
-		<p:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" update="dataTable" styleClass="button"/>
-		<p:commandButton value="Novo" action="#{racaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		<p:commandButton value="Pesquisar" type="submit" action="#{pedidoBean.search}" update="dataTable" styleClass="button"/>
+		<p:commandButton value="Novo" action="#{pedidoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
-		<p:dataTable id="dataTable" var="raca" value="#{racaBean.entities}" 
+		<p:dataTable id="dataTable" var="pedido" value="#{pedidoBean.entities}" 
 						rows="10" rowClasses="even,odd"
 						paginatorAlwaysVisible="false"
                        paginator="true" 
@@ -33,26 +33,21 @@
 				<h:outputText value="#{k+1}" style="color: black;"/>
 			</p:column>
 
-			<p:column width="20%" sortBy="#{raca.nome}">
+			<p:column width="20%" sortBy="#{pedido.cliente}">
 				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{raca.nome}"/>
-			</p:column>
-
-			<p:column width="40%" sortBy="#{raca.descricao}">
-				<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
-				<h:outputText value="#{raca.descricao}"/>
+				<h:outputText value="#{pedido.cliente}"/>
 			</p:column>
 
 			<p:column width="4%">
-				<h:commandLink icon="ui-icon-pencil" action="#{racaBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+				<h:commandLink icon="ui-icon-pencil" action="#{pedidoBean.prepareUpdate}" value="">
+					<f:setPropertyActionListener target="#{pedidoBean.entity}" value="#{pedido}"/>
 					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
 			<p:column width="4%">
-				<h:commandLink  icon="ui-icon-trash" action="#{racaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+				<h:commandLink  icon="ui-icon-trash" action="#{pedidoBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+					<f:setPropertyActionListener target="#{pedidoBean.entity}" value="#{pedido}"/>
 					<p:graphicImage value="/images/cross.png"/>
 				</h:commandLink>
 			</p:column>

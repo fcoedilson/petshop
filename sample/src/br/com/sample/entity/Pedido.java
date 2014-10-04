@@ -29,9 +29,12 @@ public class Pedido implements Serializable{
 	@Column(name="pedido_id")
 	private long id;
 
-	@ManyToOne
-	@JoinColumn(name="cliente_id", nullable=false)
-	private Cliente cliente;
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
+	}
+
+	@Column(name="nome_cliente", nullable=false)
+	private String cliente;
 
 
 	@OneToMany(mappedBy="pedido", fetch=FetchType.LAZY)
@@ -51,14 +54,6 @@ public class Pedido implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Date getData() {
@@ -85,6 +80,10 @@ public class Pedido implements Serializable{
 		this.itens = itens;
 	}
 	
+
+	public String getCliente() {
+		return cliente;
+	}
 
 	public Float getValorPedido() {
 		return valorPedido;
