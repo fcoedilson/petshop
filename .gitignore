@@ -1,2 +1,2 @@
 *.class
-sample/WebContent/WEB-INF/classes
+./sample/WebContent/WEB-INF/classes
