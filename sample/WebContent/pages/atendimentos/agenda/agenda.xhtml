@@ -12,13 +12,20 @@
 
 		<h:inputHidden value="#{agendaBean.entity.id}" rendered="#{agendaBean.updateState}"/>
 	
-		<p:fieldset legend="Agendamento">
+		<p:fieldset legend="Agendamento Consulta">
 
 	    	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label,label,label">
 	           
-				<h:outputLabel value="Paciente"/>
+				<h:outputLabel value="Cliente"/>
 				<p:inputText id="nomePaciente" value="#{agendaBean.entity.paciente}"/>
 				<p:message errorClass="error" for="nomePaciente"/>
+
+				<h:outputLabel value="Médico"/>
+				<h:selectOneMenu id="medico" value="#{agendaBean.entity.medico}" required="true" converter="entityConverter"  requiredMessage="Informe o médico ...">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<f:selectItems value="#{agendaBean.medicos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    		</h:selectOneMenu>
+				<p:message errorClass="error" for="medico"/>
 
 				<h:outputLabel value="Data"/>
 				<p:calendar id="data" value="#{agendaBean.entity.data}" pattern="MM/dd/yyyy" effect="fold"/>

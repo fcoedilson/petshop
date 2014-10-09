@@ -41,6 +41,10 @@ public class Agenda implements Serializable{
 	private Cliente cliente;
 	
 	@ManyToOne
+	@JoinColumn(name="medico_id")
+	private Medico medico;
+	
+	@ManyToOne
 	@JoinColumn(name="usuario_cadastro")
 	private Usuario usuarioCadastro;
 	
@@ -164,6 +168,14 @@ public class Agenda implements Serializable{
 
 	public void setPaciente(String paciente) {
 		this.paciente = paciente;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 }

@@ -3,20 +3,18 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.sample.entity.Agenda;
 import br.com.sample.entity.Cliente;
-import br.com.sample.entity.Endereco;
+import br.com.sample.entity.Medico;
 import br.com.sample.service.AgendaService;
 import br.com.sample.service.ClienteService;
+import br.com.sample.service.MedicoService;
 import br.com.sample.type.StatusAgenda;
 import br.com.sample.util.BeanUtil;
-import br.com.sample.util.JsfUtil;
 
 @Scope("session")
 @Component("agendaBean")
@@ -28,8 +26,14 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 	@Autowired
 	private ClienteService clienteService;
 
+
+	@Autowired
+	private MedicoService medicoService;
+
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	private Cliente cliente;
+
+	private List<Medico> medicos;
 
 
 	public static final String list = "/pages/atendimentos/agenda/agendaList.xhtml";
@@ -99,6 +103,14 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<Medico> getMedicos() {
+		return medicos;
+	}
+
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
 	}
 
 }
