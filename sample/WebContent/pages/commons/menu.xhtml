@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 	<div id="topo" style="display: none">
 		<h1 style="margin-left: 20px;">Petshop</h1>
@@ -42,9 +43,10 @@
 					immediate="true" />
 				<p:menuitem value="Clientes" action="#{clienteBean.search}"
 					immediate="true" />
+				<p:menuitem label="Pedido" action="#{pedidoBean.search}" immediate="true"/>
 			</p:submenu>
 
-			<p:submenu label="Cadastros" icon="ui-icon-document">
+			<p:submenu label="Financeiro" icon="ui-icon-document">
 				<p:menuitem value="Registro Caixa" immediate="true" />
 				<p:menuitem value="Folha pagamemento" immediate="true" />
 				<p:menuitem value="Registro de despesas" immediate="true" />
@@ -52,20 +54,20 @@
 				<p:menuitem value="Balanço Mensal" immediate="true" />
 			</p:submenu>
 
-			<p:submenu label="Cadastros" icon="ui-icon-document">
+			<p:submenu label="Atendimentos" icon="ui-icon-document">
 				<p:menuitem value="Agendamento" action="#{agendaBean.search}"
 					immediate="true" />
 				<p:menuitem value="Consultas" immediate="true" />
 				<p:menuitem value="Atendimento" immediate="true" />
 			</p:submenu>
 
-			<p:submenu label="Cadastros" icon="ui-icon-document">
+			<p:submenu label="Vendas" icon="ui-icon-document">
 				<p:menuitem value="Pedidos" immediate="true" />
 				<p:menuitem value="Consultas" immediate="true" />
 				<p:menuitem value="Atendimento" immediate="true" />
 			</p:submenu>
 
-			<p:submenu label="Cadastros" icon="ui-icon-document">
+			<p:submenu label="Reltórios" icon="ui-icon-document">
 				<p:menuitem value="Relatório de Despesas" immediate="true" />
 				<p:menuitem value="Estoque de produtos" immediate="true" />
 				<p:menuitem value="Balanço Mensal" immediate="true" />
@@ -73,8 +75,11 @@
 				<p:menuitem value="Balanço Mensal" immediate="true" />
 			</p:submenu>
 
+			<f:facet name="options">
+	            <p:outputLabel  value="user:#{controlBean.usuario.login} perfil:#{controlBean.role.nome}" style="color:blue;align:right;margin-right:10px"/>
+	        </f:facet>
+
 		</p:menubar>
-		<h:outputText	value="user:#{controlBean.usuario.login} perfil:#{controlBean.role.nome}" style="color:blue;align:right" />
 
 	</div>
 </ui:composition>
