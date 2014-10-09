@@ -41,7 +41,7 @@ body {
 
 
 #header_topo{
-    background: url('../img/banner.jpg');
+  /*  background: url('../img/banner03.png'); */
     background-color: #ffffff;
     background-repeat: repeat-x;
     width: 100%; 
@@ -122,8 +122,6 @@ div#slide-toggle.show {
    position: absolute;
    width: 270px;
    margin-top: 0.5px;
-
-
 
 }
 
