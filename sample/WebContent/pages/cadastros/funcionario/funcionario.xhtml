@@ -22,16 +22,23 @@
            
 
 			<h:outputLabel value="Nome"/>
-			<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" required="true" maxlength="120" size="60">
+			<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" class="input" required="true" maxlength="120" size="60">
 				<f:validateLength maximum="50" minimum="3"/>
 			</h:inputText>
 			<p:message errorClass="error" for="nome"/>
 			
+			<h:outputLabel value="Cargo"/>
+			<h:selectOneMenu id="cargo" value="#{funcionarioBean.entity.cargo}" required="true" converter="entityConverter"  requiredMessage="Informe a cargo ...">
+    			<f:selectItem itemValue="" itemLabel="..."/>
+    			<f:selectItems value="#{funcionarioBean.cargos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+    		</h:selectOneMenu>
+			<p:message errorClass="error" for="cargo"/>
+			
 			<h:outputLabel value="Sexo"/>
     		<h:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
     			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
-    			<f:selectItem itemValue="MASC" itemLabel="MASC"/>
-    			<f:selectItem itemValue="FEMI" itemLabel="FEMI"/>
+    			<f:selectItem itemValue="Masc" itemLabel="Masc"/>
+    			<f:selectItem itemValue="Femi" itemLabel="Femi"/>
     		</h:selectOneMenu>
     		<p:message errorClass="error" for="sexo"  styleClass="message"/>
 

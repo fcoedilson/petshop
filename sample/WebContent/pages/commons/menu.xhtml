@@ -17,7 +17,8 @@
 
 		<p:menubar>
 			<p:submenu label="Administração" icon="ui-icon-document">
-				<p:menuitem value="Funcionários" action="#{funcionarioBean.search}" />
+				<p:menuitem value="Funcionários" action="#{funcionarioBean.search}"
+					immediate="true" />
 				<p:menuitem value="Médicos" action="#{medicoBean.search}"
 					immediate="true" />
 				<p:menuitem value="Cargos" action="#{cargoBean.search}"

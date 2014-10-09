@@ -32,7 +32,7 @@
 					<h:outputText value="#{k+1}" style="color: black;"/>
 				</p:column>
 
-				<p:column width="15%" > 
+				<p:column width="20%" > 
 					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
 					<h:outputText value="#{produto.nome}" style="color: black;"/>
 				</p:column>
@@ -56,14 +56,14 @@
 <!-- 						 <p:graphicImage value="#{produto.img}" width="50" height="40"  style="border:0"/>  -->
 <!-- 					</p:column> -->
 
-				<p:column width="3%">
+				<p:column width="2%">
 					<h:commandLink action="#{produtoBean.prepareUpdate}" value="">
 						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
 						<p:graphicImage value="/images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 
-				<p:column width="3%">
+				<p:column width="2%">
 					<h:commandLink  action="#{produtoBean.delete}" value=""
 						onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
 						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>

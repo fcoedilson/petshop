@@ -20,8 +20,8 @@ public class Cargo implements Serializable{
 	@NotNull(message="nome é obrigatório")
 	private String nome;
 	
-	private String atribuicoes;
-
+	private Float salario;
+	
 	public long getId() {
 		return id;
 	}
@@ -38,12 +38,12 @@ public class Cargo implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getAtribuicoes() {
-		return atribuicoes;
+	public Float getSalario() {
+		return salario;
 	}
 
-	public void setAtribuicoes(String atribuicoes) {
-		this.atribuicoes = atribuicoes;
+	public void setSalario(Float salario) {
+		this.salario = salario;
 	}
 
 	@Override

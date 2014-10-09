@@ -38,6 +38,11 @@
 				<h:outputText value="#{cargo.nome}"/>
 			</p:column>
 
+			<p:column width="40%" sortBy="#{cargo.salario}">
+				<f:facet name="header"><h:outputLabel value="Salário"/></f:facet>
+				<h:outputText value="#{cargo.salario}"/>
+			</p:column>
+
 			<p:column width="4%">
 				<h:commandLink icon="ui-icon-pencil" action="#{cargoBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{cargoBean.entity}" value="#{cargo}"/>

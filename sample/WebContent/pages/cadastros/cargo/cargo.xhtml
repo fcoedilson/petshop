@@ -18,9 +18,11 @@
 	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 	           
 					<h:outputLabel value="Nome"/>
-					<h:inputText id="nome" value="#{cargoBean.entity.nome}" required="true" maxlength="120" size="60">
-						<f:validateLength maximum="50" minimum="3"/>
-					</h:inputText>
+					<h:inputText id="nome" value="#{cargoBean.entity.nome}" required="true" maxlength="120" size="60"/>
+					<p:message errorClass="error" for="nome"/>
+	
+					<h:outputLabel value="Salário"/>
+					<h:inputText id="nome" value="#{cargoBean.entity.salario}" required="true" maxlength="120" size="40"/>
 					<p:message errorClass="error" for="nome"/>
 	
 				</h:panelGrid>

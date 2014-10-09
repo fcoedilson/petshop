@@ -19,7 +19,7 @@
 		<p:commandButton value="Novo" action="#{especieBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
 
-		<p:dataTable id="dataTable" var="raca" value="#{especieBean.entities}" 
+		<p:dataTable id="dataTable" var="especie" value="#{especieBean.entities}" 
 						rows="10" rowClasses="even,odd"
 						paginatorAlwaysVisible="false"
                        paginator="true" 
