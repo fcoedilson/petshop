@@ -6,6 +6,8 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -33,11 +35,14 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 
 	private Permissao permissao = new Permissao();
 	private List<Permissao> permissoes;
+	private List<Permissao> permissoesMarcadas;
+
 
 	@Override
 	protected Perfil createNewEntity() {
 		this.permissoes = new ArrayList<Permissao>();
 		this.permissoes.addAll(permissaoService.retrieveAll());
+		this.permissoesMarcadas = new ArrayList<Permissao>();
 		this.permissao = new Permissao();
 		return new Perfil();
 	}
@@ -75,6 +80,14 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 
 	public String prepareUpdate(){
 		super.prepareUpdate();
+
+		if(this.entity.getPermissoes() != null){
+			this.permissoesMarcadas =  new ArrayList<Permissao>();
+			this.permissoesMarcadas.addAll(this.entity.getPermissoes());
+		} else {
+			this.permissoesMarcadas =  new ArrayList<Permissao>();
+		}
+
 		return single;
 	}
 
@@ -115,6 +128,16 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+
+	public List<Permissao> getPermissoesMarcadas() {
+		return permissoesMarcadas;
+	}
+
+
+	public void setPermissoesMarcadas(List<Permissao> permissoesMarcadas) {
+		this.permissoesMarcadas = permissoesMarcadas;
 	}
 
 }

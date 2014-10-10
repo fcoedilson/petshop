@@ -13,23 +13,41 @@
 	<ui:define name="pageContent">
 
 	
-			<p:fieldset legend="Perfil">
+			<p:fieldset legend="Perfil de Usuários">
 			
-		
-				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-	
-					<h:outputLabel value="Nome do Perfil"/>
-					<h:inputText value="#{perfilBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" 
-						requiredMessage="Informe o nome" />
-					<p:message errorClass="error" for="nome"/>
+			<p:tabView>
 			
-					<h:outputLabel value="IDENTIFICADOR"/>
-					<h:inputText value="#{perfilBean.entity.authority}" id="identificador" size="40" maxlength="70" required="true" 
-						requiredMessage="Informe o identificador" />
-					<p:message errorClass="error" for="identificador"/>
-	
-				</h:panelGrid>
+				 <p:tab title="Dados do perfil">  
+			
+					<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 		
+						<h:outputLabel value="Nome do Perfil"/>
+						<h:inputText value="#{perfilBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" 
+							requiredMessage="Informe o nome" />
+						<p:message errorClass="error" for="nome"/>
+				
+						<h:outputLabel value="Identificador do Perfil"/>
+						<h:inputText value="#{perfilBean.entity.authority}" id="identificador" size="40" maxlength="70" required="true" 
+							requiredMessage="Informe o identificador" />
+						<p:message errorClass="error" for="identificador"/>
+		
+					</h:panelGrid>
+					
+				</p:tab>
+
+				 <p:tab title="Permissões"> 
+				 
+					<h:outputText value="Seleção de Permissões:" />
+					<br/><br/>
+		        	<p:selectManyCheckbox id="grid" value="#{perfilBean.entity.permissoes}" layout="grid" columns="4">
+		            	<f:selectItems value="#{perfilBean.permissoes}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" />
+		        	</p:selectManyCheckbox>
+				 
+				 </p:tab>
+
+			</p:tabView>
+
+
 			</p:fieldset>
 	
 			<p:commandButton value="Salvar" type="submit" action="#{perfilBean.save}" styleClass="button" rendered="#{perfilBean.saveState}" update="appForm"/>
