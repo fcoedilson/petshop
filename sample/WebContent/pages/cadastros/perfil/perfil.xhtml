@@ -37,11 +37,49 @@
 
 				 <p:tab title="Permissões"> 
 				 
-					<h:outputText value="Seleção de Permissões:" />
-					<br/><br/>
-		        	<p:selectManyCheckbox id="grid" value="#{perfilBean.entity.permissoes}" layout="grid" columns="4">
-		            	<f:selectItems value="#{perfilBean.permissoes}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" />
-		        	</p:selectManyCheckbox>
+<!-- 		        <p:selectManyCheckbox id="grid" value="#{perfilBean.permissoesMarcadas}" layout="grid" columns="3"> -->
+<!-- 		           	<f:selectItems value="#{perfilBean.permissoes}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" /> -->
+<!-- 		       	</p:selectManyCheckbox> -->
+
+
+
+					<h:outputLabel value="Permissões"/>
+					<h:selectOneMenu id="permissao" value="#{perfilBean.permissao}" converter="entityConverter"  requiredMessage="Informe a permissão ...">
+		    			<f:selectItem itemValue="" itemLabel="..."/>
+		    			<f:selectItems value="#{perfilBean.permissoes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+		    		</h:selectOneMenu>
+					<p:message errorClass="error" for="permissao"/>
+					
+					<p:commandButton value="Incluir" action="#{perfilBean.adicionar}" update="tablePermissao" styleClass="button" ajax="false"/>
+	
+					<p:dataTable id="tablePermissao" var="p" value="#{perfilBean.permissoesMarcadas}" 
+		 						rows="10" rowClasses="even,odd"
+		 						paginatorAlwaysVisible="false"
+		                        paginator="true" 
+		                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+		                         					{PreviousPageLink} {PageLinks} 
+		                         					{NextPageLink} {LastPageLink} 
+		                         					{RowsPerPageDropdown}" rowIndexVar="k">
+		
+						
+						<p:column width="2%" style="text-align: center;" > 
+							<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
+							<h:outputText value="#{k+1}" style="color: black;"/>
+						</p:column>
+		
+						<p:column width="20%" > 
+							<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+							<h:outputText value="#{p.nome}" style="color: black;"/>
+						</p:column>
+
+						<p:column width="2%">
+							<h:commandLink styleClass="editar" action="#{perfilBean.remover}" value="">
+								<f:setPropertyActionListener target="#{perfilBean.permissao}" value="#{p}"/>
+								<p:graphicImage value="/images/cross.png"/>
+							</h:commandLink>
+						</p:column>
+								
+					</p:dataTable>
 				 
 				 </p:tab>
 

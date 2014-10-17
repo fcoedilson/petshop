@@ -6,8 +6,6 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -15,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sample.entity.Perfil;
 import br.com.sample.entity.Permissao;
-import br.com.sample.service.PermissaoService;
 import br.com.sample.service.PerfilService;
+import br.com.sample.service.PermissaoService;
 
 @Scope("session")
 @Component("perfilBean")
@@ -64,30 +62,33 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 	}
 
 	public String save(){
+		this.entity.setPermissoes(this.permissoesMarcadas);
 		super.save();
 		return list;
 	}
 
 	public String update(){
+		this.entity.setPermissoes(this.permissoesMarcadas);
 		super.update();
 		return list;
 	}
 
 	public String prepareSave(){
+		this.permissoesMarcadas =  new ArrayList<Permissao>();
+		this.permissoes = permissaoService.retrieveAll();
 		super.prepareSave();
 		return single;
 	}
 
 	public String prepareUpdate(){
-		super.prepareUpdate();
+		this.permissoes = permissaoService.retrieveAll();
+		this.permissoesMarcadas =  new ArrayList<Permissao>();
 
 		if(this.entity.getPermissoes() != null){
-			this.permissoesMarcadas =  new ArrayList<Permissao>();
 			this.permissoesMarcadas.addAll(this.entity.getPermissoes());
-		} else {
-			this.permissoesMarcadas =  new ArrayList<Permissao>();
+			this.permissoes.removeAll(this.entity.getPermissoes());
 		}
-
+		super.prepareUpdate();
 		return single;
 	}
 
@@ -100,18 +101,15 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 		return  new ArrayList<Perfil>(service.findAll());
 	}
 
-	public String add(){
-		this.entity.getPermissoes().add(this.permissao);
-		service.update(entity);
+	public void adicionar(){
+		this.permissoesMarcadas.add(this.permissao);
 		this.permissoes.remove(this.permissao);
-		return SUCCESS;
 	}
 
 
-	public String remove(){
-		this.entity.getPermissoes().remove(this.permissao);
+	public void remover(){
+		this.permissoesMarcadas.remove(this.permissao);
 		this.permissoes.add(this.permissao);
-		return SUCCESS;
 	}
 
 	public Permissao getPermissao() {

@@ -16,7 +16,7 @@
 
 
 			<h:outputLabel  value="Busca"/>
-			<h:inputText value="#{perfilBean.filter}"></h:inputText>
+			<h:inputText value="#{perfilBean.filter}" size="50"/>
 	
 			<p:commandButton value="Pesquisar" action="#{perfilBean.search}" update="dataTable" styleClass="button" ajax="false"/>
 			<p:commandButton value="Novo" action="#{perfilBean.prepareSave}" update="appForm" styleClass="button" immediate="true" ajax="false"/>
