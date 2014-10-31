@@ -12,61 +12,48 @@
 
 	<ui:define name="pageContent">
 
-
 		<h:inputHidden value="#{funcionarioBean.entity.id}" rendered="#{funcionarioBean.updateState}"/>
-
 
  		<p:fieldset id="dadosGeraisField" legend="Dados do Funcionário">
  			
-           <h:panelGrid id="dadosGerais" columns="3" styleClass="crudd" columnClasses="label">
-           
+        	<h:panelGrid id="dadosGerais" columns="3" styleClass="crudd" columnClasses="label">
 
-			<h:outputLabel value="Nome"/>
-			<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" class="input" required="true" maxlength="120" size="60">
-				<f:validateLength maximum="50" minimum="3"/>
-			</h:inputText>
-			<p:message errorClass="error" for="nome"/>
-			
-			<h:outputLabel value="Cargo"/>
-			<h:selectOneMenu id="cargo" value="#{funcionarioBean.entity.cargo}" required="true" converter="entityConverter"  requiredMessage="Informe a cargo ...">
-    			<f:selectItem itemValue="" itemLabel="..."/>
-    			<f:selectItems value="#{funcionarioBean.cargos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
-    		</h:selectOneMenu>
-			<p:message errorClass="error" for="cargo"/>
-			
-			<h:outputLabel value="Sexo"/>
-    		<h:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
-    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
-    			<f:selectItem itemValue="Masc" itemLabel="Masc"/>
-    			<f:selectItem itemValue="Femi" itemLabel="Femi"/>
-    		</h:selectOneMenu>
-    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" styleClass="inputText"  required="true" size="60"/>
+				<p:message errorClass="error" for="nome"/>
+				
+				<h:outputLabel value="Cargo"/>
+				<h:selectOneMenu id="cargo" value="#{funcionarioBean.entity.cargo}" required="true" converter="entityConverter"  requiredMessage="Informe a cargo ...">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<f:selectItems value="#{funcionarioBean.cargos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    		</h:selectOneMenu>
+				<p:message errorClass="error" for="cargo"/>
+				
+				<h:outputLabel value="Sexo"/>
+	    		<h:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
+	    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+	    			<f:selectItem itemValue="Masc" itemLabel="Masc"/>
+	    			<f:selectItem itemValue="Femi" itemLabel="Femi"/>
+	    		</h:selectOneMenu>
+	    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+	
+				<h:outputLabel value="CPF"/>
+				<h:inputText id="numdoc" value="#{funcionarioBean.entity.cpf}" required="true" size="18"/>
+				<p:message errorClass="error" for="numdoc"/>
+	
+				<h:outputLabel value="Fones"/>
+				<h:inputText id="tel" value="#{funcionarioBean.entity.telefone}" required="true" size="20"/>
+				<p:message errorClass="error" for="tel"/>
+	
+				<h:outputLabel value="Celular"/>
+				<h:inputText id="cel" value="#{funcionarioBean.entity.celular}" size="20"/>
+				<p:message errorClass="error" for="cel"/>
+	
+				<h:outputLabel value="Email :"/>
+				<h:inputText id="celular" value="#{funcionarioBean.entity.email}" size="20"/>
+				<p:message errorClass="error" for="celular"/>
 
-			<h:outputLabel value="CPF"/>
-			<h:inputText id="numdoc" value="#{funcionarioBean.entity.cpf}" required="true" maxlength="18" size="18">
-				<f:validateLength maximum="18" minimum="11"/>
-			</h:inputText>
-			<p:message errorClass="error" for="numdoc"/>
-
-			<h:outputLabel value="Fones"/>
-			<h:inputText id="tel" value="#{funcionarioBean.entity.telefone}" required="true" maxlength="20" size="20">
-				<f:validateLength maximum="20" minimum="10"/>
-			</h:inputText>
-			<p:message errorClass="error" for="tel"/>
-
-			<h:outputLabel value="Celular"/>
-			<h:inputText id="cel" value="#{funcionarioBean.entity.celular}" maxlength="20" size="20">
-				<f:validateLength maximum="20" minimum="10"/>
-			</h:inputText>
-			<p:message errorClass="error" for="cel"/>
-
-			<h:outputLabel value="Email :"/>
-			<h:inputText id="celular" value="#{funcionarioBean.entity.email}" maxlength="20" size="20">
-				<f:validateLength maximum="20" minimum="10"/>
-			</h:inputText>
-			<p:message errorClass="error" for="celular"/>
-
-		</h:panelGrid>
+			</h:panelGrid>
 		
 	</p:fieldset>
 	<br/>
@@ -82,27 +69,19 @@
 			<p:message errorClass="error" for="endereco"/>
 	
 			<h:outputLabel value="Nº"/>
-			<h:inputText id="numero" value="#{funcionarioBean.entity.endereco.numero}" required="true" maxlength="4" size="6">
-				<f:validateLength maximum="4" minimum="1"/>
-			</h:inputText>
+			<h:inputText id="numero" value="#{funcionarioBean.entity.endereco.numero}" required="true" size="6"/>
 			<p:message errorClass="error" for="numero"/>
 	
 			<h:outputLabel value="Complemento"/>
-			<h:inputText id="compl" value="#{funcionarioBean.entity.endereco.complemento}" required="false" maxlength="30" size="30">
-				<f:validateLength maximum="30" minimum="2"/>
-			</h:inputText>
+			<h:inputText id="compl" value="#{funcionarioBean.entity.endereco.complemento}" required="false"  size="30"/>
 			<p:message errorClass="error" for="compl"/>
 	
 			<h:outputLabel value="CEP"/>
-			<h:inputText id="cep" value="#{funcionarioBean.entity.endereco.cep}" required="false" maxlength="30" size="20">
-				<f:validateLength maximum="30" minimum="2"/>
-			</h:inputText>
+			<h:inputText id="cep" value="#{funcionarioBean.entity.endereco.cep}" required="false" size="20"/>
 			<p:message errorClass="error" for="cep"/>
 	
 			<h:outputLabel value="Bairro"/>
-			<h:inputText id="bairro" value="#{funcionarioBean.entity.endereco.bairro}" required="false" maxlength="30" size="20">
-				<f:validateLength maximum="30" minimum="2"/>
-			</h:inputText>
+			<h:inputText id="bairro" value="#{funcionarioBean.entity.endereco.bairro}" required="false" size="20"/>
 			<p:message errorClass="error" for="bairro"/>
 	
 			<h:outputLabel value="Cidade"/>
@@ -128,6 +107,10 @@
 			<h:inputText id="ctps" value="#{funcionarioBean.entity.ctps}" required="true"/>
 			<p:message errorClass="error" for="ctps"/>
 			
+			<h:outputLabel value="Status" rendered="#{funcionarioBean.updateState}"/>
+			<h:outputText id="status" value="#{funcionarioBean.entity.status}" disabled="true" rendered="#{funcionarioBean.updateState}"/>
+			<p:message errorClass="error" for="status" rendered="#{funcionarioBean.updateState}"/>
+			
 			<h:outputLabel value="Data Admissão"/>
 			<p:calendar id="admissao" value="#{funcionarioBean.entity.admissao}" pattern="MM/dd/yyyy" />
 			<p:message errorClass="error" for="admissao"/>
@@ -141,11 +124,10 @@
 	
 	</p:fieldset>
 
+	<p:commandButton value="Salvar" type="submit" action="#{funcionarioBean.save}" styleClass="button" rendered="#{funcionarioBean.saveState}" update="appForm" ajax="false"/>
+	<p:commandButton value="Alterar" action="#{funcionarioBean.update}" styleClass="button" rendered="#{funcionarioBean.updateState}" update="appForm" ajax="false"/>
+	<p:commandButton value="Voltar" action="#{funcionarioBean.search}" styleClass="button" update="appForm" immediate="true"/>
 
-		<p:commandButton value="Salvar" type="submit" action="#{funcionarioBean.save}" styleClass="button" rendered="#{funcionarioBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" action="#{funcionarioBean.update}" styleClass="button" rendered="#{funcionarioBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{funcionarioBean.search}" styleClass="button" update="appForm" immediate="true"/>
-	
  
  </ui:define>
 

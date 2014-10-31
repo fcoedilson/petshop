@@ -43,14 +43,12 @@
 
 
 
-					<h:outputLabel value="Permissões"/>
-					<h:selectOneMenu id="permissao" value="#{perfilBean.permissao}" converter="entityConverter"  requiredMessage="Informe a permissão ...">
+					<h:outputLabel value="Permissões" rendered="#{perfilBean.permissaoStatus}"/>
+					<h:selectOneMenu id="permissao" value="#{perfilBean.permissao}" converter="entityConverter" rendered="#{perfilBean.permissaoStatus}"  requiredMessage="Informe a permissão ...">
 		    			<f:selectItem itemValue="" itemLabel="..."/>
 		    			<f:selectItems value="#{perfilBean.permissoes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
 		    		</h:selectOneMenu>
-					<p:message errorClass="error" for="permissao"/>
-					
-					<p:commandButton value="Incluir" action="#{perfilBean.adicionar}" update="tablePermissao" styleClass="button" ajax="false"/>
+					<p:commandButton value="Incluir" action="#{perfilBean.adicionar}" rendered="#{perfilBean.permissaoStatus}" update="tablePermissao" styleClass="button" ajax="false"/>
 	
 					<p:dataTable id="tablePermissao" var="p" value="#{perfilBean.permissoesMarcadas}" 
 		 						rows="10" rowClasses="even,odd"

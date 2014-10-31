@@ -1,16 +1,13 @@
 package br.com.sample.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sample.entity.Cliente;
 import br.com.sample.entity.Usuario;
 import br.com.sample.type.StatusUsuario;
 
@@ -18,6 +15,22 @@ import br.com.sample.type.StatusUsuario;
 @Transactional
 public class UsuarioService extends BaseService<Long, Usuario> {
 
+
+	@Transactional
+	public Usuario findByCpf(String cpf){
+
+		Usuario Usuario = null;
+
+		try {
+			Query query = em.createQuery("select f from Usuario f where f.pessoa.cpf = ?");
+			query.setParameter(1, cpf);
+			Usuario = (Usuario) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return Usuario;
+	}
 
 	@Transactional
 	public Usuario save(Usuario user) {
@@ -40,7 +53,7 @@ public class UsuarioService extends BaseService<Long, Usuario> {
 		update(user);
 		return user;
 	}
-	
+
 	@Transactional
 	public Usuario alterarSenha(Long id, String senha){
 		Usuario user = retrieve(id);
@@ -49,10 +62,6 @@ public class UsuarioService extends BaseService<Long, Usuario> {
 		return user;
 	}
 
-	@Transactional
-	public List<Usuario> findByCliente(Integer clienteId) {
-		return (List<Usuario>) executeResultListQuery("findByCliente", clienteId);
-	}
 
 	@Transactional
 	public Usuario findByLogin(String login) throws NonUniqueResultException{
@@ -64,10 +73,7 @@ public class UsuarioService extends BaseService<Long, Usuario> {
 		return executeResultListQuery("findByStatus", status, status.toLowerCase());
 	}
 
-	@Transactional
-	public List<Usuario> findByClienteStatus(Integer cliId, String status) {
-		return executeResultListQuery("findByCliente", cliId, status);
-	}
+
 
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -78,45 +84,10 @@ public class UsuarioService extends BaseService<Long, Usuario> {
 		return query.getResultList();
 	}
 
-	public List<Usuario> findUsuariosBloqueados() {
-		List<Usuario> lockedUsers = executeResultListQuery("Usuario.findByStatus", StatusUsuario.ATIVO);
-		return lockedUsers;
-	}
 
 	@Transactional(readOnly = true)
 	public List<Usuario> retriveByMail(String mail){
 		return executeResultListQuery("Usuario.findByMail", mail, true);
-	}
-	
-	@Transactional
-	public List<Usuario> findByClienteLogin(Integer cliId, String filter, String status){
-		List<Usuario> users = new ArrayList<Usuario>();
-		if(cliId == null){
-			if(filter != null && !filter.equals("")){
-				users = findByLogin(filter, status);
-			} else {
-				users = findByStatus(status);
-			}
-		} else {
-			if(filter != null && !filter.equals("")){
-				users = executeResultListQuery("findByClienteLogin", cliId, filter, status);
-			} else {
-				users = findByClienteStatus(cliId, status);
-			}
-		}
-		return users;
-	}
-	
-	public Boolean findByCpf(String cpf, Cliente cliente){
-		try {
-			if(cliente != null){
-				return executeSingleResultQuery("findByClienteCpf",  cliente.getId(), cpf) != null;
-			} else {
-				return executeSingleResultQuery("findByCpf", cpf) != null;
-			}
-		} catch (NoResultException e) {
-		}
-		return null;
 	}
 
 }

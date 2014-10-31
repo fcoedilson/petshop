@@ -35,17 +35,37 @@
 
 			<p:column width="20%" sortBy="#{medico.nome}">
 				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{medico.nome}"/>
+				<h:outputText value="#{medico.pessoa.nome}"/>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="20%" sortBy="#{medico.especialidade}">
+				<f:facet name="header"><h:outputLabel value="Especialidade"/></f:facet>
+				<h:outputText value="#{medico.especialidade}"/>
+			</p:column>
+
+			<p:column width="8%" sortBy="#{medico.crmv}">
+				<f:facet name="header"><h:outputLabel value="CRMV"/></f:facet>
+				<h:outputText value="#{medico.crmv}"/>
+			</p:column>
+
+			<p:column width="8%" sortBy="#{medico.turno}">
+				<f:facet name="header"><h:outputLabel value="Turno"/></f:facet>
+				<h:outputText value="#{medico.turno}"/>
+			</p:column>
+
+			<p:column width="8%" sortBy="#{medico.horario}">
+				<f:facet name="header"><h:outputLabel value="Horário"/></f:facet>
+				<h:outputText value="#{medico.horario}"/>
+			</p:column>
+
+			<p:column width="3%">
 				<h:commandLink icon="ui-icon-pencil" action="#{medicoBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{medicoBean.entity}" value="#{medico}"/>
 					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="3%">
 				<h:commandLink  icon="ui-icon-trash" action="#{medicoBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 					<f:setPropertyActionListener target="#{medicoBean.entity}" value="#{medico}"/>
 					<p:graphicImage value="/images/cross.png"/>

@@ -84,7 +84,7 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 		this.permissoes = permissaoService.retrieveAll();
 		this.permissoesMarcadas =  new ArrayList<Permissao>();
 
-		if(this.entity.getPermissoes() != null){
+		if(this.entity.getPermissoes().size() > 0){
 			this.permissoesMarcadas.addAll(this.entity.getPermissoes());
 			this.permissoes.removeAll(this.entity.getPermissoes());
 		}

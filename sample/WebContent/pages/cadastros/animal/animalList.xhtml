@@ -61,14 +61,14 @@
 			<p:column width="3%">
 				<h:commandLink icon="ui-icon-pencil" action="#{animalBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{animalBean.entity}" value="#{animal}"/>
-					<p:graphicImage value="../images/pencil.png"/>
+					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
 			<p:column width="3%">
 				<h:commandLink  icon="ui-icon-trash" action="#{animalBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 					<f:setPropertyActionListener target="#{animalBean.entity}" value="#{animal}"/>
-					<p:graphicImage value="../images/cross.png"/>
+					<p:graphicImage value="/images/cross.png"/>
 				</h:commandLink>
 			</p:column>
 

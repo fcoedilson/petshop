@@ -2,15 +2,18 @@ package br.com.sample.entity;
 
 import java.util.Date;
 
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -23,14 +26,21 @@ import org.springframework.security.userdetails.UserDetails;
 import br.com.sample.type.StatusUsuario;
 
 @Entity
-@DiscriminatorValue(value="U")
-@PrimaryKeyJoinColumn(name="pessoa_id")
 @NamedQueries({
 	@NamedQuery(name = "Usuario.findByLogin", query = "select o from Usuario o where o.login = ? and o.status = ?"),
 	@NamedQuery(name = "Usuario.findByStatus", query = "select o from Usuario o where o.status = ?"),
-	@NamedQuery(name = "Usuario.findByName", query = "select u from Usuario u where u.nome like ? and u.status = ?")
+	@NamedQuery(name = "Usuario.findByName", query = "select u from Usuario u where u.pessoa.nome like ? and u.status = ?")
 })
-public class Usuario  extends Pessoa implements UserDetails{
+public class Usuario implements UserDetails{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="usuario_id")
+	private Long id;
+	
+	@OneToOne
+	@JoinColumn(name="pessoa_id", nullable=false)
+	private Pessoa pessoa;
 
 	@NotNull(message="login não poder ser nullo")
 	@Size(min=5, message="login deve ter pelos menos 5 caracteres")
@@ -45,7 +55,7 @@ public class Usuario  extends Pessoa implements UserDetails{
 	private StatusUsuario status;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro = new Date();
+	private Date dataCadastro;
 	
 	@ManyToOne
 	@JoinColumn(name="perfil_id")
@@ -148,5 +158,20 @@ public class Usuario  extends Pessoa implements UserDetails{
 		return true;
 	}
 
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
 }

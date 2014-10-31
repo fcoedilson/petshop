@@ -1,21 +1,32 @@
 package br.com.sample.entity;
 
-import javax.persistence.DiscriminatorValue;
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
-@DiscriminatorValue(value="P")
-@PrimaryKeyJoinColumn(name="pessoa_id")
-public class Medico extends Pessoa{
+public class Medico implements Serializable{
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="medico_id")
+	private Long id;
+	
+	@OneToOne
+	@JoinColumn(name="pessoa_id", nullable=false)
+	private Pessoa pessoa;
+	
 	private String especialidade;
 	
 	private String crmv;
 	
 	private Integer anoFormacao;
-	
-	private String formacao;
 	
 	private String turno;
 	
@@ -45,14 +56,6 @@ public class Medico extends Pessoa{
 		this.anoFormacao = anoFormacao;
 	}
 
-	public String getFormacao() {
-		return formacao;
-	}
-
-	public void setFormacao(String formacao) {
-		this.formacao = formacao;
-	}
-
 	public String getTurno() {
 		return turno;
 	}
@@ -75,6 +78,22 @@ public class Medico extends Pessoa{
 		int result = super.hashCode();
 		result = prime * result + ((crmv == null) ? 0 : crmv.hashCode());
 		return result;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override

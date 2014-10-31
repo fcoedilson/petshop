@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,8 +14,10 @@ import org.springframework.stereotype.Component;
 import br.com.sample.entity.Cargo;
 import br.com.sample.entity.Endereco;
 import br.com.sample.entity.Medico;
+import br.com.sample.entity.Pessoa;
 import br.com.sample.service.CargoService;
 import br.com.sample.service.MedicoService;
+import br.com.sample.service.PessoaService;
 
 @Scope("session")
 @Component("medicoBean")
@@ -21,6 +25,9 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 
 	@Autowired
 	private MedicoService service;
+	
+	@Autowired
+	private PessoaService pessoaService;
 
 	@Autowired
 	private CargoService cargoService;
@@ -28,6 +35,7 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 	private List<Cargo> cargos = new ArrayList<Cargo>();
 	private Medico medico;
 	private String cpf;
+	private boolean pessoaExiste = false;
 
 
 	public static final String list = "/pages/cadastros/medico/medicoList.xhtml";
@@ -50,8 +58,9 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 	protected Medico createNewEntity() {
 		Medico medico = new Medico();
 		Endereco endereco = new Endereco();
-		medico.setEndereco(endereco);
-		endereco.setPessoa(medico);
+		Pessoa pessoa = new Pessoa();
+		pessoa.setEndereco(endereco);
+		endereco.setPessoa(pessoa);
 		this.medico = null;
 		return medico;
 	}
@@ -85,8 +94,15 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 	public String buscarMedico(){
 
 		if(this.cpf != null && !this.cpf.equals("")){
-			this.medico = service.findByCpf(this.cpf);
-			this.entity = this.medico;
+			Pessoa pessoa = pessoaService.findByCpf(this.cpf);
+			if(pessoa != null){
+				this.entity.setPessoa(pessoa);
+				this.pessoaExiste = true;
+			}
+			
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage("Ops! Primeira Faça o cadastro do Funcionário"));
 		}
 		return single;
 	}
@@ -113,6 +129,14 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public boolean isPessoaExiste() {
+		return pessoaExiste;
+	}
+
+	public void setPessoaExiste(boolean pessoaExiste) {
+		this.pessoaExiste = pessoaExiste;
 	}
 
 }

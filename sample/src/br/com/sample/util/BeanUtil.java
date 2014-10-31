@@ -105,7 +105,7 @@ public class BeanUtil{
 	}
 	
 	public static synchronized String sendMailToUser(String mail, Usuario user) throws Exception{
-		String msg = "Sr. " + user.getNome() + "\n seu login atual é " + 
+		String msg = "Sr. " + user.getPessoa().getNome() + "\n seu login atual é " + 
 		user.getLogin() + "\n sua senha atual é:" + user.getPassword();
 		return MailUtil.sendEmail(mail, "recuperação de login e senha", msg);
 	}

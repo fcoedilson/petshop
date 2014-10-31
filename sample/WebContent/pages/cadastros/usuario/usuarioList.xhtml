@@ -31,14 +31,14 @@
 				<h:outputText value="#{index+1}" style="color: black;"/>
 			</p:column>
 
-			<p:column width="20%" sortBy="#{usuario.nome}">
+			<p:column width="20%" sortBy="#{usuario.pessoa.nome}">
 				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{usuario.nome}"/>
+				<h:outputText value="#{usuario.pessoa.nome}"/>
 			</p:column>
 
-			<p:column width="20%" sortBy="#{usuario.email}">
+			<p:column width="20%" sortBy="#{usuario.pessoa.email}">
 				<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
-				<h:outputText value="#{usuario.email}"/>
+				<h:outputText value="#{usuario.pessoa.email}"/>
 			</p:column>
 
 			<p:column width="20%" sortBy="#{usuario.login}">

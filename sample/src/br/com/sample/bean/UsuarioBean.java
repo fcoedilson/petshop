@@ -6,33 +6,31 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.persistence.NonUniqueResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sample.entity.Cliente;
 import br.com.sample.entity.Endereco;
 import br.com.sample.entity.Perfil;
 import br.com.sample.entity.Pessoa;
 import br.com.sample.entity.Usuario;
-import br.com.sample.service.PessoaService;
 import br.com.sample.service.PerfilService;
+import br.com.sample.service.PessoaService;
 import br.com.sample.service.UsuarioService;
 import br.com.sample.type.StatusUsuario;
 import br.com.sample.util.BeanUtil;
 import br.com.sample.util.JsfUtil;
 
 
-@Scope("session")
+@Scope("session")	
 @Component("usuarioBean")
 public class UsuarioBean extends EntityBean<Long, Usuario>{
 
@@ -44,9 +42,10 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 
 	@Autowired
 	private PerfilService roleService;
-	
+
 	public static final String list = "/pages/cadastros/usuario/usuarioList.xhtml";
 	public static final String single = "/pages/cadastros/usuario/usuario.xhtml";
+	public static final String busca = "/pages/cadastros/usuario/usuarioBusca.xhtml";
 
 	private Boolean status = true;
 	private Boolean usuarioCadastrado;
@@ -57,15 +56,18 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 	private Pessoa pessoa;
 	private Perfil role;
 	private Cliente cliente;
+	private List<Perfil> perfis;
+	private boolean pessoaExiste = false;
 
 
 	@Override
 	protected Usuario createNewEntity() {
+		Pessoa pessoa = new Pessoa();
 		Usuario user = new Usuario();
 		user.setRole(new Perfil());
 		Endereco endereco = new Endereco();
-		endereco.setPessoa(user);
-		user.setEndereco(endereco);
+		endereco.setPessoa(pessoa);
+		pessoa.setEndereco(endereco);
 		return user;
 	}
 
@@ -75,6 +77,20 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 
 	protected UsuarioService retrieveEntityService() {
 		return this.service;
+	}
+
+	public String buscarUsuario(){
+
+		if(this.cpf != null && !this.cpf.equals("")){
+			this.pessoa = pessoaService.findByCpf(this.cpf);
+			if(this.pessoa != null){
+				pessoaExiste = true;
+				this.entity.setPessoa(this.pessoa);
+			}
+		} else {
+			
+		}
+		return single;
 	}
 
 	@Override
@@ -93,7 +109,7 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		}
 		Collections.sort(this.entities, new Comparator<Usuario>() {
 			public int compare(Usuario o1, Usuario o2) {
-				return o1.getNome().compareTo(o2.getNome());
+				return o1.getPessoa().getNome().compareTo(o2.getPessoa().getNome());
 			}
 		});
 		//super.search();
@@ -101,26 +117,22 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 	}
 
 	public String save(){
-		
-		if(validar()){
-			this.entity.setStatus(StatusUsuario.ATIVO);
-			this.entity.setSenha(BeanUtil.md5(this.entity.getSenha()));
 
-			boolean hasLogin = false;
+		this.entity.setStatus(StatusUsuario.ATIVO);
+		this.entity.setSenha(BeanUtil.md5(this.entity.getSenha()));
 
-			if(hasLogin){
-				this.entity.setSenha(null);
-				this.confirmaSenha = null;
-				JsfUtil.getInstance().addErrorMessage("msg.error.login.existente");
-				return FAIL;
-			} else {
-				super.save();
-				return list;
-			}
-		} else {
+		boolean hasLogin = false;
+
+		if(hasLogin){
+			this.entity.setSenha(null);
+			this.confirmaSenha = null;
+			JsfUtil.getInstance().addErrorMessage("msg.error.login.existente");
 			return FAIL;
+		} else {
+			super.save();
+			return list;
 		}
-		
+
 	}
 
 	public String update(){
@@ -129,32 +141,22 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 	}
 
 	public String prepareSave(){
+		perfis = roleService.retrieveAll();
 		super.prepareSave();
-		return single;
+		return busca;
 	}
 
 	public String prepareUpdate(){
+		pessoaExiste = true;
+		perfis = roleService.retrieveAll();
 		super.prepareUpdate();
 		return single;
 	}
-	
+
 	public String populate(){
 		this.status = null;
 		this.filter = "";
 		return super.populate();
-	}
-
-
-	public String searchByCpf(){
-
-		try{
-			Usuario user = BeanUtil.usuarioLogado();
-			this.usuarioCadastrado = service.findByCpf(pessoa.getCpf(), null);
-
-		} catch (NonUniqueResultException e) {
-			JsfUtil.getInstance().addErrorMessage("msg.error.cpf.duplicado");
-		}
-		return SUCCESS;
 	}
 
 
@@ -163,7 +165,7 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		result.add(new SelectItem(null, "Selecione"));
 		List<Usuario> users = service.retrieveAll();
 		for (Usuario user : users) {
-			result.add(new SelectItem(user.getId(), user.getNome()));
+			result.add(new SelectItem(user.getId(), user.getPessoa().getNome()));
 		}
 		return result;
 	}
@@ -249,6 +251,22 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
+	}
+
+	public boolean isPessoaExiste() {
+		return pessoaExiste;
+	}
+
+	public void setPessoaExiste(boolean pessoaExiste) {
+		this.pessoaExiste = pessoaExiste;
 	}
 
 

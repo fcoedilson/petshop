@@ -14,6 +14,7 @@ import br.com.sample.entity.Endereco;
 import br.com.sample.entity.Funcionario;
 import br.com.sample.service.CargoService;
 import br.com.sample.service.FuncionarioService;
+import br.com.sample.type.StatusFuncionario;
 
 @Scope("session")
 @Component("funcionarioBean")
@@ -68,6 +69,10 @@ public class FuncionarioBean extends EntityBean<Long, Funcionario> {
 	}
 
 	public String update(){
+		
+		if(this.entity.getDemissao() != null){
+			this.entity.setStatus(StatusFuncionario.INATIVO);
+		}
 		super.update();
 		return list;
 	}

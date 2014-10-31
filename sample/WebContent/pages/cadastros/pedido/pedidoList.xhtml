@@ -14,10 +14,11 @@
 
 
 		<h:outputLabel value="Busca"/>
-		<h:inputText value="#{pedidoBean.filter}"/>
-
+		<h:inputText value="#{pedidoBean.filter}" size="80"/>
 		<p:commandButton value="Pesquisar" type="submit" action="#{pedidoBean.search}" update="dataTable" styleClass="button"/>
 		<p:commandButton value="Novo" action="#{pedidoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+
+		<br/>
 
 		<p:dataTable id="dataTable" var="pedido" value="#{pedidoBean.entities}" 
 						rows="10" rowClasses="even,odd"
@@ -28,24 +29,29 @@
                         					{NextPageLink} {LastPageLink} 
                         					{RowsPerPageDropdown}" rowIndexVar="k">
 
-			<p:column width="3%" style="text-align: center;" > 
+			<p:column width="2%" style="text-align: center;" > 
 				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
 				<h:outputText value="#{k+1}" style="color: black;"/>
 			</p:column>
 
 			<p:column width="20%" sortBy="#{pedido.cliente}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+				<f:facet name="header"><h:outputLabel value="Cliente"/></f:facet>
 				<h:outputText value="#{pedido.cliente}"/>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="20%" sortBy="#{pedido.valorPedido}">
+				<f:facet name="header"><h:outputLabel value="Valor"/></f:facet>
+				<h:outputText value="#{pedido.valorPedido}"/>
+			</p:column>
+
+			<p:column width="2%">
 				<h:commandLink icon="ui-icon-pencil" action="#{pedidoBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{pedidoBean.entity}" value="#{pedido}"/>
 					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="2%">
 				<h:commandLink  icon="ui-icon-trash" action="#{pedidoBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 					<f:setPropertyActionListener target="#{pedidoBean.entity}" value="#{pedido}"/>
 					<p:graphicImage value="/images/cross.png"/>
