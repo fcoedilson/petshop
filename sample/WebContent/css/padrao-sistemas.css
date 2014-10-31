@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+﻿﻿@charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
 /* -----------------------------------*/
 /* ---------->>> GLOBAL <<<-----------*/
@@ -10,17 +10,13 @@
 html {
 	position: relative;
 	min-height: 100%;
+	background-color: #808080;
 }
 body {
 	/* Margin bottom by footer height */
 	margin-bottom: 60px;
 	font-size: 12px;
 }
-
-input {
-    height: 20px;
-}
-
 /* -----------------------------------*/
 /* ---->>> PÁGINA DE LOGIN <<<--------*/
 /* -----------------------------------*/
@@ -47,10 +43,10 @@ input {
 
 #header_topo{
   /*  background: url('../img/banner03.png'); */
-    background-color: #ffffff;
+    background-color: #004002;
     background-repeat: repeat-x;
     width: 100%; 
-    height: 150px;
+    height: 270px;
     border-bottom: 4px solid #35a493;
     margin-top: 0px;
     padding: 8px;
@@ -68,10 +64,10 @@ input {
 }
 
 #form_login{
-    margin: -11px 0px 0px 0px;
+    margin: 11px 10px 10px 10px;
     width: 210px;
     height: 290px;
-    right: 282px;
+    right: 10px;
     position: absolute;
     display: none;
     z-index: 9999;
@@ -458,5 +454,4 @@ code {
         float:right;
     }
 }
-
 
