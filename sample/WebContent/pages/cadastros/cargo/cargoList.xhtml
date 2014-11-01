@@ -13,8 +13,7 @@
 	<ui:define name="pageContent">
 
 
-		<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
-			<p:outputLabel value="Busca"/>
+		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
 			<p:inputText value="#{cargoBean.filter}" size="60"/>
 	
 			<p:commandButton value="Pesquisar" type="submit" action="#{cargoBean.search}" update="dataTable" styleClass="button"/>

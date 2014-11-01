@@ -11,10 +11,8 @@
 	<ui:define name="pageContent">
 
 
-		<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
-			<p:outputLabel value="Busca"/>
+		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
 			<p:inputText value="#{usuarioBean.filter}" size="60"/>
-
 			<p:commandButton value="Pesquisar" type="submit" action="#{usuarioBean.search}" update="dataTable" styleClass="button"/>
 			<p:commandButton value="Novo" action="#{usuarioBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 		</h:panelGrid>

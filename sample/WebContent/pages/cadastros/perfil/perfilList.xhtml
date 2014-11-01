@@ -14,10 +14,8 @@
 
 		<p:fieldset legend="Perfil">
 
-			<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
-				<p:outputLabel  value="Busca"/>
+			<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
 				<p:inputText value="#{perfilBean.filter}" size="60"/>
-	
 				<p:commandButton value="Pesquisar" action="#{perfilBean.search}" update="dataTable" styleClass="button" ajax="false"/>
 				<p:commandButton value="Novo" action="#{perfilBean.prepareSave}" update="appForm" styleClass="button" immediate="true" ajax="false"/>
 			</h:panelGrid>
