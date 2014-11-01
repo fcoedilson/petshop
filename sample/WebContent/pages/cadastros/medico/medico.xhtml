@@ -10,38 +10,36 @@
 
 	<ui:define name="pageContent">
 
-
 		<h:inputHidden value="#{medicoBean.entity.id}" rendered="#{medicoBean.updateState}"/>
-	
-			<p:fieldset legend="Cadastro de Médico">
-	
-	           	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label"  rendered="#{medicoBean.pessoaExiste}">
-	           
-					<h:outputLabel value="Especialidade"/>
-					<h:inputText id="especialidade" value="#{medicoBean.entity.especialidade}" required="true"/>
-					<p:message errorClass="error" for="especialidade"/>
 
-					<h:outputLabel value="CRMV"/>
-					<h:inputText id="crmv" value="#{medicoBean.entity.crmv}" required="true"/>
-					<p:message errorClass="error" for="crmv"/>
+		<p:fieldset legend="Cadastro de Médico">
 
-					<h:outputLabel value="Ano Formação"/>
-					<h:inputText id="anoFormacao" value="#{medicoBean.entity.anoFormacao}" required="true"/>
-					<p:message errorClass="error" for="anoFormacao"/>
+           	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label"  rendered="#{medicoBean.pessoaExiste}">
+           
+				<p:outputLabel value="Especialidade"/>
+				<p:inputText id="especialidade" value="#{medicoBean.entity.especialidade}" required="true"/>
+				<p:message errorClass="error" for="especialidade"/>
 
-					<h:outputLabel value="Turno"/>
-					<h:inputText id="turno" value="#{medicoBean.entity.turno}" required="true"/>
-					<p:message errorClass="error" for="turno"/>
+				<p:outputLabel value="CRMV"/>
+				<p:inputText id="crmv" value="#{medicoBean.entity.crmv}" required="true"/>
+				<p:message errorClass="error" for="crmv"/>
 
-					<h:outputLabel value="Horário"/>
-					<h:inputText id="horario" value="#{medicoBean.entity.horario}" required="true"/>
-					<p:message errorClass="error" for="horario"/>
+				<p:outputLabel value="Ano Formação"/>
+				<p:inputText id="anoFormacao" value="#{medicoBean.entity.anoFormacao}" required="true"/>
+				<p:message errorClass="error" for="anoFormacao"/>
 
-	
-				</h:panelGrid>
+				<p:outputLabel value="Turno"/>
+				<p:inputText id="turno" value="#{medicoBean.entity.turno}" required="true"/>
+				<p:message errorClass="error" for="turno"/>
+
+				<p:outputLabel value="Horário"/>
+				<p:inputText id="horario" value="#{medicoBean.entity.horario}" required="true"/>
+				<p:message errorClass="error" for="horario"/>
+
+
+			</h:panelGrid>
 			
 		</p:fieldset>
-	
 	
 		<p:commandButton value="Salvar" type="submit" action="#{medicoBean.save}" styleClass="button" rendered="#{medicoBean.saveState}" update="appForm" ajax="false"/>
 		<p:commandButton value="Alterar" type="submit" action="#{medicoBean.update}" styleClass="button" rendered="#{medicoBean.updateState}" update="appForm" ajax="false"/>

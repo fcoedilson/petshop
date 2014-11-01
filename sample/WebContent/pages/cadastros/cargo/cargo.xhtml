@@ -17,13 +17,13 @@
 	
 	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 	           
-					<h:outputLabel value="Nome"/>
-					<h:inputText id="nome" value="#{cargoBean.entity.nome}" required="true" maxlength="120" size="60"/>
-					<p:message errorClass="error" for="nome"/>
+					<p:outputLabel value="Nome"/>
+					<p:inputText id="nome" value="#{cargoBean.entity.nome}" required="true" size="40"/>
+					<p:message errorClass="error" for="nome"  display="icon"/>
 	
-					<h:outputLabel value="Salário"/>
-					<h:inputText id="nome" value="#{cargoBean.entity.salario}" required="true" maxlength="120" size="40"/>
-					<p:message errorClass="error" for="nome"/>
+					<p:outputLabel value="Salário"/>
+					<p:inputText id="salario" value="#{cargoBean.entity.salario}" required="true" size="16"/>
+					<p:message errorClass="error" for="salario" display="icon"/>
 	
 				</h:panelGrid>
 			

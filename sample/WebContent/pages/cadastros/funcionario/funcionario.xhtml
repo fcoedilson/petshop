@@ -14,44 +14,46 @@
 
 		<h:inputHidden value="#{funcionarioBean.entity.id}" rendered="#{funcionarioBean.updateState}"/>
 
+
  		<p:fieldset id="dadosGeraisField" legend="Dados do Funcionário">
  			
+
         	<h:panelGrid id="dadosGerais" columns="3" styleClass="crudd" columnClasses="label">
 
-				<h:outputLabel value="Nome"/>
-				<h:inputText id="nome" value="#{funcionarioBean.entity.nome}" styleClass="inputText"  required="true" size="60"/>
-				<p:message errorClass="error" for="nome"/>
+				<p:outputLabel value="Nome"/>
+				<p:inputText id="nome" value="#{funcionarioBean.entity.nome}" styleClass="inputText"  required="true" size="60"/>
+				<p:message errorClass="error" for="nome" display="icon"/>
 				
-				<h:outputLabel value="Cargo"/>
-				<h:selectOneMenu id="cargo" value="#{funcionarioBean.entity.cargo}" required="true" converter="entityConverter"  requiredMessage="Informe a cargo ...">
-	    			<f:selectItem itemValue="" itemLabel="..."/>
+				<p:outputLabel value="Cargo"/>
+				<p:selectOneMenu id="cargo" value="#{funcionarioBean.entity.cargo}" required="true" converter="entityConverter"  requiredMessage="Informe o cargo ...">
+	    			<f:selectItem itemValue="" itemLabel="........."/>
 	    			<f:selectItems value="#{funcionarioBean.cargos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
-	    		</h:selectOneMenu>
-				<p:message errorClass="error" for="cargo"/>
+	    		</p:selectOneMenu>
+				<p:message errorClass="error" for="cargo"  display="icon"/>
 				
-				<h:outputLabel value="Sexo"/>
-	    		<h:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
-	    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+				<p:outputLabel value="Sexo"/>
+	    		<p:selectOneMenu id="sexo" value="#{funcionarioBean.entity.sexo}" required="true">
+	    			<f:selectItem itemValue="" itemLabel="........."/>
 	    			<f:selectItem itemValue="Masc" itemLabel="Masc"/>
 	    			<f:selectItem itemValue="Femi" itemLabel="Femi"/>
-	    		</h:selectOneMenu>
-	    		<p:message errorClass="error" for="sexo"  styleClass="message"/>
+	    		</p:selectOneMenu>
+	    		<p:message errorClass="error" for="sexo"  styleClass="message" display="icon"/>
 	
-				<h:outputLabel value="CPF"/>
-				<h:inputText id="numdoc" value="#{funcionarioBean.entity.cpf}" required="true" size="18"/>
-				<p:message errorClass="error" for="numdoc"/>
+				<p:outputLabel value="CPF"/>
+				<p:inputText id="cpf" value="#{funcionarioBean.entity.cpf}" required="true" size="18"/>
+				<p:message errorClass="error" for="cpf"  display="icon"/>
 	
-				<h:outputLabel value="Fones"/>
-				<h:inputText id="tel" value="#{funcionarioBean.entity.telefone}" required="true" size="20"/>
-				<p:message errorClass="error" for="tel"/>
+				<p:outputLabel value="Telefone Fixo"/>
+				<p:inputText id="telefone" value="#{funcionarioBean.entity.telefone}" required="true" size="20"/>
+				<p:message errorClass="error" for="telefone"  display="icon"/>
 	
-				<h:outputLabel value="Celular"/>
-				<h:inputText id="cel" value="#{funcionarioBean.entity.celular}" size="20"/>
-				<p:message errorClass="error" for="cel"/>
+				<p:outputLabel value="Celular"/>
+				<p:inputText id="celular" value="#{funcionarioBean.entity.celular}" size="20"/>
+				<p:message errorClass="error" for="celular"  display="icon"/>
 	
-				<h:outputLabel value="Email :"/>
-				<h:inputText id="celular" value="#{funcionarioBean.entity.email}" size="20"/>
-				<p:message errorClass="error" for="celular"/>
+				<p:outputLabel value="Email :"/>
+				<p:inputText id="email" value="#{funcionarioBean.entity.email}" size="20"/>
+				<p:message errorClass="error" for="email"  display="icon"/>
 
 			</h:panelGrid>
 		
@@ -62,33 +64,29 @@
        	
        	<h:panelGrid id="enderecoFuncionario" columns="3" styleClass="crudd" columnClasses="label">
 
-      		<h:outputLabel value="Logradouro"/>
-			<h:inputText id="endereco" value="#{funcionarioBean.entity.endereco.logradouro}" required="true" maxlength="150" size="70">
-				<f:validateLength maximum="150" minimum="2"/>
-			</h:inputText>
-			<p:message errorClass="error" for="endereco"/>
+      		<p:outputLabel value="Logradouro"/>
+			<p:inputText id="endereco" value="#{funcionarioBean.entity.endereco.logradouro}" required="true" size="70"/>
+			<p:message errorClass="error" for="endereco"  display="icon"/>
 	
-			<h:outputLabel value="Nº"/>
-			<h:inputText id="numero" value="#{funcionarioBean.entity.endereco.numero}" required="true" size="6"/>
-			<p:message errorClass="error" for="numero"/>
+			<p:outputLabel value="Nº"/>
+			<p:inputText id="numero" value="#{funcionarioBean.entity.endereco.numero}" required="true" size="6"/>
+			<p:message errorClass="error" for="numero"  display="icon"/>
 	
-			<h:outputLabel value="Complemento"/>
-			<h:inputText id="compl" value="#{funcionarioBean.entity.endereco.complemento}" required="false"  size="30"/>
-			<p:message errorClass="error" for="compl"/>
+			<p:outputLabel value="Complemento"/>
+			<p:inputText id="compl" value="#{funcionarioBean.entity.endereco.complemento}" required="false"  size="30"/>
+			<p:message errorClass="error" for="compl"  display="icon"/>
 	
-			<h:outputLabel value="CEP"/>
-			<h:inputText id="cep" value="#{funcionarioBean.entity.endereco.cep}" required="false" size="20"/>
-			<p:message errorClass="error" for="cep"/>
+			<p:outputLabel value="CEP"/>
+			<p:inputText id="cep" value="#{funcionarioBean.entity.endereco.cep}" required="false" size="20"/>
+			<p:message errorClass="error" for="cep"  display="icon"/>
 	
-			<h:outputLabel value="Bairro"/>
-			<h:inputText id="bairro" value="#{funcionarioBean.entity.endereco.bairro}" required="false" size="20"/>
-			<p:message errorClass="error" for="bairro"/>
+			<p:outputLabel value="Bairro"/>
+			<p:inputText id="bairro" value="#{funcionarioBean.entity.endereco.bairro}" required="false" size="20"/>
+			<p:message errorClass="error" for="bairro"  display="icon"/>
 	
-			<h:outputLabel value="Cidade"/>
-			<h:inputText id="cidade" value="#{funcionarioBean.entity.endereco.cidade}" required="false" maxlength="30" size="20">
-				<f:validateLength maximum="30" minimum="2"/>
-			</h:inputText>
-			<p:message errorClass="error" for="cidade"/>
+			<p:outputLabel value="Cidade"/>
+			<p:inputText id="cidade" value="#{funcionarioBean.entity.endereco.cidade}" required="false"  size="20"/>
+			<p:message errorClass="error" for="cidade"  display="icon"/>
 
 		</h:panelGrid>
 		
@@ -98,27 +96,27 @@
 	
 		<h:panelGrid id="dadosRH" columns="3" styleClass="crudd" columnClasses="label">
 	
-			<h:outputLabel value="Matrícula"/>
-			<h:inputText id="matricula" value="#{funcionarioBean.entity.matricula}" required="true" maxlength="30" size="20"/>
-			<p:message errorClass="error" for="matricula"/>
+			<p:outputLabel value="Matrícula"/>
+			<p:inputText id="matricula" value="#{funcionarioBean.entity.matricula}" required="true" maxlength="30" size="20"/>
+			<p:message errorClass="error" for="matricula"  display="icon"/>
 			
 			
-			<h:outputLabel value="CTPS"/>
-			<h:inputText id="ctps" value="#{funcionarioBean.entity.ctps}" required="true"/>
-			<p:message errorClass="error" for="ctps"/>
+			<p:outputLabel value="CTPS"/>
+			<p:inputText id="ctps" value="#{funcionarioBean.entity.ctps}" required="true"/>
+			<p:message errorClass="error" for="ctps"  display="icon"/>
 			
-			<h:outputLabel value="Status" rendered="#{funcionarioBean.updateState}"/>
+			<p:outputLabel value="Status" rendered="#{funcionarioBean.updateState}"/>
 			<h:outputText id="status" value="#{funcionarioBean.entity.status}" disabled="true" rendered="#{funcionarioBean.updateState}"/>
-			<p:message errorClass="error" for="status" rendered="#{funcionarioBean.updateState}"/>
+			<p:message errorClass="error" for="status" rendered="#{funcionarioBean.updateState}"  display="icon"/>
 			
-			<h:outputLabel value="Data Admissão"/>
+			<p:outputLabel value="Data Admissão"/>
 			<p:calendar id="admissao" value="#{funcionarioBean.entity.admissao}" pattern="MM/dd/yyyy" />
-			<p:message errorClass="error" for="admissao"/>
+			<p:message errorClass="error" for="admissao"  display="icon"/>
 			
 			
-			<h:outputLabel value="Data demissão"/>
+			<p:outputLabel value="Data demissão"/>
 			<p:calendar id="demissao" value="#{funcionarioBean.entity.demissao}" pattern="MM/dd/yyyy" />
-			<p:message errorClass="error" for="demissao"/>
+			<p:message errorClass="error" for="demissao"  display="icon"/>
 	
 		</h:panelGrid>
 	
