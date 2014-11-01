@@ -12,11 +12,12 @@
 	
 		<p:fieldset legend="Produtos">
 
-		<h:outputLabel  value="Busca"/>
-		<h:inputText value="#{produtoBean.filter}" size="80"/>
-	
-		<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="btn" update="dataTable"/>
-		<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="btn" update="appForm" ajax="false"/>
+			<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
+				<p:inputText value="#{produtoBean.filter}" size="60"/>
+			
+				<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="btn" update="dataTable"/>
+				<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="btn" update="appForm" ajax="false"/>
+			</h:panelGrid>
 
 			<p:dataTable id="dataTable" var="produto" value="#{produtoBean.entities}" 
 						rows="10" rowClasses="even,odd"

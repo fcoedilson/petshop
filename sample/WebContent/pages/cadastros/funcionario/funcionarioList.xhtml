@@ -14,13 +14,14 @@
 
 	<ui:define name="pageContent">
 
-
-		<h:outputLabel value="Busca"/>
-		<h:inputText value="#{funcionarioBean.filter}"/>
-
-		<p:commandButton value="Pesquisar" type="submit" action="#{funcionarioBean.search}" update="dataTable" styleClass="button"/>
-		<p:commandButton value="Novo" action="#{funcionarioBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-
+		<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
+		
+			<p:outputLabel value="Busca"/>
+			<p:inputText value="#{funcionarioBean.filter}" size="60"/>
+			<p:commandButton value="Pesquisar" type="submit" action="#{funcionarioBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{funcionarioBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		
+		</h:panelGrid>
 
 		<p:dataTable id="dataTable" var="funcionario" value="#{funcionarioBean.entities}" 
 						rows="10" rowClasses="even,odd"

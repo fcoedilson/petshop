@@ -13,11 +13,14 @@
 	<ui:define name="pageContent">
 
 
-		<h:outputLabel value="Busca"/>
-		<h:inputText value="#{cargoBean.filter}"/>
+		<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
+			<p:outputLabel value="Busca"/>
+			<p:inputText value="#{cargoBean.filter}" size="60"/>
+	
+			<p:commandButton value="Pesquisar" type="submit" action="#{cargoBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{cargoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		</h:panelGrid>
 
-		<p:commandButton value="Pesquisar" type="submit" action="#{cargoBean.search}" update="dataTable" styleClass="button"/>
-		<p:commandButton value="Novo" action="#{cargoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
 		<p:dataTable id="dataTable" var="cargo" value="#{cargoBean.entities}" 
 						rows="10" rowClasses="even,odd"

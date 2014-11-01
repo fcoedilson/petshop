@@ -14,13 +14,13 @@
 
 		<p:fieldset legend="Perfil">
 
-
-			<h:outputLabel  value="Busca"/>
-			<h:inputText value="#{perfilBean.filter}" size="50"/>
+			<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
+				<p:outputLabel  value="Busca"/>
+				<p:inputText value="#{perfilBean.filter}" size="60"/>
 	
-			<p:commandButton value="Pesquisar" action="#{perfilBean.search}" update="dataTable" styleClass="button" ajax="false"/>
-			<p:commandButton value="Novo" action="#{perfilBean.prepareSave}" update="appForm" styleClass="button" immediate="true" ajax="false"/>
-			
+				<p:commandButton value="Pesquisar" action="#{perfilBean.search}" update="dataTable" styleClass="button" ajax="false"/>
+				<p:commandButton value="Novo" action="#{perfilBean.prepareSave}" update="appForm" styleClass="button" immediate="true" ajax="false"/>
+			</h:panelGrid>
 
  			<p:dataTable id="dataTable" var="role" value="#{perfilBean.entities}" 
  						rows="10" rowClasses="even,odd"

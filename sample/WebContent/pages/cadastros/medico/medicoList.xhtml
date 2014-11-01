@@ -12,12 +12,13 @@
 
 	<ui:define name="pageContent">
 
-
-		<h:outputLabel value="Busca"/>
-		<h:inputText value="#{medicoBean.filter}"/>
-
-		<p:commandButton value="Pesquisar" type="submit" action="#{medicoBean.search}" update="dataTable" styleClass="button"/>
-		<p:commandButton value="Novo" action="#{medicoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		<h:panelGrid id="busca" columns="4" styleClass="crudd" columnClasses="label">
+			<p:outputLabel value="Busca"/>
+			<p:inputText value="#{medicoBean.filter}" size="60"/>
+	
+			<p:commandButton value="Pesquisar" type="submit" action="#{medicoBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{medicoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		</h:panelGrid>
 
 		<p:dataTable id="dataTable" var="medico" value="#{medicoBean.entities}" 
 						rows="10" rowClasses="even,odd"

@@ -14,12 +14,14 @@
 	
 		<p:fieldset legend="Lista de Serviços">
 		
-			<h:outputLabel value="Busca"/>
-			<h:inputText value="#{servicoBean.filter}"/>
+		
+			<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
+				<p:inputText value="#{servicoBean.filter}" size="60"/>
 	
-			<p:commandButton value="Pesquisar" type="submit" action="#{servicoBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{servicoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-			
+				<p:commandButton value="Pesquisar" type="submit" action="#{servicoBean.search}" update="dataTable" styleClass="button"/>
+				<p:commandButton value="Novo" action="#{servicoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+			</h:panelGrid>
+
 			<p:dataTable id="dataTable" var="servico" value="#{servicoBean.entities}" 
 							rows="10" rowClasses="even,odd"
 							paginatorAlwaysVisible="false"
@@ -34,13 +36,13 @@
 					<h:outputText value="#{k+1}" style="color: black;"/>
 				</p:column>
 	
-				<p:column width="40%" sortBy="#{servico.nome}">
+				<p:column width="60%" sortBy="#{servico.nome}">
 					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
 					<h:outputText value="#{servico.nome}"/>
 				</p:column>
 				
-				<p:column width="40%" sortBy="#{servico.valor}">
-					<f:facet name="header"><h:outputLabel value="Valor"/></f:facet>
+				<p:column width="20%" sortBy="#{servico.valor}">
+					<f:facet name="header"><h:outputLabel value="Preço"/></f:facet>
 					<h:outputText value="#{servico.valor}"/>
 				</p:column>
 	
