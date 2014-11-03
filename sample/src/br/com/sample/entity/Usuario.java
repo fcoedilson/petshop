@@ -14,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,6 +33,8 @@ import br.com.sample.type.StatusUsuario;
 	@NamedQuery(name = "Usuario.findByStatus", query = "select o from Usuario o where o.status = ?"),
 	@NamedQuery(name = "Usuario.findByName", query = "select u from Usuario u where u.pessoa.nome like ? and u.status = ?")
 })
+@Table(uniqueConstraints = {
+		@UniqueConstraint(columnNames = "login") })
 public class Usuario implements UserDetails{
 	
 	@Id
@@ -44,10 +48,12 @@ public class Usuario implements UserDetails{
 
 	@NotNull(message="login não poder ser nullo")
 	@Size(min=5, message="login deve ter pelos menos 5 caracteres")
+	@Column(name="login", unique=true, nullable=false)
 	private String login;
 	
 	@NotNull(message="senha não poder ser nullo")
 	@Size(min=6, message="senha deve ter pelos menos 6 caracteres")
+	@Column(nullable=false)
 	private String senha;
 	
 	@Enumerated(EnumType.STRING)

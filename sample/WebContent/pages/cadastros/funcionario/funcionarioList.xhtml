@@ -51,17 +51,17 @@
 				<h:outputText value="#{funcionario.cpf}"/>
 			</p:column>
 
-			<p:column  width="10%" sortBy="#{funcionario.telefone}">
+			<p:column  width="12%" sortBy="#{funcionario.telefone}">
 				<f:facet name="header"><h:outputLabel value="Fone"/></f:facet>
 				<h:outputText value="#{funcionario.telefone}"/>
 			</p:column>
 
-			<p:column width="16%" sortBy="#{funcionario.email}">
+			<p:column width="12%" sortBy="#{funcionario.email}">
 				<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
 				<h:outputText value="#{funcionario.email}"/>
 			</p:column>
 			
-			<p:column width="20%">
+			<p:column width="30%">
 				<f:facet name="header"><h:outputLabel value="Endereço"/></f:facet>
 				<h:outputText value="#{funcionario.endereco.logradouro}, Nº #{funcionario.endereco.numero} #{funcionario.endereco.complemento} - #{funcionario.endereco.bairro} #{funcionario.endereco.cidade}"/>
 			</p:column>

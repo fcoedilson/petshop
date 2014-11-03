@@ -53,9 +53,9 @@
 					<h:outputText value="#{produto.precoCusto}" style="color: black;"/>
 				</p:column>
 				
-<!-- 					<p:column width="8%" >  -->
-<!-- 						 <p:graphicImage value="#{produto.img}" width="50" height="40"  style="border:0"/>  -->
-<!-- 					</p:column> -->
+				<p:column width="8%" > 
+					 <p:graphicImage url="#{produto.image}" width="50" height="40"  style="border:0"/> 
+				</p:column>
 
 				<p:column width="2%">
 					<h:commandLink action="#{produtoBean.prepareUpdate}" value="">

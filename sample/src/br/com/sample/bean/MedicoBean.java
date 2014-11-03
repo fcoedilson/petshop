@@ -98,11 +98,14 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 			if(pessoa != null){
 				this.entity.setPessoa(pessoa);
 				this.pessoaExiste = true;
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Pessoa não Cadastrada!"));
+				return busca;
 			}
 			
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-	                new FacesMessage("Ops! Primeira Faça o cadastro do Funcionário"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Informe um cpf!"));
+			return busca;
 		}
 		return single;
 	}

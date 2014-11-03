@@ -85,6 +85,19 @@ public class UsuarioService extends BaseService<Long, Usuario> {
 	}
 
 
+	public Boolean hasLogin(String login, StatusUsuario status) {
+		Query query = em.createQuery("select o from Usuario o where o.login = ? and o.status = ?");
+		query.setParameter(1, login);
+		query.setParameter(2, status);
+
+		if(query.getResultList() != null){
+			return query.getResultList().size() > 0;
+		} else {
+			return false;
+		}
+	}
+
+
 	@Transactional(readOnly = true)
 	public List<Usuario> retriveByMail(String mail){
 		return executeResultListQuery("Usuario.findByMail", mail, true);

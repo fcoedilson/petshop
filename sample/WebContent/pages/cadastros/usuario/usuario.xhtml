@@ -15,35 +15,42 @@
 		
 		<p:fieldset legend="Cadastro de Usuários">
 		
-			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label"  rendered="#{usuarioBean.pessoaExiste}">
+			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
-				<h:outputLabel value="Perfil"/>
-	    		<h:selectOneMenu id="perfil" value="#{usuarioBean.entity.role}" required="true" converter="entityConverter"   requiredMessage="Informe o perfil ...">
+				<p:outputLabel value="Nome"/>
+				<p:inputText id="pessoa" value="#{usuarioBean.entity.pessoa.nome}" disabled="true"/>
+				<p:message errorClass="error" for="pessoa" display="icon"/>
+
+				<p:outputLabel value="Perfil"/>
+	    		<p:selectOneMenu id="perfil" value="#{usuarioBean.entity.role}" required="true" converter="entityConverter"   requiredMessage="Informe o perfil ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
 	    			<f:selectItems value="#{usuarioBean.perfis}" var="p" itemLabel="#{p.nome}" itemValue="#{p}"/>
-	    		</h:selectOneMenu>
-	    		<p:message errorClass="error" for="perfil"  styleClass="message"/>
+	    		</p:selectOneMenu>
+	    		<p:message errorClass="error" for="perfil" display="icon"/>
 		
-				<h:outputLabel value="Login"/>
-				<h:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
-				<p:message errorClass="error" for="login"/>
+				<p:outputLabel value="Login"/>
+				<p:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
+				<p:message errorClass="error" for="login" display="icon"/>
 	
-				<h:outputLabel value="Senha"/>
-				<h:inputSecret id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
-				<p:message errorClass="error" for="senha"/>
+				<p:outputLabel value="Senha"/>
+				<p:password id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
+				<p:message errorClass="error" for="senha" display="icon"/>
 		
 			</h:panelGrid>
 		
 		</p:fieldset>
 
 
-		<p:commandButton value="Salvar" type="submit" action="#{usuarioBean.save}" styleClass="button" 
-						rendered="#{usuarioBean.saveState}" update="appForm"  ajax="false"/>
+		<p:commandButton value="Salvar" type="submit"
+			action="#{usuarioBean.save}" styleClass="button"
+			rendered="#{usuarioBean.saveState}" update="appForm" ajax="false" />
 
-		<p:commandButton value="Alterar" type="submit" action="#{usuarioBean.update}" styleClass="button" 
-						rendered="#{usuarioBean.updateState}" update="appForm"  ajax="false"/>
+		<p:commandButton value="Alterar" type="submit"
+			action="#{usuarioBean.update}" styleClass="button"
+			rendered="#{usuarioBean.updateState}" update="appForm" ajax="false" />
 
-		<p:commandButton value="Voltar" action="#{usuarioBean.search}" update="appForm" styleClass="button" immediate="true" ajax="false"/>
+		<p:commandButton value="Voltar" action="#{usuarioBean.search}"
+			update="appForm" styleClass="button" immediate="true" ajax="false" />
 
 	</ui:define>
 

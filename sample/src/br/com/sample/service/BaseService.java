@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.RollbackException;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
@@ -33,12 +36,13 @@ public abstract class BaseService<Id extends Serializable, Entity extends Serial
 	@Transactional
 	public Entity save(Entity entity) {
 		try{
+
 			em.persist(entity);
 			return entity;
+
 		} catch(Exception e){
-			e.printStackTrace();
 			logger.error(e.getMessage(), e);
-		}
+		} 
 		return null;
 	}
 
@@ -89,7 +93,7 @@ public abstract class BaseService<Id extends Serializable, Entity extends Serial
 		String simpleName = getPersistentClass().getSimpleName();
 		return (List<Entity>) em.createQuery("SELECT e FROM " + simpleName + " e where e.status != -1 order by e." + parameter + " desc").getResultList();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Entity> findAllVeiculosAtivos(String parameter) {
 		String simpleName = getPersistentClass().getSimpleName();

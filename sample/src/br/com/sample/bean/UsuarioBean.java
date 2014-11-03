@@ -6,7 +6,6 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -86,9 +85,13 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 			if(this.pessoa != null){
 				pessoaExiste = true;
 				this.entity.setPessoa(this.pessoa);
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Pessoa não Cadastrada!"));
+				return busca;
 			}
 		} else {
-			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Informe um cpf!"));
+			return busca;
 		}
 		return single;
 	}
@@ -121,13 +124,13 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		this.entity.setStatus(StatusUsuario.ATIVO);
 		this.entity.setSenha(BeanUtil.md5(this.entity.getSenha()));
 
-		boolean hasLogin = false;
+		boolean hasLogin = validaLogin();
 
 		if(hasLogin){
 			this.entity.setSenha(null);
 			this.confirmaSenha = null;
-			JsfUtil.getInstance().addErrorMessage("msg.error.login.existente");
-			return FAIL;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Login já existe!"));
+			return busca;
 		} else {
 			super.save();
 			return list;
@@ -136,7 +139,14 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 	}
 
 	public String update(){
-		super.update();
+		
+		boolean hasLogin = validaLogin();
+		if(hasLogin){
+			super.update();
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Login já existe!"));
+			return busca;
+		}
 		return list;
 	}
 
@@ -170,6 +180,9 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		return result;
 	}
 
+	public Boolean validaLogin(){
+		return service.hasLogin(this.entity.getLogin(), StatusUsuario.ATIVO);
+	}
 
 	public Boolean validar() {
 		if(!this.entity.getSenha().equals(this.confirmaSenha)){

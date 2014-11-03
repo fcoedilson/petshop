@@ -1,11 +1,10 @@
 package br.com.sample.entity;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.UUID;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.eclipse.core.internal.runtime.Product;
 import org.hibernate.annotations.Type;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -38,32 +37,17 @@ public class Produto implements Serializable{
 	private Float precoCusto;
 
 	@Lob
+	//@Type(type="org.hibernate.type.BinaryType")
 	@Basic(fetch=FetchType.LAZY)
-	@Type(type="org.hibernate.type.BinaryType") 
 	private byte[] image;
 
 	@NotNull(message="preço de venda é obrigatório")
 	private Float precoVenda;
 
-	@Transient
-	private StreamedContent img;
-
-	public void setImg(StreamedContent img) {
-		this.img = img;
-	}
-
-	public StreamedContent getImg() throws IOException {
-
-		StreamedContent image = null;
-		if(this.image != null){
-
-			String namefile =  UUID.randomUUID().toString();
-			InputStream is = new ByteArrayInputStream(this.image);
-			image = new DefaultStreamedContent(is, "image/jpg");
-
-		}
-
-		return image;
+	public StreamedContent getContentImage() {
+		
+		DefaultStreamedContent content = new DefaultStreamedContent(new ByteArrayInputStream(this.image), "image/png");
+		return   content;
 	}
 
 	public long getId() {

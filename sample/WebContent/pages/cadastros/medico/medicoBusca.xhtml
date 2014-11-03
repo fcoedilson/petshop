@@ -13,18 +13,11 @@
 	<ui:define name="pageContent">
 
 
-		<p:fieldset legend="Busca">
+		<p:fieldset legend="Buscar Pessoa">
 		
-		
-				<h:outputLabel value="Busca por CPF "/>
-				<p:inputText id="cpf" value="#{medicoBean.cpf}" />
-				
-		
-				<p:commandButton value="Buscar" type="submit" action="#{medicoBean.buscarMedico}" styleClass="button" 
-					 update="appForm" ajax="false"/>
-				<p:message for="cpf"/>
-							
-
+			<p:outputLabel value="CPF "/>
+			<p:inputText id="cpf" value="#{medicoBean.cpf}" size="40"/>
+			<p:commandButton value="Buscar" type="submit" action="#{medicoBean.buscarMedico}" styleClass="button" update="appForm" ajax="false"/>
 		
 		</p:fieldset>
 	

@@ -52,6 +52,7 @@ public class Pessoa implements Serializable {
 	@Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}", message="celular inválido")
 	private String celular;
 
+	@Column(unique=true)
 	private String email;
 
 	@NotNull(message="data de nascimento deve informado")

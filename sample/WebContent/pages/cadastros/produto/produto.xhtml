@@ -18,21 +18,26 @@
 	
 			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
-				<h:outputLabel value="Nome"/>
-				<h:inputText value="#{produtoBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" requiredMessage="Informe o nome" />
-				<p:message errorClass="error" for="nome"/>
+				<p:outputLabel value="Nome"/>
+				<p:inputText value="#{produtoBean.entity.nome}" id="nome" size="50" maxlength="70" required="true" requiredMessage="Informe o nome" />
+				<p:message errorClass="error" for="nome" display="icon"/>
 		
-				<h:outputLabel value="Estoque"/>
-				<h:inputText id="estoque" value="#{produtoBean.entity.estoque}" required="true"/>
-				<p:message errorClass="error" for="estoque"/>
+				<p:outputLabel value="Estoque"/>
+				<p:inputText id="estoque" value="#{produtoBean.entity.estoque}" required="true"/>
+				<p:message errorClass="error" for="estoque" display="icon"/>
 
-				<h:outputLabel value="Preço de venda"/>
-				<h:inputText id="venda" value="#{produtoBean.entity.precoVenda}" required="true"/>
-				<p:message errorClass="error" for="venda"/>
+				<p:outputLabel value="Preço de venda"/>
+				<p:inputText id="venda" value="#{produtoBean.entity.precoVenda}" required="true"/>
+				<p:message errorClass="error" for="venda" display="icon"/>
 
-				<h:outputLabel value="Preço de custo"/>
-				<h:inputText id="custo" value="#{produtoBean.entity.precoCusto}" required="true"/>
-				<p:message errorClass="error" for="custo"/>
+				<p:outputLabel value="Preço de custo"/>
+				<p:inputText id="custo" value="#{produtoBean.entity.precoCusto}" required="true"/>
+				<p:message errorClass="error" for="custo" display="icon"/>
+				
+				
+				<p:outputLabel value="Imagem do Produto"/>
+				<p:fileUpload value="#{produtoBean.file}" mode="simple" skinSimple="true"/>
+				<p:commandButton value="Submit" ajax="false" actionListener="#{produtoBean.upload}" />
 				
 
 			</h:panelGrid>
