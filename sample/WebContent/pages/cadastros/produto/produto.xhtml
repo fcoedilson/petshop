@@ -36,7 +36,12 @@
 				
 				
 				<p:outputLabel value="Imagem do Produto"/>
-				<p:fileUpload value="#{produtoBean.file}" mode="simple" skinSimple="true"/>
+				
+				<p:fileUpload fileUploadListener="#{produtoBean.fileUpload}"
+                    label="Escolher" cancelLabel="Cancelar" sizeLimit="400000"
+                    invalidSizeMessage="Muito grande!" auto="true"
+                    invalidFileMessage="Tipo não suportado!"/>
+				
 				<p:commandButton value="Submit" ajax="false" actionListener="#{produtoBean.upload}" />
 				
 
@@ -46,7 +51,7 @@
 
 	    <p:commandButton action="#{produtoBean.save}" value="Salvar" rendered="#{produtoBean.saveState}" update="appForm" ajax="false"/>
 		<p:commandButton action="#{produtoBean.update}" value="Alterar" rendered="#{produtoBean.updateState}" styleClass="editar" update="appForm" ajax="false"/>
-		<p:commandButton action="#{produtoBean.search}" value="Voltar" update="appForm" immediate="true"/>
+		<p:commandButton action="#{produtoBean.search}" value="Voltar" update="appForm" immediate="true" ajax="false"/>
 
 
 	</ui:define>

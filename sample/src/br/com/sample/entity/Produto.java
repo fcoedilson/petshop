@@ -3,19 +3,14 @@ package br.com.sample.entity;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
-import org.eclipse.core.internal.runtime.Product;
 import org.hibernate.annotations.Type;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -37,9 +32,11 @@ public class Produto implements Serializable{
 	private Float precoCusto;
 
 	@Lob
-	//@Type(type="org.hibernate.type.BinaryType")
-	@Basic(fetch=FetchType.LAZY)
+	@Column(columnDefinition="LONGBLOB")
+	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] image;
+	
+	private String path;
 
 	@NotNull(message="preço de venda é obrigatório")
 	private Float precoVenda;
@@ -96,6 +93,14 @@ public class Produto implements Serializable{
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	@Override

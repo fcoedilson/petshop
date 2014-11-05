@@ -38,23 +38,23 @@
 					<h:outputText value="#{produto.nome}" style="color: black;"/>
 				</p:column>
 
-				<p:column width="5%" > 
+				<p:column width="10%" > 
 					<f:facet name="header"><h:outputLabel value="Estoque"/></f:facet>
 					<h:outputText value="#{produto.estoque}" style="color: black;"/>
 				</p:column>
 
-				<p:column width="5%" > 
+				<p:column width="10%" > 
 					<f:facet name="header"><h:outputLabel value="Preço Venda"/></f:facet>
 					<h:outputText value="#{produto.precoVenda}" style="color: black;"/>
 				</p:column>
 
-				<p:column width="5%" > 
+				<p:column width="10%" > 
 					<f:facet name="header"><h:outputLabel value="Preço Custo"/></f:facet>
 					<h:outputText value="#{produto.precoCusto}" style="color: black;"/>
 				</p:column>
 				
 				<p:column width="8%" > 
-					 <p:graphicImage url="#{produto.image}" width="50" height="40"  style="border:0"/> 
+					 <p:graphicImage value="#{produto.path}" width="40" height="40"  style="border:0"/> 
 				</p:column>
 
 				<p:column width="2%">
