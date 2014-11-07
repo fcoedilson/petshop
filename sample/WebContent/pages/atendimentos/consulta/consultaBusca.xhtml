@@ -13,21 +13,23 @@
 	<ui:define name="pageContent">
 
 
-		<p:fieldset legend="Busca">
+		<p:fieldset legend="Busca Por">
 		
 		
-				<h:outputLabel value="Busca por Nome do Animal"/>
+			<h:panelGrid id="busca" columns="2" styleClass="crudd" columnClasses="label">
+			
+				<p:outputLabel value="Nome do Animal"/>
 				<p:inputText id="nome" value="#{consultaBean.nomeAnimal}" />
-				
+	
+				<p:outputLabel value="CPF Cliente"/>
+				<p:inputText id="cpf" value="#{consultaBean.clienteCpf}" />		
 		
-				<p:commandButton value="Buscar" type="submit" action="#{consultaBean.buscarAnimal}" styleClass="button" 
-					 update="appForm" ajax="false"/>
-				<p:message for="cpf"/>
-							
+			</h:panelGrid>
+	
+			<p:commandButton value="Buscar" type="submit" action="#{consultaBean.buscarAnimal}" styleClass="button" update="appForm" ajax="false"/>
 
 		
 		</p:fieldset>
-	
  
  </ui:define>
 

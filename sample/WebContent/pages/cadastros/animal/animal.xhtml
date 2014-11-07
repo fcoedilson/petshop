@@ -19,37 +19,44 @@
 	 			
 	
 	          <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-	
-				<h:outputLabel value="Nome"/>
-				<h:inputText id="nome" value="#{animalBean.entity.nome}" required="true" maxlength="120" size="60">
+
+				<p:outputLabel value="Proprietário"/>
+				<p:selectOneMenu id="proprietario" value="#{animalBean.entity.cliente}" required="true" converter="entityConverter"  requiredMessage="Informe o proprietario ...">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<f:selectItems value="#{animalBean.clientes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    		</p:selectOneMenu>
+				<p:message errorClass="error" for="proprietario" display="icon"/>
+
+				<p:outputLabel value="Nome"/>
+				<p:inputText id="nome" value="#{animalBean.entity.nome}" required="true" maxlength="120" size="60">
 					<f:validateLength maximum="50" minimum="3"/>
-				</h:inputText>
-				<p:message errorClass="error" for="nome"/>
+				</p:inputText>
+				<p:message errorClass="error" for="nome" display="icon"/>
 				
 	
-				<h:outputLabel value="Cor"/>
-				<h:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="120" size="18">
+				<p:outputLabel value="Cor"/>
+				<p:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="120" size="18">
 					<f:validateLength maximum="180" minimum="4"/>
-				</h:inputText>
-				<p:message errorClass="error" for="cor"/>
+				</p:inputText>
+				<p:message errorClass="error" for="cor" display="icon"/>
 	
-				<h:outputLabel value="Espécie"/>
-				<h:selectOneMenu id="especie" value="#{animalBean.entity.especie}" required="true" converter="entityConverter"  requiredMessage="Informe a espécie ...">
+				<p:outputLabel value="Espécie"/>
+				<p:selectOneMenu id="especie" value="#{animalBean.entity.especie}" required="true" converter="entityConverter"  requiredMessage="Informe a espécie ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
 	    			<f:selectItems value="#{animalBean.especies}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
-	    		</h:selectOneMenu>
-				<p:message errorClass="error" for="especie"/>
+	    		</p:selectOneMenu>
+				<p:message errorClass="error" for="especie" display="icon"/>
 	
-				<h:outputLabel value="Raça"/>
-	    		<h:selectOneMenu id="raca" value="#{animalBean.entity.raca}" required="true" converter="entityConverter"   requiredMessage="Informe a raça ...">
+				<p:outputLabel value="Raça"/>
+	    		<p:selectOneMenu id="raca" value="#{animalBean.entity.raca}" required="true" converter="entityConverter"   requiredMessage="Informe a raça ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
 	    			<f:selectItems value="#{animalBean.racas}" var="r" itemLabel="#{r.nome}" itemValue="#{r}"/>
-	    		</h:selectOneMenu>
-	    		<p:message errorClass="error" for="raca"  styleClass="message"/>
+	    		</p:selectOneMenu>
+	    		<p:message errorClass="error" for="raca" display="icon"/>
 	
-				<h:outputLabel value="Características"/>
-				<h:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="40" rows="2"/>
-				<p:message errorClass="error" for="caracte"/>
+				<p:outputLabel value="Características"/>
+				<p:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="40" rows="3"/>
+				<p:message errorClass="error" for="caracte"  display="icon"/>
 	
 			</h:panelGrid>
 			

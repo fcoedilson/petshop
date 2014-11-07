@@ -15,8 +15,12 @@
 
 		<p:fieldset legend="Buscar Pessoa">
 		
-				<p:outputLabel value="CPF "/>
-				<p:inputText id="cpf" value="#{usuarioBean.cpf}" />
+				<h:panelGrid id="busca" columns="2" styleClass="crudd" columnClasses="label">
+		
+					<p:outputLabel value="CPF "/>
+					<p:inputText id="cpf" value="#{usuarioBean.cpf}" />
+				
+				</h:panelGrid>
 				<p:commandButton value="Buscar" type="submit" action="#{usuarioBean.buscarUsuario}" styleClass="button" update="appForm" ajax="false"/>
 
 		

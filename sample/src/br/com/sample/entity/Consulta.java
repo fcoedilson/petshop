@@ -68,8 +68,6 @@ public class Consulta implements Serializable{
 		this.animal = animal;
 	}
 
-
-
 	public StatusConsulta getStatus() {
 		return status;
 	}
@@ -100,6 +98,14 @@ public class Consulta implements Serializable{
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	@Override

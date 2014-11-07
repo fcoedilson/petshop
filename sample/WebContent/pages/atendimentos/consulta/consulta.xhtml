@@ -17,12 +17,16 @@
 	
 	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 	           
-					<p:outputLabel value="Médico"/>
-					<p:inputText id="nomeMedico" value="#{consultaBean.entity.medico.nome}" required="true" size="40"/>
-					<p:message errorClass="error" for="nomeMedico"  display="icon"/>
+					<h:outputLabel value="Médico"/>
+					<h:selectOneMenu id="medico" value="#{consultaBean.entity.medico}" required="true" converter="entityConverter"  requiredMessage="Informe o médico ...">
+		    			<f:selectItem itemValue="" itemLabel="..."/>
+		    			<f:selectItems value="#{consultaBean.medicos}" var="e" itemLabel="#{e.pessoa.nome}" itemValue="#{e}"/>
+		    		</h:selectOneMenu>
+					<p:message errorClass="error" for="medico" display="icon"/>
+
 					
 					<p:outputLabel value="Cliente"/>
-					<p:inputText id="cliente" value="#{consultaBean.entity.animal.cliente.nome}" required="true" size="16"/>
+					<p:inputText id="cliente" value="#{consultaBean.entity.animal.cliente.nome}" required="true" size="16" requiredMessage="Cliente requerido!"/>
 					<p:message errorClass="error" for="cliente" display="icon"/>
 	
 					<p:outputLabel value="Animal"/>
@@ -36,6 +40,10 @@
 		    		</p:selectOneMenu>
 					<p:message errorClass="error" for="consulta" display="icon"/>
 					
+					
+					<p:outputLabel value="Prontuário"/>
+					<p:inputTextarea id="prontuario" value="#{consultaBean.entity.prontuario}" cols="60" rows="6"/>
+					<p:message errorClass="error" for="prontuario" display="icon"/>
 	
 				</h:panelGrid>
 			

@@ -39,6 +39,11 @@
 				<h:outputText value="#{animal.nome}"/>
 			</p:column>
 
+			<p:column width="16%" sortBy="#{animal.cliente.nome}">
+				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+				<h:outputText value="#{animal.cliente.nome}"/>
+			</p:column>
+
 			<p:column width="10%" sortBy="#{animal.cor}">
 				<f:facet name="header"><h:outputLabel value="Cor"/></f:facet>
 				<h:outputText value="#{animal.cor}"/>
