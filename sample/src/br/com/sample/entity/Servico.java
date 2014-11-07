@@ -19,7 +19,6 @@ public class Servico implements Serializable{
 	
 	@NotNull(message="nome não pode ser nulo")
 	private String nome;
-	private String descricao;
 	
 	@NotNull(message="valor do serviço deve ser informado")
 	private Float valor;
@@ -38,14 +37,6 @@ public class Servico implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public Float getValor() {

@@ -27,4 +27,15 @@ public class AnimalService extends BaseService<Long, Animal> {
 		return null;
 	}
 
+	@Transactional
+	public Animal findByNome(String nome) throws NonUniqueResultException{
+		try {
+			Query query = em.createQuery("select p from Animal p where p.nome = ?");
+			query.setParameter(1, nome);
+			return (Animal) query.getSingleResult();
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
 }

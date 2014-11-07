@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
+			<p:inputText value="#{consultaBean.filter}" size="60"/>
+	
+			<p:commandButton value="Pesquisar" type="submit" action="#{consultaBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{consultaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		</h:panelGrid>
+
+
+		<p:dataTable id="dataTable" var="consulta" value="#{consultaBean.entities}" 
+						rows="10" rowClasses="even,odd"
+						paginatorAlwaysVisible="false"
+                       paginator="true" 
+                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                        					{PreviousPageLink} {PageLinks} 
+                        					{NextPageLink} {LastPageLink} 
+                        					{RowsPerPageDropdown}" rowIndexVar="k">
+
+			<p:column width="3%" style="text-align: center;" > 
+				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
+				<h:outputText value="#{k+1}" style="color: black;"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{consulta.medico.nome}">
+				<f:facet name="header"><h:outputLabel value="Cliente"/></f:facet>
+				<h:outputText value="#{consulta.medico.nome}"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{consulta.animal.nome}">
+				<f:facet name="header"><h:outputLabel value="Animal"/></f:facet>
+				<h:outputText value="#{consulta.animal.nome}"/>
+			</p:column>
+
+			<p:column width="20%" sortBy="#{consulta.cliente.nome}">
+				<f:facet name="header"><h:outputLabel value="Cliente"/></f:facet>
+				<h:outputText value="#{consulta.cliente.nome}"/>
+			</p:column>
+
+			<p:column width="10%" sortBy="#{consulta.tipo.nome}">
+				<f:facet name="header"><h:outputLabel value="Consulta"/></f:facet>
+				<h:outputText value="#{consulta.tipo.nome}"/>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink icon="ui-icon-pencil" action="#{consultaBean.prepareUpdate}" value="">
+					<f:setPropertyActionListener target="#{consultaBean.entity}" value="#{consulta}"/>
+					<p:graphicImage value="/images/pencil.png"/>
+				</h:commandLink>
+			</p:column>
+
+			<p:column width="4%">
+				<h:commandLink  icon="ui-icon-trash" action="#{consultaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+					<f:setPropertyActionListener target="#{consultaBean.entity}" value="#{consulta}"/>
+					<p:graphicImage value="/images/cross.png"/>
+				</h:commandLink>
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>

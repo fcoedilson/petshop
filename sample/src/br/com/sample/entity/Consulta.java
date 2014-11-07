@@ -1,6 +1,7 @@
 package br.com.sample.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +37,8 @@ public class Consulta implements Serializable{
 
 	@Enumerated(EnumType.STRING)
 	private StatusConsulta status;
+	
+	private Date data;
 
 	private String prontuario;
 

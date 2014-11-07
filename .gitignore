@@ -1,2 +1,4 @@
 *.class
 sample/WebContent/WEB-INF/classes
+sample/.classpath
+sample/.settings/org.eclipse.jdt.core.prefs
