@@ -1,9 +1,6 @@
 package br.com.sample.bean;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,19 +31,13 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 	@Autowired
 	private ClienteService clienteService;
 
-	private List<Raca> racas = new ArrayList<Raca>();
-	private List<Especie> especies = new ArrayList<Especie>();
-	private List<Cliente> clientes  = new ArrayList<Cliente>();
+	private List<Raca> racas;
+	private List<Especie> especies;
+	private List<Cliente> clientes;
 
 	public static final String list = "/pages/cadastros/animal/animalList.xhtml";
 	public static final String single = "/pages/cadastros/animal/animal.xhtml";	
 
-	@PostConstruct
-	public void init(){
-		racas = racaService.retrieveAll();
-		especies = especieService.retrieveAll();
-		clientes = clienteService.retrieveAll();
-	}
 
 	protected Long retrieveEntityId(Animal entity) {
 		return entity.getId();

@@ -2,66 +2,87 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
+		<p:panel header="Raça">
 
 
+			<p:fieldset legend="Pesquisa">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
 
-		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-			<p:inputText value="#{racaBean.filter}" size="60"/>
-	
-			<p:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{racaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-		</h:panelGrid>
+					<p:inputText value="#{racaBean.filter}" size="60" />
+
+					<p:commandButton value="Pesquisar" type="submit"
+						action="#{racaBean.search}" update="dataTable" styleClass="button" />
+					<p:commandButton value="Novo" action="#{racaBean.prepareSave}"
+						update="appForm" icon="ui-icon-plus" styleClass="button"
+						immediate="true" />
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+			<p:separator />
+			<br />
 
 
-		<p:dataTable id="dataTable" var="raca" value="#{racaBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+			<p:dataTable id="dataTable" var="raca" value="#{racaBean.entities}"
+				rows="10" rowClasses="even,odd" paginatorAlwaysVisible="false"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
+                        					{RowsPerPageDropdown}"
+				rowIndexVar="k">
 
-			<p:column width="3%" style="text-align: center;" > 
-				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-				<h:outputText value="#{k+1}" style="color: black;"/>
-			</p:column>
+				<p:column width="3%" style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="Nº" />
+					</f:facet>
+					<h:outputText value="#{k+1}" style="color: black;" />
+				</p:column>
 
-			<p:column width="20%" sortBy="#{raca.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{raca.nome}"/>
-			</p:column>
+				<p:column width="40%" sortBy="#{raca.nome}">
+					<f:facet name="header">
+						<h:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{raca.nome}" />
+				</p:column>
 
-			<p:column width="40%" sortBy="#{raca.descricao}">
-				<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
-				<h:outputText value="#{raca.descricao}"/>
-			</p:column>
+				<p:column width="40%" sortBy="#{raca.descricao}">
+					<f:facet name="header">
+						<h:outputLabel value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{raca.descricao}" />
+				</p:column>
 
-			<p:column width="4%">
-				<h:commandLink icon="ui-icon-pencil" action="#{racaBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
-					<p:graphicImage value="/images/pencil.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-pencil"
+						action="#{racaBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{racaBean.entity}"
+							value="#{raca}" />
+						<p:graphicImage value="/images/pencil.png" />
+					</h:commandLink>
+				</p:column>
 
-			<p:column width="4%">
-				<h:commandLink  icon="ui-icon-trash" action="#{racaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
-					<p:graphicImage value="/images/cross.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-trash" action="#{racaBean.delete}"
+						value=""
+						onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{racaBean.entity}"
+							value="#{raca}" />
+						<p:graphicImage value="/images/cross.png" />
+					</h:commandLink>
+				</p:column>
 
-		</p:dataTable>
-
+			</p:dataTable>
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

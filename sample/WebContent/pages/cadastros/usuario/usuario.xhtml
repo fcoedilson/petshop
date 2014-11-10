@@ -6,52 +6,64 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
-
-		<h:inputHidden value="#{usuarioBean.entity.id}" rendered="#{usuarioBean.updateState}"/>
-	
-		
-		<p:fieldset legend="Cadastro de Usuários">
-		
-			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-
-				<p:outputLabel value="Nome"/>
-				<p:inputText id="pessoa" value="#{usuarioBean.entity.pessoa.nome}" disabled="true"/>
-				<p:message errorClass="error" for="pessoa" display="icon"/>
-
-				<p:outputLabel value="Perfil"/>
-	    		<p:selectOneMenu id="perfil" value="#{usuarioBean.entity.role}" required="true" converter="entityConverter"   requiredMessage="Informe o perfil ...">
-	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{usuarioBean.perfis}" var="p" itemLabel="#{p.nome}" itemValue="#{p}"/>
-	    		</p:selectOneMenu>
-	    		<p:message errorClass="error" for="perfil" display="icon"/>
-		
-				<p:outputLabel value="Login"/>
-				<p:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
-				<p:message errorClass="error" for="login" display="icon"/>
-	
-				<p:outputLabel value="Senha"/>
-				<p:password id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
-				<p:message errorClass="error" for="senha" display="icon"/>
-		
-			</h:panelGrid>
-		
-		</p:fieldset>
+		<p:panel header="Usuário">
+			<h:inputHidden value="#{usuarioBean.entity.id}"
+				rendered="#{usuarioBean.updateState}" />
 
 
-		<p:commandButton value="Salvar" type="submit"
-			action="#{usuarioBean.save}" styleClass="button"
-			rendered="#{usuarioBean.saveState}" update="appForm" ajax="false" />
+			<p:fieldset legend="Cadastro de Usuários">
+				<br />
 
-		<p:commandButton value="Alterar" type="submit"
-			action="#{usuarioBean.update}" styleClass="button"
-			rendered="#{usuarioBean.updateState}" update="appForm" ajax="false" />
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
-		<p:commandButton value="Voltar" action="#{usuarioBean.search}"
-			update="appForm" styleClass="button" immediate="true" ajax="false" />
+					<p:outputLabel value="Nome" />
+					<p:inputText id="pessoa" value="#{usuarioBean.entity.pessoa.nome}"
+						disabled="true" />
+					<p:message errorClass="error" for="pessoa" display="icon" />
 
+					<p:outputLabel value="Perfil" />
+					<p:selectOneMenu id="perfil" value="#{usuarioBean.entity.role}"
+						required="true" converter="entityConverter"
+						requiredMessage="Informe o perfil ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{usuarioBean.perfis}" var="p"
+							itemLabel="#{p.nome}" itemValue="#{p}" />
+					</p:selectOneMenu>
+					<p:message errorClass="error" for="perfil" display="icon" />
+
+					<p:outputLabel value="Login" />
+					<p:inputText id="login" value="#{usuarioBean.entity.login}"
+						required="true" />
+					<p:message errorClass="error" for="login" display="icon" />
+
+					<p:outputLabel value="Senha" />
+					<p:password id="senha" value="#{usuarioBean.entity.senha}"
+						required="true" />
+					<p:message errorClass="error" for="senha" display="icon" />
+
+				</h:panelGrid>
+
+			</p:fieldset>
+
+			<br />
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{usuarioBean.save}" styleClass="button"
+				rendered="#{usuarioBean.saveState}" update="appForm" ajax="false" />
+
+			<p:commandButton value="Alterar" type="submit"
+				action="#{usuarioBean.update}" styleClass="button"
+				rendered="#{usuarioBean.updateState}" update="appForm" ajax="false" />
+
+			<p:commandButton value="Voltar" action="#{usuarioBean.search}"
+				update="appForm" styleClass="button" immediate="true" ajax="false" />
+			<br />
+			<br />
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

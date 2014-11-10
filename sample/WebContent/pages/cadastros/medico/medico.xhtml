@@ -1,50 +1,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
+		<p:panel header="Médico">
+			<h:inputHidden value="#{medicoBean.entity.id}"
+				rendered="#{medicoBean.updateState}" />
 
-		<h:inputHidden value="#{medicoBean.entity.id}" rendered="#{medicoBean.updateState}"/>
+			<p:fieldset legend="Cadastro de Médico">
+				<br />
 
-		<p:fieldset legend="Cadastro de Médico">
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
-           	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-           
-				<p:outputLabel value="Especialidade"/>
-				<p:inputText id="especialidade" value="#{medicoBean.entity.especialidade}" required="true"/>
-				<p:message errorClass="error" for="especialidade" display="icon"/>
+					<p:outputLabel value="Especialidade" />
+					<p:inputText id="especialidade"
+						value="#{medicoBean.entity.especialidade}" required="true" />
+					<p:message errorClass="error" for="especialidade" display="icon" />
 
-				<p:outputLabel value="CRMV"/>
-				<p:inputText id="crmv" value="#{medicoBean.entity.crmv}" required="true"/>
-				<p:message errorClass="error" for="crmv" display="icon"/>
+					<p:outputLabel value="CRMV" />
+					<p:inputText id="crmv" value="#{medicoBean.entity.crmv}"
+						required="true" />
+					<p:message errorClass="error" for="crmv" display="icon" />
 
-				<p:outputLabel value="Ano Formação"/>
-				<p:inputText id="anoFormacao" value="#{medicoBean.entity.anoFormacao}" required="true"/>
-				<p:message errorClass="error" for="anoFormacao" display="icon"/>
+					<p:outputLabel value="Ano Formação" />
+					<p:inputText id="anoFormacao"
+						value="#{medicoBean.entity.anoFormacao}" required="true" />
+					<p:message errorClass="error" for="anoFormacao" display="icon" />
 
-				<p:outputLabel value="Turno"/>
-				<p:inputText id="turno" value="#{medicoBean.entity.turno}" required="true"/>
-				<p:message errorClass="error" for="turno" display="icon"/>
+					<p:outputLabel value="Turno" />
+					<p:inputText id="turno" value="#{medicoBean.entity.turno}"
+						required="true" />
+					<p:message errorClass="error" for="turno" display="icon" />
 
-				<p:outputLabel value="Horário"/>
-				<p:inputText id="horario" value="#{medicoBean.entity.horario}" required="true"/>
-				<p:message errorClass="error" for="horario" display="icon"/>
+					<p:outputLabel value="Horário" />
+					<p:inputText id="horario" value="#{medicoBean.entity.horario}"
+						required="true" />
+					<p:message errorClass="error" for="horario" display="icon" />
 
 
-			</h:panelGrid>
-			
-		</p:fieldset>
-	
-		<p:commandButton value="Salvar" type="submit" action="#{medicoBean.save}" styleClass="button" rendered="#{medicoBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" type="submit" action="#{medicoBean.update}" styleClass="button" rendered="#{medicoBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{medicoBean.search}" update="appForm" styleClass="button" immediate="true"/>
+				</h:panelGrid>
 
+			</p:fieldset>
+					<br />
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{medicoBean.save}" styleClass="button"
+				rendered="#{medicoBean.saveState}" update="appForm" ajax="false" />
+			<p:commandButton value="Alterar" type="submit"
+				action="#{medicoBean.update}" styleClass="button"
+				rendered="#{medicoBean.updateState}" update="appForm" ajax="false" />
+			<p:commandButton value="Voltar" action="#{medicoBean.search}"
+				update="appForm" styleClass="button" immediate="true" />
+			<br />
+			<br />
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

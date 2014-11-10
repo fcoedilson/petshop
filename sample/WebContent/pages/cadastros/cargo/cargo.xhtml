@@ -1,39 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
+		<p:panel header="Cargo">
 
 
-		<h:inputHidden value="#{cargoBean.entity.id}" rendered="#{cargoBean.updateState}"/>
-	
-		<p:fieldset legend="Cargos">
-	
-	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-	           
-					<p:outputLabel value="Nome"/>
-					<p:inputText id="nome" value="#{cargoBean.entity.nome}" required="true" size="40"/>
-					<p:message errorClass="error" for="nome"  display="icon"/>
-	
-					<p:outputLabel value="Salário"/>
-					<p:inputText id="salario" value="#{cargoBean.entity.salario}" required="true" size="16"/>
-					<p:message errorClass="error" for="salario" display="icon"/>
-	
+			<h:inputHidden value="#{cargoBean.entity.id}"
+				rendered="#{cargoBean.updateState}" />
+
+			<p:fieldset legend="Cargos">
+				<br />
+
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+					<p:outputLabel value="Nome" />
+					<p:inputText id="nome" value="#{cargoBean.entity.nome}"
+						required="true" size="20" />
+					<p:message errorClass="error" for="nome" display="icon" />
+
+					<p:outputLabel value="Salário" />
+					<p:inputText id="salario" value="#{cargoBean.entity.salario}"
+						required="true" size="20" />
+					<p:message errorClass="error" for="salario" display="icon" />
+
 				</h:panelGrid>
-			
-		</p:fieldset>
-	
-	
-		<p:commandButton value="Salvar" type="submit" action="#{cargoBean.save}" styleClass="button" rendered="#{cargoBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" type="submit" action="#{cargoBean.update}" styleClass="button" rendered="#{cargoBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{cargoBean.search}" update="appForm" styleClass="button" immediate="true"/>
 
+			</p:fieldset>
+
+			<br />
+
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{cargoBean.save}" styleClass="button"
+				rendered="#{cargoBean.saveState}" update="appForm" ajax="false" />
+			<p:commandButton value="Alterar" type="submit"
+				action="#{cargoBean.update}" styleClass="button"
+				rendered="#{cargoBean.updateState}" update="appForm" ajax="false" />
+			<p:commandButton value="Voltar" action="#{cargoBean.search}"
+				update="appForm" styleClass="button" immediate="true" />
+			<br />
+			<br />
+
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

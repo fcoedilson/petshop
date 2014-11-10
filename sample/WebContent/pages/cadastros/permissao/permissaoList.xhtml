@@ -6,53 +6,78 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
-		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-			<p:inputText value="#{permissaoBean.filter}" size="60"/>
-			<p:commandButton value="Pesquisar" type="submit" action="#{permissaoBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{permissaoBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-		</h:panelGrid>
-		
-		<p:dataTable id="dataTable" var="permissao" value="#{permissaoBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+		<p:panel header="Permissões">
+			<p:fieldset legend="Pesquisa">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{permissaoBean.filter}" size="60" />
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="2">
+					<p:commandButton value="Pesquisar" type="submit"
+						action="#{permissaoBean.search}" update="dataTable"
+						styleClass="button" />
+					<p:commandButton value="Novo" action="#{permissaoBean.prepareSave}"
+						update="appForm" icon="ui-icon-plus" styleClass="button"
+						immediate="true" />
+				</h:panelGrid>
+				</p:fieldset>
+			<br />
+			<p:separator/>
+			<br />
+
+				<p:dataTable id="dataTable" var="permissao"
+					value="#{permissaoBean.entities}" rows="10" rowClasses="even,odd"
+					paginatorAlwaysVisible="false" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
+                        					{RowsPerPageDropdown}"
+					rowIndexVar="k">
 
-			<p:column width="3%" style="text-align: center;" > 
-				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-				<h:outputText value="#{k+1}" style="color: black;"/>
-			</p:column>
+					<p:column width="3%" style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="Nº" />
+						</f:facet>
+						<h:outputText value="#{k+1}" style="color: black;" />
+					</p:column>
 
-			<p:column width="50%" sortBy="#{permissao.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{permissao.nome}"/>
-			</p:column>
+					<p:column width="50%" sortBy="#{permissao.nome}">
+						<f:facet name="header">
+							<h:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputText value="#{permissao.nome}" />
+					</p:column>
 
-			<p:column width="3%">
-				<h:commandLink icon="ui-icon-pencil" action="#{permissaoBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{permissaoBean.entity}" value="#{permissao}"/>
-					<p:graphicImage value="/images/pencil.png"/>
-				</h:commandLink>
-			</p:column>
+					<p:column width="3%">
+						<h:commandLink icon="ui-icon-pencil"
+							action="#{permissaoBean.prepareUpdate}" value="">
+							<f:setPropertyActionListener target="#{permissaoBean.entity}"
+								value="#{permissao}" />
+							<p:graphicImage value="/images/pencil.png" />
+						</h:commandLink>
+					</p:column>
 
-			<p:column width="3%">
-				<h:commandLink  icon="ui-icon-trash" action="#{permissaoBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{permissaoBean.entity}" value="#{permissao}"/>
-					<p:graphicImage value="/images/cross.png"/>
-				</h:commandLink>
-			</p:column>
+					<p:column width="3%">
+						<h:commandLink icon="ui-icon-trash"
+							action="#{permissaoBean.delete}" value=""
+							onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+							<f:setPropertyActionListener target="#{permissaoBean.entity}"
+								value="#{permissao}" />
+							<p:graphicImage value="/images/cross.png" />
+						</h:commandLink>
+					</p:column>
 
-		</p:dataTable>
-	
-	
+				</p:dataTable>
+		</p:panel>
 	</ui:define>
+
+
 
 
 </ui:composition>

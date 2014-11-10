@@ -2,87 +2,124 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
-		<br/>
-		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-		
-			<p:inputText value="#{funcionarioBean.filter}" size="60"/>
-			<p:commandButton value="Pesquisar" type="submit" action="#{funcionarioBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{funcionarioBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-		
-		</h:panelGrid>
-		
-		<p:dataTable id="dataTable" var="funcionario" value="#{funcionarioBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+		<p:panel header="Funcionário">
+
+			<p:fieldset legend="Pesquisa">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{funcionarioBean.filter}" size="60" />
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="2">
+					<p:commandButton value="Pesquisar" type="submit"
+						action="#{funcionarioBean.search}" update="dataTable"
+						styleClass="button" />
+					<p:commandButton value="Novo"
+						action="#{funcionarioBean.prepareSave}" update="appForm"
+						icon="ui-icon-plus" styleClass="button" immediate="true" />
+
+
+
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+			<p:separator />
+			<br />
+
+			<p:dataTable id="dataTable" var="funcionario"
+				value="#{funcionarioBean.entities}" rows="10" rowClasses="even,odd"
+				paginatorAlwaysVisible="false" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
+                        					{RowsPerPageDropdown}"
+				rowIndexVar="k">
 
-			<p:column width="3%" style="text-align: center;" > 
-				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-				<h:outputText value="#{k+1}" style="color: black;"/>
-			</p:column>
+				<p:column width="3%" style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="Nº" />
+					</f:facet>
+					<h:outputText value="#{k+1}" style="color: black;" />
+				</p:column>
 
-			<p:column width="16%" sortBy="#{funcionario.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{funcionario.nome}"/>
-			</p:column>
+				<p:column width="16%" sortBy="#{funcionario.nome}">
+					<f:facet name="header">
+						<h:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{funcionario.nome}" />
+				</p:column>
 
-			<p:column width="12%" sortBy="#{funcionario.cargo.nome}">
-				<f:facet name="header"><h:outputLabel value="Cargo"/></f:facet>
-				<h:outputText value="#{funcionario.cargo.nome}"/>
-			</p:column>
+				<p:column width="12%" sortBy="#{funcionario.cargo.nome}">
+					<f:facet name="header">
+						<h:outputLabel value="Cargo" />
+					</f:facet>
+					<h:outputText value="#{funcionario.cargo.nome}" />
+				</p:column>
 
-			<p:column width="14%" sortBy="#{funcionario.cpf}">
-				<f:facet name="header"><h:outputLabel value="CPF"/></f:facet>
-				<h:outputText value="#{funcionario.cpf}"/>
-			</p:column>
+				<p:column width="14%" sortBy="#{funcionario.cpf}">
+					<f:facet name="header">
+						<h:outputLabel value="CPF" />
+					</f:facet>
+					<h:outputText value="#{funcionario.cpf}" />
+				</p:column>
 
-			<p:column  width="12%" sortBy="#{funcionario.telefone}">
-				<f:facet name="header"><h:outputLabel value="Fone"/></f:facet>
-				<h:outputText value="#{funcionario.telefone}"/>
-			</p:column>
+				<p:column width="12%" sortBy="#{funcionario.telefone}">
+					<f:facet name="header">
+						<h:outputLabel value="Fone" />
+					</f:facet>
+					<h:outputText value="#{funcionario.telefone}" />
+				</p:column>
 
-			<p:column width="12%" sortBy="#{funcionario.email}">
-				<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
-				<h:outputText value="#{funcionario.email}"/>
-			</p:column>
-			
-			<p:column width="30%">
-				<f:facet name="header"><h:outputLabel value="Endereço"/></f:facet>
-				<h:outputText value="#{funcionario.endereco.logradouro}, Nº #{funcionario.endereco.numero} #{funcionario.endereco.complemento} - #{funcionario.endereco.bairro} #{funcionario.endereco.cidade}"/>
-			</p:column>
+				<p:column width="12%" sortBy="#{funcionario.email}">
+					<f:facet name="header">
+						<h:outputLabel value="Email" />
+					</f:facet>
+					<h:outputText value="#{funcionario.email}" />
+				</p:column>
 
-			<p:column width="3%">
-				<h:commandLink icon="ui-icon-pencil" action="#{funcionarioBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{funcionarioBean.entity}" value="#{funcionario}"/>
-					<p:graphicImage value="/images/pencil.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="30%">
+					<f:facet name="header">
+						<h:outputLabel value="Endereço" />
+					</f:facet>
+					<h:outputText
+						value="#{funcionario.endereco.logradouro}, Nº #{funcionario.endereco.numero} #{funcionario.endereco.complemento} - #{funcionario.endereco.bairro} #{funcionario.endereco.cidade}" />
+				</p:column>
 
-			<p:column width="3%">
-				<h:commandLink  icon="ui-icon-trash" action="#{funcionarioBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{funcionarioBean.entity}" value="#{funcionario}"/>
-					<p:graphicImage value="/images/cross.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-pencil"
+						action="#{funcionarioBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{funcionarioBean.entity}"
+							value="#{funcionario}" />
+						<p:graphicImage value="/images/pencil.png" />
+					</h:commandLink>
+				</p:column>
 
-		</p:dataTable>
-	
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-trash"
+						action="#{funcionarioBean.delete}" value=""
+						onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{funcionarioBean.entity}"
+							value="#{funcionario}" />
+						<p:graphicImage value="/images/cross.png" />
+					</h:commandLink>
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+
 	</ui:define>
-	
+
 </ui:composition>

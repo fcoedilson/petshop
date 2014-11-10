@@ -1,71 +1,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
 
-		<h:inputHidden value="#{animalBean.entity.id}" rendered="#{animalBean.updateState}"/>
-	
-	 	<p:fieldset legend="Dados do Animal">
-	 			
-	
-	          <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+		<h:inputHidden value="#{animalBean.entity.id}"
+			rendered="#{animalBean.updateState}" />
+
+		<p:fieldset legend="Dados do Animal">
+
+
+			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
 
 				<p:outputLabel value="Proprietário"/>
-				<p:selectOneMenu id="proprietario" value="#{animalBean.entity.cliente}" required="true" converter="entityConverter"  requiredMessage="Informe o proprietario ...">
+	    		<p:selectOneMenu id="propriet" value="#{animalBean.entity.cliente}" required="true" converter="entityConverter"   requiredMessage="Informe o cliente ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{animalBean.clientes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    			<f:selectItems value="#{animalBean.clientes}" var="p" itemLabel="#{p.pessoa.nome}" itemValue="#{p}"/>
 	    		</p:selectOneMenu>
-				<p:message errorClass="error" for="proprietario" display="icon"/>
+	    		<p:message errorClass="error" for="propriet" display="icon"/>
 
-				<p:outputLabel value="Nome"/>
-				<p:inputText id="nome" value="#{animalBean.entity.nome}" required="true" maxlength="120" size="60">
-					<f:validateLength maximum="50" minimum="3"/>
+
+				<p:outputLabel value="Nome" />
+				<p:inputText id="nome" value="#{animalBean.entity.nome}"
+					required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3" />
 				</p:inputText>
-				<p:message errorClass="error" for="nome" display="icon"/>
-				
-	
-				<p:outputLabel value="Cor"/>
-				<p:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="120" size="18">
-					<f:validateLength maximum="180" minimum="4"/>
+				<p:message errorClass="error" for="nome" display="icon" />
+
+
+				<p:outputLabel value="Cor" />
+				<p:inputText id="cor" value="#{animalBean.entity.cor}"
+					required="true" maxlength="120" size="18">
+					<f:validateLength maximum="180" minimum="4" />
 				</p:inputText>
-				<p:message errorClass="error" for="cor" display="icon"/>
-	
-				<p:outputLabel value="Espécie"/>
-				<p:selectOneMenu id="especie" value="#{animalBean.entity.especie}" required="true" converter="entityConverter"  requiredMessage="Informe a espécie ...">
-	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{animalBean.especies}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
-	    		</p:selectOneMenu>
-				<p:message errorClass="error" for="especie" display="icon"/>
-	
-				<p:outputLabel value="Raça"/>
-	    		<p:selectOneMenu id="raca" value="#{animalBean.entity.raca}" required="true" converter="entityConverter"   requiredMessage="Informe a raça ...">
-	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{animalBean.racas}" var="r" itemLabel="#{r.nome}" itemValue="#{r}"/>
-	    		</p:selectOneMenu>
-	    		<p:message errorClass="error" for="raca" display="icon"/>
-	
-				<p:outputLabel value="Características"/>
-				<p:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="40" rows="3"/>
-				<p:message errorClass="error" for="caracte"  display="icon"/>
-	
+				<p:message errorClass="error" for="cor" display="icon" />
+
+				<p:outputLabel value="Espécie" />
+				<p:selectOneMenu id="especie" value="#{animalBean.entity.especie}"
+					required="true" converter="entityConverter"
+					requiredMessage="Informe a espécie ...">
+					<f:selectItem itemValue="" itemLabel="..." />
+					<f:selectItems value="#{animalBean.especies}" var="e"
+						itemLabel="#{e.nome}" itemValue="#{e}" />
+				</p:selectOneMenu>
+				<p:message errorClass="error" for="especie" display="icon" />
+
+				<p:outputLabel value="Raça" />
+				<p:selectOneMenu id="raca" value="#{animalBean.entity.raca}"
+					required="true" converter="entityConverter"
+					requiredMessage="Informe a raça ...">
+					<f:selectItem itemValue="" itemLabel="..." />
+					<f:selectItems value="#{animalBean.racas}" var="r"
+						itemLabel="#{r.nome}" itemValue="#{r}" />
+				</p:selectOneMenu>
+				<p:message errorClass="error" for="raca" display="icon" />
+
+				<p:outputLabel value="Características" />
+				<p:inputTextarea id="caracte"
+					value="#{animalBean.entity.caracteristicas}" cols="40" rows="3" />
+				<p:message errorClass="error" for="caracte" display="icon" />
+
 			</h:panelGrid>
-			
+
 		</p:fieldset>
-	
-	
-		<p:commandButton value="Salvar" type="submit" action="#{animalBean.save}" styleClass="button" rendered="#{animalBean.saveState}" update="appForm"/>
-		<p:commandButton value="Alterar" type="submit" action="#{animalBean.update}" styleClass="button" rendered="#{animalBean.updateState}" update="appForm"/>
-		<p:commandButton value="Voltar" action="#{animalBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+
+		<p:commandButton value="Salvar" type="submit"
+			action="#{animalBean.save}" styleClass="button"
+			rendered="#{animalBean.saveState}" update="appForm" />
+		<p:commandButton value="Alterar" type="submit"
+			action="#{animalBean.update}" styleClass="button"
+			rendered="#{animalBean.updateState}" update="appForm" />
+		<p:commandButton value="Voltar" action="#{animalBean.search}"
+			update="appForm" styleClass="button" immediate="true" />
 
 	</ui:define>
 

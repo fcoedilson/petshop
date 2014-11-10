@@ -2,81 +2,103 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"  template="/pages/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
-	
-		<p:fieldset legend="Produtos">
 
-			<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-				<p:inputText value="#{produtoBean.filter}" size="60"/>
-			
-				<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="btn" update="dataTable"/>
-				<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="btn" update="appForm" ajax="false"/>
-			</h:panelGrid>
+		<p:panel header="Produto">
 
-			<p:dataTable id="dataTable" var="produto" value="#{produtoBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+			<p:fieldset legend="Produtos">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{produtoBean.filter}" size="60" />
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="2">
+					<p:commandButton value="Pesquisar" action="#{produtoBean.search}"
+						styleClass="btn" update="dataTable" />
+					<p:commandButton value="Novo" action="#{produtoBean.prepareSave}"
+						styleClass="btn" update="appForm" ajax="false" />
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+			<p:separator />
+			<br />
+
+			<p:dataTable id="dataTable" var="produto"
+				value="#{produtoBean.entities}" rows="10" rowClasses="even,odd"
+				paginatorAlwaysVisible="false" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
-				
-				<p:column width="2%" style="text-align: center;" > 
-					<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
-					<h:outputText value="#{k+1}" style="color: black;"/>
+                        					{RowsPerPageDropdown}"
+				rowIndexVar="k">
+
+				<p:column width="2%" style="text-align: center;">
+					<f:facet name="header">
+						<h:outputLabel value="Nº" />
+					</f:facet>
+					<h:outputText value="#{k+1}" style="color: black;" />
 				</p:column>
 
-				<p:column width="20%" > 
-					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-					<h:outputText value="#{produto.nome}" style="color: black;"/>
+				<p:column width="20%">
+					<f:facet name="header">
+						<h:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{produto.nome}" style="color: black;" />
 				</p:column>
 
-				<p:column width="10%" > 
-					<f:facet name="header"><h:outputLabel value="Estoque"/></f:facet>
-					<h:outputText value="#{produto.estoque}" style="color: black;"/>
+				<p:column width="10%">
+					<f:facet name="header">
+						<h:outputLabel value="Estoque" />
+					</f:facet>
+					<h:outputText value="#{produto.estoque}" style="color: black;" />
 				</p:column>
 
-				<p:column width="10%" > 
-					<f:facet name="header"><h:outputLabel value="Preço Venda"/></f:facet>
-					<h:outputText value="#{produto.precoVenda}" style="color: black;"/>
+				<p:column width="10%">
+					<f:facet name="header">
+						<h:outputLabel value="Preço Venda" />
+					</f:facet>
+					<h:outputText value="#{produto.precoVenda}" style="color: black;" />
 				</p:column>
 
-				<p:column width="10%" > 
-					<f:facet name="header"><h:outputLabel value="Preço Custo"/></f:facet>
-					<h:outputText value="#{produto.precoCusto}" style="color: black;"/>
+				<p:column width="10%">
+					<f:facet name="header">
+						<h:outputLabel value="Preço Custo" />
+					</f:facet>
+					<h:outputText value="#{produto.precoCusto}" style="color: black;" />
 				</p:column>
-				
-				<p:column width="8%" > 
-					 <p:graphicImage value="#{produto.path}" width="40" height="40"  style="border:0"/> 
+
+				<p:column width="8%">
+					<p:graphicImage value="#{produto.path}" width="40" height="40"
+						style="border:0" />
 				</p:column>
 
 				<p:column width="2%">
 					<h:commandLink action="#{produtoBean.prepareUpdate}" value="">
-						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
-						<p:graphicImage value="/images/pencil.png"/>
+						<f:setPropertyActionListener target="#{produtoBean.entity}"
+							value="#{produto}" />
+						<p:graphicImage value="/images/pencil.png" />
 					</h:commandLink>
 				</p:column>
 
 				<p:column width="2%">
-					<h:commandLink  action="#{produtoBean.delete}" value=""
+					<h:commandLink action="#{produtoBean.delete}" value=""
 						onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
-						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
-						<p:graphicImage value="/images/cross.png"/>
+						<f:setPropertyActionListener target="#{produtoBean.entity}"
+							value="#{produto}" />
+						<p:graphicImage value="/images/cross.png" />
 					</h:commandLink>
 				</p:column>
 
 			</p:dataTable>
-
-		</p:fieldset>
-	
+		</p:panel>
 
 	</ui:define>
-	
+
 </ui:composition>

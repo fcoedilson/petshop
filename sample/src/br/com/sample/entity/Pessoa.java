@@ -3,7 +3,6 @@ package br.com.sample.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -61,7 +60,7 @@ public class Pessoa implements Serializable {
 	private Date dataNascimento;
 
 	@NotNull(message="Endereço deve ser informado")
-	@OneToOne(mappedBy="pessoa", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="pessoa")
 	private Endereco endereco;
 
 	public long getId() {

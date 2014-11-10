@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import br.com.sample.entity.Cliente;
 import br.com.sample.entity.Endereco;
 import br.com.sample.entity.Permissao;
+import br.com.sample.entity.Pessoa;
 import br.com.sample.service.ClienteService;
 import br.com.sample.service.EnderecoService;
 import br.com.sample.service.PessoaService;
@@ -45,8 +46,10 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 	protected Cliente createNewEntity() {
 		Cliente cliente = new Cliente();
 		Endereco endereco = new Endereco();
-		endereco.setPessoa(cliente);
-		cliente.setEndereco(endereco);
+		Pessoa pessoa = new Pessoa();
+		endereco.setPessoa(pessoa);
+		pessoa.setEndereco(endereco);
+		cliente.setPessoa(pessoa);
 		return cliente;
 	}
 

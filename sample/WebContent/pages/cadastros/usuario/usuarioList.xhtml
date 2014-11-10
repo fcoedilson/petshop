@@ -6,62 +6,89 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
+		<p:panel header="Usuário">
 
-		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-			<p:inputText value="#{usuarioBean.filter}" size="60"/>
-			<p:commandButton value="Pesquisar" type="submit" action="#{usuarioBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{usuarioBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-		</h:panelGrid>
-
-		<p:dataTable id="dataTable" var="usuario" value="#{usuarioBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+			<p:fieldset legend="Pesquisa">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{usuarioBean.filter}" size="60" />
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="2">
+					<p:commandButton value="Pesquisar" type="submit"
+						action="#{usuarioBean.search}" update="dataTable"
+						styleClass="button" />
+					<p:commandButton value="Novo" action="#{usuarioBean.prepareSave}"
+						update="appForm" icon="ui-icon-plus" styleClass="button"
+						immediate="true" />
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+			<p:separator />
+			<br />
+			<p:dataTable id="dataTable" var="usuario"
+				value="#{usuarioBean.entities}" rows="10" rowClasses="even,odd"
+				paginatorAlwaysVisible="false" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
+                        					{RowsPerPageDropdown}"
+				rowIndexVar="k">
 
-			<p:column width="3%" style="text-align: center;" > 
-				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-				<h:outputText value="#{k+1}" style="color: black;"/>
-			</p:column>
+				<p:column width="3%" style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="Nº" />
+					</f:facet>
+					<h:outputText value="#{k+1}" style="color: black;" />
+				</p:column>
 
-			<p:column width="20%" sortBy="#{usuario.pessoa.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{usuario.pessoa.nome}"/>
-			</p:column>
+				<p:column width="20%" sortBy="#{usuario.pessoa.nome}">
+					<f:facet name="header">
+						<h:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{usuario.pessoa.nome}" />
+				</p:column>
 
-			<p:column width="20%" sortBy="#{usuario.pessoa.email}">
-				<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
-				<h:outputText value="#{usuario.pessoa.email}"/>
-			</p:column>
+				<p:column width="20%" sortBy="#{usuario.pessoa.email}">
+					<f:facet name="header">
+						<h:outputLabel value="Email" />
+					</f:facet>
+					<h:outputText value="#{usuario.pessoa.email}" />
+				</p:column>
 
-			<p:column width="20%" sortBy="#{usuario.login}">
-				<f:facet name="header"><h:outputLabel value="Login"/></f:facet>
-				<h:outputText value="#{usuario.login}"/>
-			</p:column>
+				<p:column width="20%" sortBy="#{usuario.login}">
+					<f:facet name="header">
+						<h:outputLabel value="Login" />
+					</f:facet>
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
 
-			<p:column width="4%">
-				<h:commandLink icon="ui-icon-pencil" action="#{usuarioBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
-					<p:graphicImage value="/images/pencil.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="4%">
+					<h:commandLink icon="ui-icon-pencil"
+						action="#{usuarioBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{usuarioBean.entity}"
+							value="#{usuario}" />
+						<p:graphicImage value="/images/pencil.png" />
+					</h:commandLink>
+				</p:column>
 
-			<p:column width="4%">
-				<h:commandLink  icon="ui-icon-trash" action="#{usuarioBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
-					<p:graphicImage value="/images/cross.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="4%">
+					<h:commandLink icon="ui-icon-trash" action="#{usuarioBean.delete}"
+						value=""
+						onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{usuarioBean.entity}"
+							value="#{usuario}" />
+						<p:graphicImage value="/images/cross.png" />
+					</h:commandLink>
+				</p:column>
 
-		</p:dataTable>
-
+			</p:dataTable>
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

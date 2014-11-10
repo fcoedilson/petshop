@@ -1,39 +1,50 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<ui:composition  
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
 
 	<ui:define name="pageContent">
+		<p:panel header="Permissão">
+			<h:inputHidden value="#{permissaoBean.entity.id}"
+				rendered="#{permissaoBean.updateState}" />
+
+			<p:fieldset legend="Permissões">
+				<br />
 
 
-		<h:inputHidden value="#{permissaoBean.entity.id}" rendered="#{permissaoBean.updateState}"/>
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
- 		<p:fieldset legend="Permissões">
- 			
+					<p:outputLabel value="Nome" />
+					<p:inputText id="nome" value="#{permissaoBean.entity.nome}"
+						required="true" maxlength="120" size="30">
+						<f:validateLength maximum="50" minimum="3" />
+					</p:inputText>
+					<p:message errorClass="error" for="nome" />
 
-            <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-            
-				<h:outputLabel value="Nome"/>
-				<h:inputText id="nome" value="#{permissaoBean.entity.nome}" required="true" maxlength="120" size="60">
-					<f:validateLength maximum="50" minimum="3"/>
-				</h:inputText>
-				<p:message errorClass="error" for="nome"/>
+				</h:panelGrid>
 
-			</h:panelGrid>
-			
-		</p:fieldset>
+			</p:fieldset>
+
+			<br />
 
 
-		<p:commandButton value="Salvar" type="submit" action="#{permissaoBean.save}" styleClass="button" rendered="#{permissaoBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" type="submit" action="#{permissaoBean.update}" styleClass="button" rendered="#{permissaoBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{permissaoBean.search}" update="appForm" styleClass="button" immediate="true"/>
-	
-	
+			<p:commandButton value="Salvar" type="submit"
+				action="#{permissaoBean.save}" styleClass="button"
+				rendered="#{permissaoBean.saveState}" update="appForm" ajax="false" />
+			<p:commandButton value="Alterar" type="submit"
+				action="#{permissaoBean.update}" styleClass="button"
+				rendered="#{permissaoBean.updateState}" update="appForm"
+				ajax="false" />
+			<p:commandButton value="Voltar" action="#{permissaoBean.search}"
+				update="appForm" styleClass="button" immediate="true" />
+			<br />
+			<br />	
+		</p:panel>
 	</ui:define>
 
 

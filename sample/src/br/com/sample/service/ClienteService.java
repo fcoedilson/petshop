@@ -20,18 +20,20 @@ public class ClienteService extends BaseService<Long, Cliente> {
 	public List<Cliente> retrieveAll() {
 
 		Usuario user = BeanUtil.usuarioLogado();
+		List<Cliente> result;
 
 		if (BeanUtil.isAdmin(user)) {
-			return super.retrieveAll();
+			result = super.retrieveAll();
+			return result;
 		} else {
-			List<Cliente> result = new ArrayList<Cliente>();
+			result = new ArrayList<Cliente>();
 			return result;
 		}
 	}
-	
+
 	@Transactional
 	public List<Cliente> buscaPorNome(String nome){
-		
+
 		List<Cliente> result = executeResultListQuery("findByNome", "%"+nome+"%");
 		return result;
 	}
@@ -43,10 +45,10 @@ public class ClienteService extends BaseService<Long, Cliente> {
 		Cliente cliente = (Cliente) query.getSingleResult();
 		return cliente;
 	}
-	
+
 	@Transactional
 	public Cliente buscaNome(String nome){
-		
+
 		Cliente cliente = executeSingleResultQuery("findByNome", nome);
 		return cliente;
 	}

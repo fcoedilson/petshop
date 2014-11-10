@@ -2,80 +2,121 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
-		<h:panelGrid id="busca" columns="3" styleClass="crudd" columnClasses="label">
-			<p:inputText value="#{clienteBean.filter}" size="60"/>
-	
-			<p:commandButton value="Pesquisar" type="submit" action="#{clienteBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{clienteBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-		</h:panelGrid>
+		<p:panel header="Cliente">
 
-		<p:dataTable id="dataTable" var="cliente" value="#{clienteBean.entities}" 
-						rows="10" rowClasses="even,odd"
-						paginatorAlwaysVisible="false"
-                       paginator="true" 
-                       paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+
+			<p:fieldset legend="Busca">
+				<h:panelGrid id="busca" columns="2" styleClass="crudd"
+					columnClasses="label">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{clienteBean.filter}" size="60" />
+				</h:panelGrid>
+
+				<h:panelGrid id="button" columns="2" styleClass="crudd"
+					columnClasses="label">
+					<p:commandButton value="Pesquisar" type="submit"
+						action="#{clienteBean.search}" update="dataTable"
+						styleClass="button" />
+					<p:commandButton value="Novo" action="#{clienteBean.prepareSave}"
+						update="appForm" icon="ui-icon-plus" styleClass="button"
+						immediate="true" />
+
+				</h:panelGrid>
+
+			</p:fieldset>
+			
+			<br/>
+			
+			<p:separator/>
+
+			<p:dataTable id="dataTable" var="cliente"
+				value="#{clienteBean.entities}" rows="10" rowClasses="even,odd"
+				paginatorAlwaysVisible="false" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
                         					{PreviousPageLink} {PageLinks} 
                         					{NextPageLink} {LastPageLink} 
-                        					{RowsPerPageDropdown}" rowIndexVar="k">
+                        					{RowsPerPageDropdown}"
+				rowIndexVar="k">
 
-			<p:column width="4%" style="text-align: center;" > 
-				<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-				<h:outputText value="#{k+1}" style="color: black;"/>
-			</p:column>
+				<p:column width="4%" style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="Nº" />
+					</f:facet>
+					<h:outputText value="#{k+1}" style="color: black;" />
+				</p:column>
 
-			<p:column width="20%" sortBy="#{cliente.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-				<h:outputText value="#{cliente.nome}"/>
-			</p:column>
+				<p:column width="20%" sortBy="#{cliente.pessoa.nome}">
+					<f:facet name="header">
+						<h:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{cliente.pessoa.nome}" />
+				</p:column>
 
-			<p:column width="10%" sortBy="#{cliente.cpf}">
-				<f:facet name="header"><h:outputLabel value="CPF"/></f:facet>
-				<h:outputText value="#{cliente.cpf}"/>
-			</p:column>
+				<p:column width="10%" sortBy="#{cliente.pessoa.cpf}">
+					<f:facet name="header">
+						<h:outputLabel value="CPF" />
+					</f:facet>
+					<h:outputText value="#{cliente.pessoa.cpf}" />
+				</p:column>
 
-			<p:column  width="10%" sortBy="#{cliente.telefone}">
-				<f:facet name="header"><h:outputLabel value="Fone"/></f:facet>
-				<h:outputText value="#{cliente.telefone}"/>
-			</p:column>
+				<p:column width="10%" sortBy="#{cliente.pessoa.telefone}">
+					<f:facet name="header">
+						<h:outputLabel value="Fone" />
+					</f:facet>
+					<h:outputText value="#{cliente.pessoa.telefone}" />
+				</p:column>
 
-			<p:column sortBy="#{cliente.email}">
-				<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
-				<h:outputText value="#{cliente.email}"/>
-			</p:column>
-			
-			<p:column width="30%">
-				<f:facet name="header"><h:outputLabel value="Endereço"/></f:facet>
-				<h:outputText value="#{cliente.endereco.logradouro}, Nº #{cliente.endereco.numero} #{cliente.endereco.complemento} - #{cliente.endereco.bairro} #{cliente.endereco.cidade}"/>
-			</p:column>
+				<p:column sortBy="#{cliente.pessoa.email}">
+					<f:facet name="header">
+						<h:outputLabel value="Email" />
+					</f:facet>
+					<h:outputText value="#{cliente.pessoa.email}" />
+				</p:column>
 
-			<p:column width="3%">
-				<h:commandLink icon="ui-icon-pencil" action="#{clienteBean.prepareUpdate}" value="">
-					<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
-					<p:graphicImage value="/images/pencil.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="30%">
+					<f:facet name="header">
+						<h:outputLabel value="Endereço" />
+					</f:facet>
+					<h:outputText
+						value="#{cliente.pessoa.endereco.logradouro}, Nº #{cliente.pessoa.endereco.numero} #{cliente.pessoa.endereco.complemento} - #{cliente.pessoa.endereco.bairro} #{cliente.pessoa.endereco.cidade}" />
+				</p:column>
 
-			<p:column width="3%">
-				<h:commandLink  icon="ui-icon-trash" action="#{clienteBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-					<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
-					<p:graphicImage value="/images/cross.png"/>
-				</h:commandLink>
-			</p:column>
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-pencil"
+						action="#{clienteBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{clienteBean.entity}"
+							value="#{cliente}" />
+						<p:graphicImage value="/images/pencil.png" />
+					</h:commandLink>
+				</p:column>
 
-		</p:dataTable>
-	
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-trash" action="#{clienteBean.delete}"
+						value=""
+						onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{clienteBean.entity}"
+							value="#{cliente}" />
+						<p:graphicImage value="/images/cross.png" />
+					</h:commandLink>
+				</p:column>
+
+			</p:dataTable>
+
+
+		</p:panel>
+
 	</ui:define>
-	
+
 </ui:composition>
