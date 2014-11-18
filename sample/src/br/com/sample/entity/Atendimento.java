@@ -1,6 +1,7 @@
 package br.com.sample.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,6 @@ import br.com.sample.type.StatusAtendimento;
 @Entity
 public class Atendimento implements Serializable{
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="atendimeto_id")
@@ -27,6 +27,9 @@ public class Atendimento implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
+	
+	@NotNull(message="nome não pode ser nulo")
+	private String nome;
 	
 	@ManyToOne
 	@JoinColumn(name="servico_id")
@@ -38,6 +41,14 @@ public class Atendimento implements Serializable{
 	
 	@NotNull(message="quantidade é requerida")
 	private Integer quantidade;
+
+	@NotNull(message="Data Inicial é requerida")
+	@Column(name="data_inicial")
+	private Date dataInicial;
+	
+	@NotNull(message="Data Final é requerida")
+	@Column(name="data_final")
+	private Date dataFinal;
 	
 	private Float valor;
 	
@@ -50,6 +61,30 @@ public class Atendimento implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	public Funcionario getFuncionario() {

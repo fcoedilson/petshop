@@ -169,6 +169,10 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 		return UsuarioBean.class.getSimpleName().equals(getCurrentBean());
 	}
 
+	public boolean isAtendimentoBean(){
+		return AtendimentoBean.class.getSimpleName().equals(getCurrentBean());
+	}
+
 	public boolean isAnimalBean(){
 		return AnimalBean.class.getSimpleName().equals(getCurrentBean());
 	}
