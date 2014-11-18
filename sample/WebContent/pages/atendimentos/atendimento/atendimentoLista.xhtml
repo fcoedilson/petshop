@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
+
+
+
+	<ui:define name="pageContent">
+
+		<h:form>
+			<p:growl id="messages" showDetail="true" />
+
+			<h:panelGrid columnClasses="value">
+				<h2 style="margin-top: 0">Atendimentos</h2>
+				<p:schedule id="schedule" value="#{atendimentoBean.eventModel}"
+					widgetVar="myschedule" timeZone="GMT+2" locale="pt">
+
+					<p:ajax event="dateSelect" listener="#{atendimentoBean.onDateSelect}"
+						update="eventDetails" oncomplete="PF('eventDialog').show();" />
+					<p:ajax event="eventSelect"
+						listener="#{atendimentoBean.onEventSelect}" update="eventDetails"
+						oncomplete="PF('eventDialog').show();" />
+					<p:ajax event="eventMove" listener="#{atendimentoBean.onEventMove}"
+						update="messages" />
+					<p:ajax event="eventResize"
+						listener="#{atendimentoBean.onEventResize}" update="messages" />
+
+				</p:schedule>
+			</h:panelGrid>
+
+			<p:dialog widgetVar="eventDialog" header="Atendimento"
+				showEffect="clip" hideEffect="clip">
+				<h:panelGrid id="eventDetails" columns="2">
+					<h:outputLabel value="Animal"/>
+					<p:selectOneMenu id="animal" value="#{atendimentoBean.entity.animal}" style="width: 100% !important" required="true" converter="entityConverter"  requiredMessage="Informe o animal ...">
+		    			<f:selectItem itemValue="" itemLabel="..."/>
+		    			<f:selectItems value="#{atendimentoBean.animais}" var="e" itemLabel="#{e.nome.toUpperCase()}" itemValue="#{e}"/>
+		    		</p:selectOneMenu>
+		    		
+		    		<h:outputLabel value="Serviço"/>
+					<p:selectOneMenu id="servico" value="#{atendimentoBean.entity.servico}" style="width: 100% !important" required="true" converter="entityConverter"  requiredMessage="Informe o serviço ...">
+		    			<f:selectItem itemValue="" itemLabel="..."/>
+		    			<f:selectItems value="#{atendimentoBean.servicos}" var="e" itemLabel="#{e.nome.toUpperCase()}" itemValue="#{e}"/>
+		    		</p:selectOneMenu>
+				
+					<h:outputLabel for="title" value="Nome:" />
+					<p:inputText id="title" value="#{atendimentoBean.event.title}" required="true" />
+
+					<h:outputLabel for="inicio" value="Início:" />
+       				<p:calendar id="inicio" value="#{atendimentoBean.event.startDate}"  timeZone="GMT-03:00" pattern="MM/dd/yyyy HH:mm:ss" />
+ 
+					<h:outputLabel for="fim" value="Fim:" />
+       				<p:calendar id="fim" value="#{atendimentoBean.event.endDate}" timeZone="GMT-03:00" pattern="MM/dd/yyyy HH:mm:ss" />
+
+					<p:commandButton id="addButton" value="Salvar"
+						actionListener="#{atendimentoBean.addEvent}"
+						oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+
+		<script type="text/javascript">
+			PrimeFaces.locales['pt'] = {
+				closeText : 'Fechar',
+				prevText : 'Anterior',
+				nextText : 'Próximo',
+				currentText : 'Começo',
+				monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+						'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+						'Outubro', 'Novembro', 'Dezembro' ],
+				monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+						'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+				dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+						'Sexta', 'Sábado' ],
+				dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+						'Sáb' ],
+				dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+				weekHeader : 'Semana',
+				firstDay : 1,
+				isRTL : false,
+				showMonthAfterYear : false,
+				yearSuffix : '',
+				timeOnlyTitle : 'Só Horas',
+				timeText : 'Tempo',
+				hourText : 'Hora',
+				minuteText : 'Minuto',
+				secondText : 'Segundo',
+				currentText : 'Data Atual',
+				ampm : false,
+				month : 'Mês',
+				week : 'Semana',
+				day : 'Dia',
+				allDayText : 'Todo Dia'
+			};
+		</script>
+		<style type="text/css">
+.value {
+	width: 1000px;
+}
+</style>
+	</ui:define>
+
+</ui:composition>
