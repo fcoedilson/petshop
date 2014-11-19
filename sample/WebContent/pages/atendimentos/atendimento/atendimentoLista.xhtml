@@ -16,9 +16,9 @@
 
 		<h:form>
 			<p:growl id="messages" showDetail="true" />
+	<p:panel header="Atendimento">
 
 			<h:panelGrid columnClasses="value">
-				<h2 style="margin-top: 0">Atendimentos</h2>
 				<p:schedule id="schedule" value="#{atendimentoBean.eventModel}"
 					widgetVar="myschedule" timeZone="GMT+2" locale="pt">
 
@@ -64,6 +64,7 @@
 						oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
 				</h:panelGrid>
 			</p:dialog>
+			</p:panel>
 		</h:form>
 
 		<script type="text/javascript">
