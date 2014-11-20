@@ -35,6 +35,7 @@ public class Consulta implements Serializable{
 	@JoinColumn(name="tipo_consulta_id")
 	private TipoConsulta consulta;
 
+	
 	@Enumerated(EnumType.STRING)
 	private StatusConsulta status;
 	
@@ -107,7 +108,7 @@ public class Consulta implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

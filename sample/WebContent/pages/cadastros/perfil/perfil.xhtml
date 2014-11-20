@@ -11,6 +11,7 @@
 	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
+
 		<p:panel header="Perfil">
 
 
@@ -26,13 +27,13 @@
 							<p:inputText value="#{perfilBean.entity.nome}" id="nome"
 								size="40" maxlength="70" required="true"
 								requiredMessage="Informe o nome" />
-							<p:message errorClass="error" for="nome" />
+							<p:message errorClass="error" for="nome" display="icon"/>
 
 							<p:outputLabel value="Identificador do Perfil" />
 							<p:inputText value="#{perfilBean.entity.authority}"
 								id="identificador" size="40" maxlength="70" required="true"
 								requiredMessage="Informe o identificador" />
-							<p:message errorClass="error" for="identificador" />
+							<p:message errorClass="error" for="identificador"  display="icon"/>
 
 						</h:panelGrid>
 
@@ -40,25 +41,26 @@
 
 					<p:tab title="Permissões">
 
-						<!-- 		        <p:selectManyCheckbox id="grid" value="#{perfilBean.permissoesMarcadas}" layout="grid" columns="3"> -->
-						<!-- 		           	<f:selectItems value="#{perfilBean.permissoes}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" /> -->
-						<!-- 		       	</p:selectManyCheckbox> -->
+						<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
-
-
-						<p:outputLabel value="Permissões"
-							rendered="#{perfilBean.permissaoStatus}" />
-						<h:selectOneMenu id="permissao" value="#{perfilBean.permissao}"
-							converter="entityConverter"
-							rendered="#{perfilBean.permissaoStatus}"
-							requiredMessage="Informe a permissão ...">
-							<f:selectItem itemValue="" itemLabel="..." />
-							<f:selectItems value="#{perfilBean.permissoes}" var="e"
-								itemLabel="#{e.nome}" itemValue="#{e}" />
-						</h:selectOneMenu>
-						<p:commandButton value="Incluir" action="#{perfilBean.adicionar}"
-							rendered="#{perfilBean.permissaoStatus}" update="tablePermissao"
-							styleClass="button" ajax="false" />
+							<p:outputLabel value="Permissões"
+								rendered="#{perfilBean.permissaoStatus}" />
+							<h:selectOneMenu id="permissao" value="#{perfilBean.permissao}"
+								converter="entityConverter"
+								rendered="#{perfilBean.permissaoStatus}"
+								requiredMessage="Informe a permissão ...">
+								<f:selectItem itemValue="" itemLabel="..." />
+								<f:selectItems value="#{perfilBean.permissoes}" var="e"
+									itemLabel="#{e.nome}" itemValue="#{e}" />
+							</h:selectOneMenu>
+							<p:commandButton value="Incluir" action="#{perfilBean.adicionar}"
+								rendered="#{perfilBean.permissaoStatus}" update="tablePermissao"
+								styleClass="button" ajax="false" />
+						
+						</h:panelGrid>
+						
+						<p:separator/>
+						<br/>
 
 						<p:dataTable id="tablePermissao" var="p"
 							value="#{perfilBean.permissoesMarcadas}" rows="10"

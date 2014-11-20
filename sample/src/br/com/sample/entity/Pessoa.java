@@ -3,6 +3,7 @@ package br.com.sample.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -30,11 +31,11 @@ public class Pessoa implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pessoa_id")
-	private long id;
+	protected long id;
 
 	@NotNull(message="nome não poder ser nulo")
 	@Pattern(regexp="[a-zA-Z]*", message="nome não pode conter números")
-	private String nome;
+	protected String nome;
 
 	@NotNull(message="sexo deve ser informado")
 	@Column(nullable=false)
@@ -60,8 +61,9 @@ public class Pessoa implements Serializable {
 	private Date dataNascimento;
 
 	@NotNull(message="Endereço deve ser informado")
-	@OneToOne(mappedBy="pessoa")
+	@OneToOne(mappedBy="pessoa",cascade = CascadeType.ALL)
 	private Endereco endereco;
+	
 
 	public long getId() {
 		return id;

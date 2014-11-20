@@ -1,58 +1,82 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
+		<p:panel header="Consulta">
 
-		<h:inputHidden value="#{consultaBean.entity.id}" rendered="#{consultaBean.updateState}"/>
-	
-		<p:fieldset legend="Dados da Consulta">
-	
-	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-	           
-					<h:outputLabel value="Médico"/>
-					<h:selectOneMenu id="medico" value="#{consultaBean.entity.medico}" required="true" converter="entityConverter"  requiredMessage="Informe o médico ...">
-		    			<f:selectItem itemValue="" itemLabel="..."/>
-		    			<f:selectItems value="#{consultaBean.medicos}" var="e" itemLabel="#{e.pessoa.nome}" itemValue="#{e}"/>
-		    		</h:selectOneMenu>
-					<p:message errorClass="error" for="medico" display="icon"/>
+			<h:inputHidden value="#{consultaBean.entity.id}"
+				rendered="#{consultaBean.updateState}" />
 
-					
-					<p:outputLabel value="Cliente"/>
-					<p:inputText id="cliente" value="#{consultaBean.entity.animal.cliente.nome}" required="true" size="16" requiredMessage="Cliente requerido!"/>
-					<p:message errorClass="error" for="cliente" display="icon"/>
-	
-					<p:outputLabel value="Animal"/>
-					<p:inputText id="animal" value="#{consultaBean.entity.animal.nome}" required="true" size="16"/>
-					<p:message errorClass="error" for="animal" display="icon"/>
-					
-					<p:outputLabel value="Tipo Consulta"/>
-					<p:selectOneMenu id="consulta" value="#{consultaBean.entity.consulta}" required="true" converter="entityConverter"  requiredMessage="Informe o tipo da consulta ...">
-		    			<f:selectItem itemValue="" itemLabel="..."/>
-		    			<f:selectItems value="#{consultaBean.consultas}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
-		    		</p:selectOneMenu>
-					<p:message errorClass="error" for="consulta" display="icon"/>
-					
-					
-					<p:outputLabel value="Prontuário"/>
-					<p:inputTextarea id="prontuario" value="#{consultaBean.entity.prontuario}" cols="60" rows="6"/>
-					<p:message errorClass="error" for="prontuario" display="icon"/>
-	
+			<p:fieldset legend="Dados da Consulta">
+
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+					<h:outputLabel value="Médico" />
+					<h:selectOneMenu id="medico" value="#{consultaBean.entity.medico}"
+						required="true" converter="entityConverter"
+						requiredMessage="Informe o médico ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{consultaBean.medicos}" var="e"
+							itemLabel="#{e.pessoa.nome}" itemValue="#{e}" />
+					</h:selectOneMenu>
+					<p:message errorClass="error" for="medico" display="icon" />
+
+
+					<p:outputLabel value="Nome do Cliente" />
+					<p:inputText id="cliente" value="#{consultaBean.cliente.nome}" disabled="true"/>
+					<p:message errorClass="error" for="cliente" display="icon" />
+
+
+					<h:outputLabel value="Animais do cliente" />
+					<h:selectOneMenu id="animal" value="#{consultaBean.entity.animal}"
+						required="true" converter="entityConverter"
+						requiredMessage="Informe o animal ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{consultaBean.animais}" var="e"
+							itemLabel="#{e.nome}" itemValue="#{e}" />
+					</h:selectOneMenu>
+					<p:message errorClass="error" for="animal" display="icon" />
+
+
+					<p:outputLabel value="Tipo Consulta" />
+					<p:selectOneMenu id="consulta"
+						value="#{consultaBean.entity.consulta}" required="true"
+						converter="entityConverter"
+						requiredMessage="Informe o tipo da consulta ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{consultaBean.consultas}" var="c"
+							itemLabel="#{c.descricao}" itemValue="#{c}" />
+					</p:selectOneMenu>
+					<p:message errorClass="error" for="consulta" display="icon" />
+
+					<p:outputLabel value="Prontuário" />
+					<p:inputTextarea id="prontuario"
+						value="#{consultaBean.entity.prontuario}" cols="60" rows="6" />
+					<p:message errorClass="error" for="prontuario" display="icon" />
+
 				</h:panelGrid>
-			
-		</p:fieldset>
-	
-	
-		<p:commandButton value="Salvar" type="submit" action="#{consultaBean.save}" styleClass="button" rendered="#{consultaBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" type="submit" action="#{consultaBean.update}" styleClass="button" rendered="#{consultaBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{consultaBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+			</p:fieldset>
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{consultaBean.save}" styleClass="button"
+				rendered="#{consultaBean.saveState}" update="appForm" ajax="false" />
+
+			<p:commandButton value="Alterar" type="submit"
+				action="#{consultaBean.update}" styleClass="button"
+				rendered="#{consultaBean.updateState}" update="appForm" ajax="false" />
+			<p:commandButton value="Voltar" action="#{consultaBean.search}"
+				update="appForm" styleClass="button" immediate="true" />
+
+		</p:panel>
 
 	</ui:define>
 

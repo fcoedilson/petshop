@@ -26,7 +26,6 @@ import br.com.sample.service.PessoaService;
 import br.com.sample.service.UsuarioService;
 import br.com.sample.type.StatusUsuario;
 import br.com.sample.util.BeanUtil;
-import br.com.sample.util.JsfUtil;
 
 
 @Scope("session")	

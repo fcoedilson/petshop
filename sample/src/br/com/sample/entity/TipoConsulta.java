@@ -45,6 +45,7 @@ public class TipoConsulta implements Serializable{
 	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
+	
 
 	@Override
 	public int hashCode() {

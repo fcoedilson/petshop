@@ -15,9 +15,7 @@
 
 		<p:panel header="Produto">
 
-
 			<p:fieldset legend="Produtos">
-
 
 				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 
@@ -42,16 +40,6 @@
 					<p:message errorClass="error" for="custo" display="icon" />
 
 
-					<p:outputLabel value="Imagem do Produto" />
-
-					<p:fileUpload fileUploadListener="#{produtoBean.fileUpload}"
-						label="Escolher" cancelLabel="Cancelar" sizeLimit="400000"
-						invalidSizeMessage="Muito grande!" auto="true"
-						invalidFileMessage="Tipo não suportado!" />
-
-					<p:commandButton value="Submit" ajax="false"
-						actionListener="#{produtoBean.upload}" />
-
 
 				</h:panelGrid>
 
@@ -66,6 +54,7 @@
 				update="appForm" immediate="true" ajax="false" />
 
 		</p:panel>
+
 	</ui:define>
 
 </ui:composition>

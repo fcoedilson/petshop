@@ -66,7 +66,9 @@ public class AtendimentoBean extends EntityBean<Long, Atendimento>{
 		}
 	}
 
+	@Override
 	public String search() {
+		super.search();
 		return list;
 	}
 

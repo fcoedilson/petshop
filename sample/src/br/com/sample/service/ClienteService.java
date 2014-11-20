@@ -53,4 +53,11 @@ public class ClienteService extends BaseService<Long, Cliente> {
 		return cliente;
 	}
 
+	@Transactional
+	public Cliente buscaPorCPF(String cpf){
+
+		Cliente cliente = executeSingleResultQuery("findByCPF", cpf);
+		return cliente;
+	}
+
 }

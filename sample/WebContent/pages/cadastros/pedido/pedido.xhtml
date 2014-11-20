@@ -1,90 +1,122 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
 
-		<h:inputHidden value="#{pedidoBean.entity.id}" rendered="#{pedidoBean.updateState}"/>
-	
-			<p:fieldset legend="Cadastro de Pedido">
-	
-	           	<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
-	           
-		           	<h:outputLabel value="Cliente"/>
-					<h:inputText id="nome" value="#{pedidoBean.entity.cliente}" required="true" maxlength="120" size="60"/>
-					<p:message errorClass="error" for="nome"/>
-	
-	
-					<h:outputLabel value="Escolha um Produto"/>
-					<h:selectOneMenu id="pedido" value="#{pedidoBean.produto}" converter="entityConverter"  requiredMessage="Informe o produto ...">
-		    			<f:selectItem itemValue="" itemLabel="..."/>
-		    			<f:selectItems value="#{pedidoBean.produtos}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
-		    		</h:selectOneMenu>
-		    		<p:message errorClass="error" for="pedido"/>
-	    		
-		           	<h:outputLabel value="Quantidade"/>
-					<h:inputText id="quant" value="#{pedidoBean.quantidade}" size="30"/>
-					<p:message errorClass="error" for="quant"/>
+
+		<p:panel header="Pedido">
 
 
-			</h:panelGrid>    		
+			<p:fieldset legend="Dados do Pedido">
+
+				<h:inputHidden value="#{pedidoBean.entity.id}"
+					rendered="#{pedidoBean.updateState}" />
+
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+					<p:outputLabel value="Cliente" />
+					<p:inputText id="nome" value="#{pedidoBean.entity.cliente}"
+						required="true" maxlength="120" size="60" />
+					<p:message errorClass="error" for="nome" />
+
+
+					<p:outputLabel value="Produto" />
+					<h:selectOneMenu id="pedido" value="#{pedidoBean.produto}"
+						converter="entityConverter"
+						requiredMessage="Informe o produto ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{pedidoBean.produtos}" var="e"
+							itemLabel="#{e.nome}" itemValue="#{e}" />
+					</h:selectOneMenu>
+					<p:message errorClass="error" for="pedido" />
+
+					<p:outputLabel value="Quantidade" />
+					<p:inputText id="quant" value="#{pedidoBean.quantidade}" size=""/>
+					<p:message errorClass="error" for="quant" />
+
+				</h:panelGrid>
+
+			</p:fieldset>
 			
-			<p:commandButton value="Adicionar" action="#{pedidoBean.adicionar}" update="tableItens" styleClass="button" ajax="false"/>
+			<p:commandButton value="Adicionar" action="#{pedidoBean.adicionar}"
+				update="tableItens" styleClass="button" ajax="false" />
 			
-			<p:dataTable id="tableItens" var="i" value="#{pedidoBean.itens}" 
-		 						rows="10" rowClasses="even,odd"
-		 						paginatorAlwaysVisible="false"
-		                        paginator="true" 
-		                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+			<p:separator/>
+
+			<p:fieldset legend="Itens do Pedido">
+
+				<p:dataTable id="tableItens" var="i" value="#{pedidoBean.itens}"
+					rows="10" rowClasses="even,odd" paginatorAlwaysVisible="false"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
 		                         					{PreviousPageLink} {PageLinks} 
 		                         					{NextPageLink} {LastPageLink} 
-		                         					{RowsPerPageDropdown}" rowIndexVar="k">
-		
-						
-						<p:column width="2%" style="text-align: center;" > 
-							<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
-							<h:outputText value="#{k+1}" style="color: black;"/>
-						</p:column>
-		
-						<p:column width="30%" > 
-							<f:facet name="header"><h:outputLabel value="Produto"/></f:facet>
-							<h:outputText value="#{i.produto.nome}" style="color: black;"/>
-						</p:column>
+		                         					{RowsPerPageDropdown}"
+					rowIndexVar="k">
 
-						<p:column width="20%" > 
-							<f:facet name="header"><h:outputLabel value="Quantidade"/></f:facet>
-							<h:outputText value="#{i.quantidade}" style="color: black;"/>
-						</p:column>
 
-						<p:column width="20%" > 
-							<f:facet name="header"><h:outputLabel value="Valor"/></f:facet>
-							<h:outputText value="#{i.valorItem}" style="color: black;"/>
-						</p:column>
-						
-	
-						<p:column width="2%">
-							<h:commandLink styleClass="editar" action="#{pedidoBean.remover}" value="">
-								<f:setPropertyActionListener target="#{pedidoBean.item}" value="#{i}"/>
-								<p:graphicImage value="/images/cross.png"/>
-							</h:commandLink>
-						</p:column>
-								
-			</p:dataTable>
-			
-		</p:fieldset>
-	
-	
-		<p:commandButton value="Salvar" type="submit" action="#{pedidoBean.save}" styleClass="button" rendered="#{pedidoBean.saveState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Alterar" type="submit" action="#{pedidoBean.update}" styleClass="button" rendered="#{pedidoBean.updateState}" update="appForm" ajax="false"/>
-		<p:commandButton value="Voltar" action="#{pedidoBean.search}" update="appForm" styleClass="button" immediate="true"/>
+					<p:column width="4%" style="text-align: center;">
+						<f:facet name="header">
+							<h:outputLabel value="Nº" />
+						</f:facet>
+						<h:outputText value="#{k+1}" style="color: black;" />
+					</p:column>
 
+					<p:column width="30%">
+						<f:facet name="header">
+							<h:outputLabel value="Produto" />
+						</f:facet>
+						<h:outputText value="#{i.produto.nome}" style="color: black;" />
+					</p:column>
+
+					<p:column width="20%">
+						<f:facet name="header">
+							<h:outputLabel value="Quantidade" />
+						</f:facet>
+						<h:outputText value="#{i.quantidade}" style="color: black;" />
+					</p:column>
+
+					<p:column width="20%">
+						<f:facet name="header">
+							<h:outputLabel value="Valor" />
+						</f:facet>
+						<h:outputText value="#{i.valorItem}" style="color: black;" />
+					</p:column>
+
+
+					<p:column width="2%">
+						<h:commandLink styleClass="editar" action="#{pedidoBean.remover}"
+							value="">
+							<f:setPropertyActionListener target="#{pedidoBean.item}"
+								value="#{i}" />
+							<p:graphicImage value="/images/cross.png" />
+						</h:commandLink>
+					</p:column>
+
+				</p:dataTable>
+
+			</p:fieldset>
+
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{pedidoBean.save}" styleClass="button"
+				rendered="#{pedidoBean.saveState}" update="appForm" ajax="false" />
+			<p:commandButton value="Alterar" type="submit"
+				action="#{pedidoBean.update}" styleClass="button"
+				rendered="#{pedidoBean.updateState}" update="appForm" ajax="false" />
+			<p:commandButton value="Voltar" action="#{pedidoBean.search}"
+				update="appForm" styleClass="button" immediate="true" />
+				
+	</p:panel>			
+				
 	</ui:define>
 
 </ui:composition>

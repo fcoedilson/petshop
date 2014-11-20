@@ -2,35 +2,36 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
+		<p:panel header="Consulta - Pesquisa Cliente">
 
-		<p:fieldset legend="Busca Por">
-		
-		
-			<h:panelGrid id="busca" columns="2" styleClass="crudd" columnClasses="label">
-			
-				<p:outputLabel value="Nome do Animal"/>
-				<p:inputText id="nome" value="#{consultaBean.nomeAnimal}" />
-	
-				<p:outputLabel value="CPF Cliente"/>
-				<p:inputText id="cpf" value="#{consultaBean.clienteCpf}" />		
-		
-			</h:panelGrid>
-	
-			<p:commandButton value="Buscar" type="submit" action="#{consultaBean.buscarAnimal}" styleClass="button" update="appForm" ajax="false"/>
+			<p:fieldset legend="Busca por CPF">
 
-		
-		</p:fieldset>
- 
- </ui:define>
+
+				<h:panelGrid id="busca" columns="2" styleClass="crudd"
+					columnClasses="label">
+
+					<p:outputLabel value="Informe o CPF" />
+					<p:inputText id="cpf" value="#{consultaBean.cpf}" />
+
+				</h:panelGrid>
+
+				<p:commandButton value="Buscar" type="submit"
+					action="#{consultaBean.buscarAnimal}" styleClass="button"
+					update="appForm" ajax="false" />
+
+
+			</p:fieldset>
+		</p:panel>
+	</ui:define>
 
 </ui:composition>

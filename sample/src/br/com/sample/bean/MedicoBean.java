@@ -61,7 +61,6 @@ public class MedicoBean extends EntityBean<Long, Medico> {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setEndereco(endereco);
 		endereco.setPessoa(pessoa);
-		this.medico = null;
 		return medico;
 	}
 

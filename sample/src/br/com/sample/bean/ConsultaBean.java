@@ -12,10 +12,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.sample.entity.Animal;
+import br.com.sample.entity.Cliente;
 import br.com.sample.entity.Consulta;
 import br.com.sample.entity.Medico;
 import br.com.sample.entity.TipoConsulta;
 import br.com.sample.service.AnimalService;
+import br.com.sample.service.ClienteService;
 import br.com.sample.service.ConsultaService;
 import br.com.sample.service.MedicoService;
 import br.com.sample.service.TipoConsultaService;
@@ -34,16 +36,21 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 	@Autowired
 	private TipoConsultaService tipoConsultaService;
 	
-	
+	@Autowired
+	private ClienteService clienteService;
+
+
 	@Autowired
 	private MedicoService medicoService;
 
 
 	private String nomeAnimal;
-	private String clienteCpf;
+	private String cpf;
+	private Cliente cliente;
 	private List<TipoConsulta> consultas;
 	private List<Medico> medicos;
 	private Animal animalConsulta;
+	private List<Animal> animais;
 
 
 	public static final String list = "/pages/atendimentos/consulta/consultaList.xhtml";
@@ -52,7 +59,7 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 
 	@PostConstruct
 	public void init(){
-		
+
 		medicos = medicoService.retrieveAll();
 	}
 
@@ -66,6 +73,7 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 
 	protected Consulta createNewEntity() {
 		Consulta consulta = new Consulta();
+		consulta.setAnimal(new Animal());
 		return consulta;
 	}
 
@@ -77,12 +85,15 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 
 	public String save(){
 		super.save();
+		this.entity.setAnimal(this.animalConsulta);
 		this.entity.setData(new Date());
 		return list;
 	}
 
 	public String update(){
+
 		super.update();
+		this.entity.setAnimal(this.animalConsulta);
 		return list;
 	}
 
@@ -90,11 +101,19 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 
 		consultas = tipoConsultaService.retrieveAll();
 		medicos = medicoService.retrieveAll();
+		if (medicos == null || medicos.size() == 0){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Problema no cadastro de médicos"));
+			return busca;
+		}
 		super.prepareSave();
 		return busca;
 	}
 
 	public String prepareUpdate(){
+		this.animalConsulta = this.entity.getAnimal();
+		this.animais = animalConsulta.getCliente().getAnimais();
+		this.cliente = animalConsulta.getCliente();
+
 		consultas = tipoConsultaService.retrieveAll();
 		medicos = medicoService.retrieveAll();
 		super.prepareUpdate();
@@ -103,17 +122,24 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 
 	public String buscarAnimal(){
 
-		if(this.nomeAnimal != null && !this.nomeAnimal.equals("")){
-			this.animalConsulta = animalService.findByNome(this.nomeAnimal);
-		} else if( this.clienteCpf != null && !this.clienteCpf.equals("") ){
-			this.animalConsulta = animalService.findByCliente(this.clienteCpf);
-		} 
+		medicos = medicoService.retrieveAll();
+		if (medicos == null || medicos.size() == 0){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Problema no cadastro de médicos"));
+			return busca;
+		}
+		if(this.cpf != null && !this.cpf.equals("")){
+			cliente = clienteService.buscaPorCPF(this.cpf);
+			animais = cliente.getAnimais(); //animalService.findAnimaisByCliente(cpf);
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! CPF inválido!"));
+			return busca;
+		}
 
-		if(this.animalConsulta != null){
-			this.entity.setAnimal(this.animalConsulta);
+		if(this.animais != null && this.animais.size() > 0){
+			super.prepareSave();
 			return single;
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Nome do Animal ou Cliente não encontrado!!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ops! Sem animais cadastrados"));
 			return busca;
 		}
 
@@ -144,12 +170,28 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 		this.animalConsulta = animalConsulta;
 	}
 
-	public String getClienteCpf() {
-		return clienteCpf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setClienteCpf(String clienteCpf) {
-		this.clienteCpf = clienteCpf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
 	}
 
 	public List<Medico> getMedicos() {
@@ -159,5 +201,5 @@ public class ConsultaBean extends EntityBean<Long, Consulta> {
 	public void setMedicos(List<Medico> medicos) {
 		this.medicos = medicos;
 	}
-	
+
 }

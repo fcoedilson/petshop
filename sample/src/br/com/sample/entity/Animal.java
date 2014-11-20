@@ -19,7 +19,7 @@ public class Animal implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="aninal_id")
+	@Column(name="animal_id")
 	private long id;
 	
 	@ManyToOne

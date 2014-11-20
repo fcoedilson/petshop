@@ -25,10 +25,10 @@
 						styleClass="button" />
 					<p:commandButton value="Novo" action="#{usuarioBean.prepareSave}"
 						update="appForm" icon="ui-icon-plus" styleClass="button"
-						immediate="true" />
+						immediate="true" ajax="false"/>
 				</h:panelGrid>
 			</p:fieldset>
-			<br />
+
 			<p:separator />
 			<br />
 			<p:dataTable id="dataTable" var="usuario"

@@ -92,6 +92,8 @@ public class FuncionarioBean extends EntityBean<Long, Funcionario> {
 		if(this.cpf != null && !this.cpf.equals("")){
 			this.funcionarioBusca = service.findByCpf(this.cpf);
 			this.entity = this.funcionarioBusca;
+		} else {
+			this.entity.setCpf(this.cpf );
 		}
 		return single;
 	}

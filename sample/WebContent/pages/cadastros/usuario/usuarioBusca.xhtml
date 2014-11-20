@@ -2,31 +2,37 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition 	
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/templates/template.xhtml">
 
 	<ui:define name="pageContent">
 
 
-		<p:fieldset legend="Buscar Pessoa">
-		
-				<h:panelGrid id="busca" columns="2" styleClass="crudd" columnClasses="label">
-		
-					<p:outputLabel value="CPF "/>
-					<p:inputText id="cpf" value="#{usuarioBean.cpf}" />
-				
-				</h:panelGrid>
-				<p:commandButton value="Buscar" type="submit" action="#{usuarioBean.buscarUsuario}" styleClass="button" update="appForm" ajax="false"/>
+		<p:panel header="Busca Funcionário">
 
-		
-		</p:fieldset>
-	
- 
- </ui:define>
+			<p:fieldset legend="Buscar por CPF">
+
+				<h:panelGrid id="busca" columns="2" styleClass="crudd"
+					columnClasses="label">
+
+					<p:outputLabel value="Informe o CPF " />
+					<p:inputText id="cpf" value="#{usuarioBean.cpf}" />
+
+				</h:panelGrid>
+				<p:commandButton value="Buscar" type="submit"
+					action="#{usuarioBean.buscarUsuario}" styleClass="button"
+					update="appForm" ajax="false" />
+
+
+			</p:fieldset>
+
+		</p:panel>
+
+	</ui:define>
 
 </ui:composition>

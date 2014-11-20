@@ -50,39 +50,39 @@
                         					{RowsPerPageDropdown}"
 				rowIndexVar="k">
 
-				<p:column width="4%" style="text-align: center;">
+				<p:column width="3%" style="text-align: center;">
 					<f:facet name="header">
 						<h:outputText value="Nº" />
 					</f:facet>
 					<h:outputText value="#{k+1}" style="color: black;" />
 				</p:column>
 
-				<p:column width="20%" sortBy="#{cliente.pessoa.nome}">
+				<p:column width="15%" sortBy="#{cliente.nome}">
 					<f:facet name="header">
 						<h:outputLabel value="Nome" />
 					</f:facet>
-					<h:outputText value="#{cliente.pessoa.nome}" />
+					<h:outputText value="#{cliente.nome}" />
 				</p:column>
 
-				<p:column width="10%" sortBy="#{cliente.pessoa.cpf}">
+				<p:column width="15%" sortBy="#{cliente.cpf}">
 					<f:facet name="header">
 						<h:outputLabel value="CPF" />
 					</f:facet>
-					<h:outputText value="#{cliente.pessoa.cpf}" />
+					<h:outputText value="#{cliente.cpf}" />
 				</p:column>
 
-				<p:column width="10%" sortBy="#{cliente.pessoa.telefone}">
+				<p:column width="12%" sortBy="#{cliente.telefone}">
 					<f:facet name="header">
 						<h:outputLabel value="Fone" />
 					</f:facet>
-					<h:outputText value="#{cliente.pessoa.telefone}" />
+					<h:outputText value="#{cliente.telefone}" />
 				</p:column>
 
-				<p:column sortBy="#{cliente.pessoa.email}">
+				<p:column sortBy="#{cliente.email}" width="15%">
 					<f:facet name="header">
 						<h:outputLabel value="Email" />
 					</f:facet>
-					<h:outputText value="#{cliente.pessoa.email}" />
+					<h:outputText value="#{cliente.email}" />
 				</p:column>
 
 				<p:column width="30%">
@@ -90,7 +90,7 @@
 						<h:outputLabel value="Endereço" />
 					</f:facet>
 					<h:outputText
-						value="#{cliente.pessoa.endereco.logradouro}, Nº #{cliente.pessoa.endereco.numero} #{cliente.pessoa.endereco.complemento} - #{cliente.pessoa.endereco.bairro} #{cliente.pessoa.endereco.cidade}" />
+						value="#{cliente.endereco.logradouro}, Nº #{cliente.endereco.numero} #{cliente.endereco.complemento} - #{cliente.endereco.bairro} #{cliente.endereco.cidade}" />
 				</p:column>
 
 				<p:column width="3%">

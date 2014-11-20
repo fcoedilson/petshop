@@ -9,7 +9,7 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<div id="topo" style="display: none">
-		<h1 style="margin-left: 20px;">Petshop</h1>
+		<h1 style="margin-left: 20px;">Petshop Amigo</h1>
 	</div>
 
 
@@ -18,61 +18,73 @@
 		<p:menubar>
 			<p:submenu label="Administração" icon="ui-icon-document">
 				<p:menuitem value="Funcionários" action="#{funcionarioBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Médicos" action="#{medicoBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Cargos" action="#{cargoBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Usuários" action="#{usuarioBean.search}"
 					immediate="true" />
 				<p:menuitem value="Perfis" action="#{perfilBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Permissões" action="#{permissaoBean.search}"
 					immediate="true" />
 				<p:menuitem value="Produtos" action="#{produtoBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Serviços" action="#{servicoBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 			</p:submenu>
 
 			<p:submenu label="Cadastros" icon="ui-icon-document">
 				<p:menuitem value="Animais" action="#{animalBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Especies" action="#{especieBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Raças" action="#{racaBean.search}"
-					immediate="true" />
+					immediate="true" ajax="false" />
 				<p:menuitem value="Clientes" action="#{clienteBean.search}"
-					immediate="true" />
-				<p:menuitem value="Pedido" action="#{pedidoBean.search}" immediate="true" />
+					immediate="true" ajax="false" />
+				<p:menuitem value="Pedido" action="#{pedidoBean.search}"
+					immediate="true" rendered="false"/>
 			</p:submenu>
 
 			<p:submenu label="Atendimentos" icon="ui-icon-document">
-				<p:menuitem value="Agendamento" action="#{agendaBean.search}" immediate="true" />
-				<p:menuitem value="Atendimento"  action="#{atendimentoBean.search}" immediate="true" />
-				<p:menuitem value="Consultas" action="#{consultaBean.search}" immediate="true" />
-				<p:menuitem value="Pedidos" action="#{pedidoBean.search}" immediate="true" />
+				<p:menuitem value="Agendamento" action="#{agendaBean.search}"
+					immediate="true" ajax="false" rendered="false"/>
+				<p:menuitem value="Atendimento" action="#{atendimentoBean.search}"
+					immediate="true" ajax="false" />
+
+				<p:menuitem value="Consultas" action="#{consultaBean.search}"
+					immediate="true" ajax="false" />
+				<p:menuitem value="Pedidos" action="#{pedidoBean.search}"
+					immediate="true" ajax="false" rendered="false"/>
 			</p:submenu>
 
-			<p:submenu label="Financeiro" icon="ui-icon-document">
-				<p:menuitem value="Registro Caixa" immediate="true" />
-				<p:menuitem value="Folha pagamemento" immediate="true" />
-				<p:menuitem value="Registro de despesas" immediate="true" />
-				<p:menuitem value="Balanco Semanal" immediate="true" />
-				<p:menuitem value="Balanço Mensal" immediate="true" />
+			<p:submenu label="Financeiro" icon="ui-icon-document"
+				rendered="false">
+				<p:menuitem value="Registro Caixa" immediate="true" ajax="false" />
+				<p:menuitem value="Folha pagamemento" immediate="true" ajax="false" />
+				<p:menuitem value="Registro de despesas" immediate="true"
+					ajax="false" />
+				<p:menuitem value="Balanco Semanal" immediate="true" ajax="false" />
+				<p:menuitem value="Balanço Mensal" immediate="true" ajax="false" />
 			</p:submenu>
 
-			<p:submenu label="Reltórios" icon="ui-icon-document">
-				<p:menuitem value="Relatório de Despesas" immediate="true" />
-				<p:menuitem value="Estoque de produtos" immediate="true" />
-				<p:menuitem value="Balanço Mensal" immediate="true" />
-				<p:menuitem value="Balanco Semanal" immediate="true" />
-				<p:menuitem value="Balanço Mensal" immediate="true" />
+			<p:submenu label="Reltórios" icon="ui-icon-document" rendered="false">
+				<p:menuitem value="Relatório de Despesas" immediate="true"
+					ajax="false" />
+				<p:menuitem value="Estoque de produtos" immediate="true"
+					ajax="false" />
+				<p:menuitem value="Balanço Mensal" immediate="true" ajax="false" />
+				<p:menuitem value="Balanco Semanal" immediate="true" ajax="false" />
+				<p:menuitem value="Balanço Mensal" immediate="true" ajax="false" />
 			</p:submenu>
 
 			<f:facet name="options">
-	            <p:outputLabel  value="Login:#{controlBean.usuario.login} Perfil:#{controlBean.role.nome}" style="color:blue;align:right;margin-right:10px"/>
-	        </f:facet>
+				<p:outputLabel
+					value="Login:#{controlBean.usuario.login} Perfil:#{controlBean.role.nome}"
+					style="color:blue;align:right;margin-right:10px" />
+			</f:facet>
 
 		</p:menubar>
 

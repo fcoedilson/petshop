@@ -12,77 +12,77 @@
 
 	<ui:define name="pageContent">
 
+		<p:panel header="Animal">
 
-		<h:inputHidden value="#{animalBean.entity.id}"
-			rendered="#{animalBean.updateState}" />
+			<h:inputHidden value="#{animalBean.entity.id}"
+				rendered="#{animalBean.updateState}" />
 
-		<p:fieldset legend="Dados do Animal">
-
-
-			<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+			<p:fieldset legend="Dados do Animal">
 
 
-				<p:outputLabel value="Proprietário"/>
-	    		<p:selectOneMenu id="propriet" value="#{animalBean.entity.cliente}" required="true" converter="entityConverter"   requiredMessage="Informe o cliente ...">
-	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{animalBean.clientes}" var="p" itemLabel="#{p.pessoa.nome}" itemValue="#{p}"/>
-	    		</p:selectOneMenu>
-	    		<p:message errorClass="error" for="propriet" display="icon"/>
+				<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+
+					<p:outputLabel id="clienteLabel" value="Nome Cliente"/>
+					<p:inputText id="clienteNome" value="#{animalBean.entity.cliente.nome}" required="true"
+						requiredMessage="Informe o cliente" disabled="true" />
+					<p:message errorClass="error" for="clienteNome" display="icon" />
 
 
-				<p:outputLabel value="Nome" />
-				<p:inputText id="nome" value="#{animalBean.entity.nome}"
-					required="true" maxlength="120" size="60">
-					<f:validateLength maximum="50" minimum="3" />
-				</p:inputText>
-				<p:message errorClass="error" for="nome" display="icon" />
+					<p:outputLabel value="Espécie" />
+					<h:selectOneMenu id="especie" value="#{animalBean.entity.especie}"
+						required="true" converter="entityConverter"
+						requiredMessage="Informe a espécie ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{animalBean.especies}" var="e"
+							itemLabel="#{e.nome}" itemValue="#{e}" />
+					</h:selectOneMenu>
+					<p:message errorClass="error" for="especie" display="icon" />
+
+					<p:outputLabel value="Raça" />
+					<h:selectOneMenu id="raca" value="#{animalBean.entity.raca}"
+						required="true" converter="entityConverter"
+						requiredMessage="Informe a raça ...">
+						<f:selectItem itemValue="" itemLabel="..." />
+						<f:selectItems value="#{animalBean.racas}" var="r"
+							itemLabel="#{r.nome}" itemValue="#{r}" />
+					</h:selectOneMenu>
+					<p:message errorClass="error" for="raca" display="icon" />
+
+					<p:outputLabel value="Nome" />
+					<p:inputText id="nome" value="#{animalBean.entity.nome}"
+						required="true" maxlength="120" size="60"
+						requiredMessage="Informe o nome do animal">
+						<f:validateLength maximum="50" minimum="3" />
+					</p:inputText>
+					<p:message errorClass="error" for="nome" display="icon" />
 
 
-				<p:outputLabel value="Cor" />
-				<p:inputText id="cor" value="#{animalBean.entity.cor}"
-					required="true" maxlength="120" size="18">
-					<f:validateLength maximum="180" minimum="4" />
-				</p:inputText>
-				<p:message errorClass="error" for="cor" display="icon" />
-
-				<p:outputLabel value="Espécie" />
-				<p:selectOneMenu id="especie" value="#{animalBean.entity.especie}"
-					required="true" converter="entityConverter"
-					requiredMessage="Informe a espécie ...">
-					<f:selectItem itemValue="" itemLabel="..." />
-					<f:selectItems value="#{animalBean.especies}" var="e"
-						itemLabel="#{e.nome}" itemValue="#{e}" />
-				</p:selectOneMenu>
-				<p:message errorClass="error" for="especie" display="icon" />
-
-				<p:outputLabel value="Raça" />
-				<p:selectOneMenu id="raca" value="#{animalBean.entity.raca}"
-					required="true" converter="entityConverter"
-					requiredMessage="Informe a raça ...">
-					<f:selectItem itemValue="" itemLabel="..." />
-					<f:selectItems value="#{animalBean.racas}" var="r"
-						itemLabel="#{r.nome}" itemValue="#{r}" />
-				</p:selectOneMenu>
-				<p:message errorClass="error" for="raca" display="icon" />
-
-				<p:outputLabel value="Características" />
-				<p:inputTextarea id="caracte"
-					value="#{animalBean.entity.caracteristicas}" cols="40" rows="3" />
-				<p:message errorClass="error" for="caracte" display="icon" />
-
-			</h:panelGrid>
-
-		</p:fieldset>
+					<p:outputLabel value="Cor" />
+					<p:inputText id="cor" value="#{animalBean.entity.cor}"
+						maxlength="120" size="18" />
+					<p:message errorClass="error" for="cor" display="icon" />
 
 
-		<p:commandButton value="Salvar" type="submit"
-			action="#{animalBean.save}" styleClass="button"
-			rendered="#{animalBean.saveState}" update="appForm" />
-		<p:commandButton value="Alterar" type="submit"
-			action="#{animalBean.update}" styleClass="button"
-			rendered="#{animalBean.updateState}" update="appForm" />
-		<p:commandButton value="Voltar" action="#{animalBean.search}"
-			update="appForm" styleClass="button" immediate="true" />
+					<p:outputLabel value="Características" />
+					<p:inputTextarea id="caracte"
+						value="#{animalBean.entity.caracteristicas}" cols="60" rows="4" />
+					<p:message errorClass="error" for="caracte" display="icon" />
+
+				</h:panelGrid>
+
+			</p:fieldset>
+
+
+			<p:commandButton value="Salvar" type="submit"
+				action="#{animalBean.save}" styleClass="button"
+				rendered="#{animalBean.saveState}" update="appForm" />
+			<p:commandButton value="Alterar" type="submit"
+				action="#{animalBean.update}" styleClass="button"
+				rendered="#{animalBean.updateState}" update="appForm" />
+			<p:commandButton value="Voltar" action="#{animalBean.search}"
+				update="appForm" styleClass="button" immediate="true" ajax="false" />
+
+		</p:panel>
 
 	</ui:define>
 
